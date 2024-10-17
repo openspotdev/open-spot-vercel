@@ -1,12 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import GooglePlacesAutocomplete, {
+  // GooglePlacesAutocompleteProps,
   geocodeByAddress,
   getLatLng,
 } from "react-google-places-autocomplete";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+
+const DynamicGooglePlacesAutocomplete = dynamic(
+  () => import("react-google-places-autocomplete").then((mod) => mod.default),
+  { ssr: false }
+);
 
 interface NewSpot {
   label: string;
@@ -82,7 +89,7 @@ export default function LocationAutocomplete() {
 
   return (
     <div className="flex w-full space-x-1 justify-between">
-      <GooglePlacesAutocomplete
+      <DynamicGooglePlacesAutocomplete
         minLengthAutocomplete={3}
         apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
         selectProps={{
