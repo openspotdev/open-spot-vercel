@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Providers } from "./providers";
+
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -14,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: ".:: open spot ::.",
-  description: "Action Sport App",
+  title: "OS Actin Sports",
+  description: "OS Action Sport Web Portal",
 };
 
 export default function RootLayout({
@@ -49,7 +51,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
