@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,46 +10,75 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useEffect, useState } from "react";
-// import { Label } from "@/components/ui/label";
+
+interface Spot {
+  guid: string;
+  name: string;
+  // Add other properties as needed
+}
 
 export default function SpotsList() {
-  const [spots, setSpots] = useState([]);
-  useEffect(() => {
-    const strJson = localStorage.getItem("spots");
-    if (!strJson) setSpots([]);
-    const list = JSON.parse(strJson);
-    setSpots(list);
+  const [spots, setSpots] = useState<Spot[]>([]);
+
+  const loadSpots = useCallback(() => {
+    const storedSpots = localStorage.getItem("spots");
+    setSpots(storedSpots ? JSON.parse(storedSpots) : []);
   }, []);
 
-  const handleDelete = (guid: string) => {
-    const strJson = localStorage.getItem("spots");
-    if (!strJson) return;
-    const listOld = JSON.parse(strJson);
-    const list = listOld.filter((item) => item.guid !== guid);
-    localStorage.setItem("spots", JSON.stringify(list));
-    setSpots(list);
-  };
+  useEffect(() => {
+    loadSpots();
+  }, [loadSpots]);
+
+  const handleDelete = useCallback(
+    (guid: string) => {
+      const updatedSpots = spots.filter((spot) => spot.guid !== guid);
+      localStorage.setItem("spots", JSON.stringify(updatedSpots));
+      setSpots(updatedSpots);
+    },
+    [spots]
+  );
+
+  const handleDetail = useCallback((guid: string) => {
+    // Implement detail view logic here
+    console.log(`Showing details for spot with GUID: ${guid}`);
+  }, []);
+
+  if (spots.length === 0) {
+    return <p>No spots available.</p>;
+  }
 
   return (
     <div className="flex flex-col gap-2">
-      {spots?.map((spot) => (
-        <Card key={spot.guid}>
-          <CardHeader>
-            <CardTitle>{spot.name}</CardTitle>
-            <CardDescription>
-              Deploy your new project in one-click.
-            </CardDescription>
-          </CardHeader>
-          <CardContent></CardContent>
-          <CardFooter className="flex justify-between">
-            <Button variant="outline" onClick={() => handleDelete(spot.guid)}>
-              Delete
-            </Button>
-            <Button>Detail</Button>
-          </CardFooter>
-        </Card>
+      {spots.map((spot) => (
+        <SpotCard
+          key={spot.guid}
+          spot={spot}
+          onDelete={handleDelete}
+          onDetail={handleDetail}
+        />
       ))}
     </div>
   );
 }
+
+interface SpotCardProps {
+  spot: Spot;
+  onDelete: (guid: string) => void;
+  onDetail: (guid: string) => void;
+}
+
+const SpotCard: React.FC<SpotCardProps> = ({ spot, onDelete, onDetail }) => (
+  <Card>
+    <CardHeader>
+      <CardTitle>{spot.name}</CardTitle>
+      <CardDescription>View or manage this spot.</CardDescription>
+    </CardHeader>
+    <CardContent>{/* Add more spot details here if needed */}</CardContent>
+    <CardFooter className="flex justify-between">
+      <Button variant="outline" onClick={() => onDelete(spot.guid)}>
+        Delete
+      </Button>
+      <Button onClick={() => onDetail(spot.guid)}>Detail</Button>
+    </CardFooter>
+  </Card>
+);

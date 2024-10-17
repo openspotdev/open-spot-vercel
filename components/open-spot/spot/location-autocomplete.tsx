@@ -5,78 +5,99 @@ import GooglePlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-google-places-autocomplete";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-// import { GoogleApiSpot } from "@/app/definitions/spots";
-// import { Cloud, Menu, X, Activity, Bike, Waves } from "lucide-react";
-// import { Switch } from "@/components/ui/switch";
-// import { Label } from "@/components/ui/label";
+interface NewSpot {
+  label: string;
+  value: {
+    place_id: string;
+    structured_formatting: {
+      main_text: string;
+    };
+  };
+}
 
-// import { landingTexts } from "@/app/const/languages-texts";
+interface SpotData {
+  guid: string;
+  name: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  country: string;
+  state: string;
+  city: string;
+  selected: boolean;
+  type: string;
+}
+
 export default function LocationAutocomplete() {
-  const [newSpot, setNewSpot] = useState([]);
+  const [newSpot, setNewSpot] = useState<NewSpot | null>(null);
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newSpot) return;
-    const body = await handleAddSpot();
-    const strJson = localStorage.getItem("spots");
-    if (strJson) {
-      const list = JSON.parse(strJson);
-      localStorage.setItem("spots", JSON.stringify([...list, body]));
-    } else {
-      localStorage.setItem("spots", JSON.stringify([body]));
+
+    const spotData = await handleAddSpot();
+    if (spotData) {
+      saveSpotToLocalStorage(spotData);
     }
   };
 
-  const handleAddSpot = async () => {
-    const spot = await geocodeByAddress(newSpot.label).then(async (results) => {
+  const handleAddSpot = async (): Promise<SpotData | null> => {
+    try {
+      const results = await geocodeByAddress(newSpot.label);
       const { lat, lng } = await getLatLng(results[0]);
-      const jsonSpot = {
+      const addressComponents = results[0].address_components;
+
+      return {
         guid: newSpot.value.place_id,
         name: newSpot.value.structured_formatting.main_text,
-        location: {
-          latitude: lat,
-          longitude: lng,
-        },
-        country:
-          results[0].address_components[
-            results[0].address_components.length - 2
-          ].long_name,
-        state:
-          results[0].address_components[
-            results[0].address_components.length - 3
-          ].long_name,
-        city: results[0].address_components[
-          results[0].address_components.length - 4
-        ].long_name,
+        location: { latitude: lat, longitude: lng },
+        country: getAddressComponent(addressComponents, "country"),
+        state: getAddressComponent(
+          addressComponents,
+          "administrative_area_level_1"
+        ),
+        city: getAddressComponent(addressComponents, "locality"),
         selected: false,
         type: "sport",
       };
-      return jsonSpot;
-    });
-    return spot;
+    } catch (error) {
+      console.error("Error adding spot:", error);
+      return null;
+    }
+  };
+
+  const getAddressComponent = (components: any[], type: string): string => {
+    const component = components.find((comp) => comp.types.includes(type));
+    return component ? component.long_name : "";
+  };
+
+  const saveSpotToLocalStorage = (spotData: SpotData) => {
+    const spots = JSON.parse(localStorage.getItem("spots") || "[]");
+    localStorage.setItem("spots", JSON.stringify([...spots, spotData]));
   };
 
   return (
-    <div className="">
+    <div className="flex w-full space-x-1 justify-between">
       <GooglePlacesAutocomplete
         minLengthAutocomplete={3}
         apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
         selectProps={{
-          placeholder: "",
+          placeholder: "Search a location",
           isClearable: true,
           escapeClearsValue: true,
           value: newSpot,
-          onChange: (spot) => setNewSpot(spot),
+          onChange: (spot: NewSpot | null) => setNewSpot(spot),
           styles: {
             input: (provided) => ({
               ...provided,
               fontSize: "12px",
               color: "#29272C",
-              height: "30px",
+              height: "28px",
+              width: "240px",
             }),
             option: (provided) => ({
               ...provided,
@@ -87,7 +108,7 @@ export default function LocationAutocomplete() {
             singleValue: (provided) => ({
               ...provided,
               fontSize: "12px",
-              color: "1EA2E4",
+              color: "#1EA2E4",
             }),
           },
         }}
@@ -96,18 +117,11 @@ export default function LocationAutocomplete() {
           region: "en",
         }}
       />
-      <form id="spot-form" onSubmit={handleSave} className="mb-6 flex gap-2">
-        <Input
-          type="text"
-          placeholder="Enter spot name"
-          onChange={() => console.log("change")}
-          value={newSpot}
-          className="flex-grow hidden"
-        />
+      <form id="spot-form" onSubmit={handleSave} className="mb-6 gap-2">
+        <Button type="submit" disabled={!newSpot}>
+          Save
+        </Button>
       </form>
-      <Button type="submit" form="spot-form">
-        {"Save"}
-      </Button>
     </div>
   );
 }
