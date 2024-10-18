@@ -69,7 +69,7 @@ export default function OSActionSportsLanding() {
   const t = landingTexts[language];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-red-600 to-slate-600 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-slate-600 to-slate-800 text-white overflow-hidden pb-8">
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
           <div
@@ -123,7 +123,7 @@ export default function OSActionSportsLanding() {
                   Toggle Language
                 </Label>
                 <span
-                  className={`text-sm ${
+                  className={`text-xs ${
                     language === "en" ? "text-blue-600" : "text-blue-300"
                   }`}
                 >
@@ -135,10 +135,10 @@ export default function OSActionSportsLanding() {
                   onCheckedChange={() =>
                     setLanguage((prev) => (prev === "en" ? "es" : "en"))
                   }
-                  className="data-[state=checked]:bg-teal-500"
+                  className="data-[state=checked]:bg-red-500"
                 />
                 <span
-                  className={`text-sm pr-2 ${
+                  className={`text-xs pr-2 ${
                     language === "es" ? "text-blue-600" : "text-blue-300"
                   }`}
                 >
@@ -157,7 +157,7 @@ export default function OSActionSportsLanding() {
         </header>
 
         <div
-          className={`fixed top-0 right-0 h-full w-64 bg-blue-800 z-40 p-6 transform transition-transform duration-300 ease-in-out ${
+          className={`fixed top-0 right-0 h-full w-64 bg-slate-800 z-40 p-6 transform transition-transform duration-300 ease-in-out ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
