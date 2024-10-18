@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Mountain, Medal, Footprints, Dumbbell } from "lucide-react";
+import {
+  Menu,
+  X,
+  Mountain,
+  Medal,
+  Footprints,
+  Dumbbell,
+  Trophy,
+} from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
@@ -9,7 +17,7 @@ import Link from "next/link";
 // Simulating internationalization texts
 const landingTexts = {
   en: {
-    title: "OS Action Sports",
+    title: "Olympico school",
     home: "Home",
     spots: "Spots",
     school: "School",
@@ -35,7 +43,7 @@ const landingTexts = {
     },
   },
   es: {
-    title: "OS Action Sports",
+    title: "Olympico school",
     home: "Inicio",
     spots: "Spots",
     school: "Escuela",
@@ -97,7 +105,7 @@ export default function OSActionSportsLanding() {
               href="#"
               className="text-lg md:text-2xl font-bold flex items-center"
             >
-              <Mountain className="mr-2" />
+              <Trophy className="mr-2" />
               {t.title}
             </Link>
             <div className="hidden md:flex space-x-6 bg-white bg-opacity-10 px-4 p-2 rounded-full backdrop-blur-sm animate-fade-in-up">
