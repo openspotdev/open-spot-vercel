@@ -13,11 +13,11 @@ const landingTexts = {
     home: "Home",
     spots: "Spots",
     school: "School",
-    heroTitle: "Push Your Limits with Action Sports",
+    heroTitle: "Push Your Limits",
     heroSubtitle:
       "Join our community and elevate your skills in running, Rollerblading, and boxing.",
     ctaButton: "Join Us Now",
-    featuresTitle: "Why Choose OS Action Sports School?",
+    featuresTitle: "We are athletes teaching the best techniques",
     runningTraining: {
       title: "Running Training",
       description:
@@ -35,15 +35,15 @@ const landingTexts = {
     },
   },
   es: {
-    title: "Escuela de Deportes de Acción OS",
+    title: "OS Action Sports",
     home: "Inicio",
     spots: "Spots",
     school: "Escuela",
-    heroTitle: "Supera Tus Límites con Deportes de Acción",
+    heroTitle: "Supera Tus Límites",
     heroSubtitle:
       "Únete a nuestra comunidad y mejora tus habilidades en correr, patinar y boxear.",
     ctaButton: "Únete Ahora",
-    featuresTitle: "¿Por qué elegir la Escuela de Deportes de Acción OS?",
+    featuresTitle: "Somos atletas enseñando las mejores tecnicas",
     runningTraining: {
       title: "Entrenamiento de Carrera",
       description:
@@ -69,7 +69,7 @@ export default function OSActionSportsLanding() {
   const t = landingTexts[language];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-800 via-teal-500 to-green-600 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-red-600 to-slate-600 text-white overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
           <div
@@ -190,7 +190,7 @@ export default function OSActionSportsLanding() {
           <p className="text-xl md:text-2xl mb-10 animate-fade-in-up animation-delay-300">
             {t.heroSubtitle}
           </p>
-          <Link href="/spots">
+          <Link href="/school">
             <button className="bg-white text-blue-600 px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-100 transition-colors inline-flex items-center animate-fade-in-up animation-delay-600">
               {t.ctaButton}
             </button>
