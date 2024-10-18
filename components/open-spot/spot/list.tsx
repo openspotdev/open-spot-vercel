@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -11,74 +11,45 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-interface Spot {
-  guid: string;
-  name: string;
-  // Add other properties as needed
-}
+import { useSpots, useDeleteSpot, Spot } from "@/lib/hooks/useSpotsRepository";
+import { Label } from "@/components/ui/label";
 
-export default function SpotsList() {
-  const [spots, setSpots] = useState<Spot[]>([]);
+const List: React.FC = () => {
+  const { data: spots, isLoading, isError } = useSpots();
+  const deleteSpotMutation = useDeleteSpot();
 
-  const loadSpots = useCallback(() => {
-    const storedSpots = localStorage.getItem("spots");
-    setSpots(storedSpots ? JSON.parse(storedSpots) : []);
-  }, []);
+  const handleDelete = (guid: string) => {
+    deleteSpotMutation.mutate(guid);
+  };
 
-  useEffect(() => {
-    loadSpots();
-  }, [loadSpots]);
+  const handleDetail = (guid: string) => console.log("details");
 
-  const handleDelete = useCallback(
-    (guid: string) => {
-      const updatedSpots = spots.filter((spot) => spot.guid !== guid);
-      localStorage.setItem("spots", JSON.stringify(updatedSpots));
-      setSpots(updatedSpots);
-    },
-    [spots]
-  );
-
-  const handleDetail = useCallback((guid: string) => {
-    // Implement detail view logic here
-    console.log(`Showing details for spot with GUID: ${guid}`);
-  }, []);
-
-  if (spots.length === 0) {
-    return <p>No spots available.</p>;
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading spots</div>;
 
   return (
-    <div className="flex flex-col gap-2">
-      {spots.map((spot) => (
-        <SpotCard
-          key={spot.guid}
-          spot={spot}
-          onDelete={handleDelete}
-          onDetail={handleDetail}
-        />
+    <div className="space-y-4">
+      {spots?.map((spot: Spot) => (
+        <Card key={spot.guid}>
+          <CardHeader>
+            <CardTitle>{spot.name}</CardTitle>
+            {/* <CardDescription>View or manage this spot.</CardDescription> */}
+          </CardHeader>
+          <CardContent className="flex gap-8">
+            <Label>{spot.country}</Label>
+            <Label>{spot.state}</Label>
+            <Label>{spot.city}</Label>
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            <Button variant="outline" onClick={() => handleDelete(spot.guid)}>
+              Delete
+            </Button>
+            <Button onClick={() => handleDetail(spot.guid)}>Detail</Button>
+          </CardFooter>
+        </Card>
       ))}
     </div>
   );
-}
+};
 
-interface SpotCardProps {
-  spot: Spot;
-  onDelete: (guid: string) => void;
-  onDetail: (guid: string) => void;
-}
-
-const SpotCard: React.FC<SpotCardProps> = ({ spot, onDelete, onDetail }) => (
-  <Card>
-    <CardHeader>
-      <CardTitle>{spot.name}</CardTitle>
-      <CardDescription>View or manage this spot.</CardDescription>
-    </CardHeader>
-    <CardContent>{/* Add more spot details here if needed */}</CardContent>
-    <CardFooter className="flex justify-between">
-      <Button variant="outline" onClick={() => onDelete(spot.guid)}>
-        Delete
-      </Button>
-      <Button onClick={() => onDetail(spot.guid)}>Detail</Button>
-    </CardFooter>
-  </Card>
-);
+export default List;

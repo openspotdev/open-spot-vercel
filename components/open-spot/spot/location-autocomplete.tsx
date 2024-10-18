@@ -101,21 +101,7 @@ export default function LocationAutocomplete() {
           styles: {
             input: (provided) => ({
               ...provided,
-              fontSize: "12px",
-              color: "#29272C",
-              height: "28px",
               width: "240px",
-            }),
-            option: (provided) => ({
-              ...provided,
-              fontSize: "12px",
-              color: "#29272C",
-              height: "auto",
-            }),
-            singleValue: (provided) => ({
-              ...provided,
-              fontSize: "12px",
-              color: "#1EA2E4",
             }),
           },
         }}
