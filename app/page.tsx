@@ -47,6 +47,7 @@ export default function LandingPage() {
     { href: "#sports", label: "Sports" },
     { href: "#pricing", label: "Pricing" },
     { href: "#testimonials", label: "Testimonials" },
+    { href: "/team", label: "Team" },
     // { href: "/spots", label: "Spots Weather Forecast" },
   ];
 
