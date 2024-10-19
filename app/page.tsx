@@ -224,9 +224,9 @@ export default function LandingPage() {
                     <div>
                       <h3 className="text-xl font-bold">Escuela de Running</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Intensive courses focusing on advanced techniques, race
-                        preparation, or specific skills. Take your abilities to
-                        the next level.
+                        Cursos intensivos centrados en técnicas avanzadas,
+                        preparación para competiciones o habilidades
+                        específicas. Lleva tus habilidades al siguiente nivel.
                       </p>
                     </div>
                   </CardContent>
