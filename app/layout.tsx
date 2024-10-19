@@ -39,7 +39,6 @@ export default function RootLayout({
           sizes="32x32"
           href="/favicon_io/favicon-32x32.png"
         />
-
         <link
           rel="icon"
           type="image/png"
