@@ -17,7 +17,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Olympico Action Sports",
-  description: "Olympico Action Sport Web Portal",
+  description:
+    "Welcome to Olympico Action Sport, your premier destination for all things rollerblading and running! As a vibrant community organization and school, we promote active lifestyles through engaging programs, expert coaching, and thrilling events. Join us to elevate your skills, connect with fellow enthusiasts, and embrace the excitement of action sports!",
 };
 
 export default function RootLayout({
