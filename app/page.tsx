@@ -195,7 +195,8 @@ export default function LandingPage() {
               <TabsContent value="rollerblading">
                 <Card>
                   <CardContent className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-6">
-                    <Bike className="h-12 w-12 text-primary" />
+                    {/* <Bike className="h-12 w-12 text-primary" /> */}
+                    <span className="icon-[icon-park--rollerskates] w-16 h-16"></span>
                     <div>
                       <h3 className="text-xl font-bold">
                         Rollerblading Classes
@@ -212,7 +213,7 @@ export default function LandingPage() {
               <TabsContent value="running">
                 <Card>
                   <CardContent className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-6">
-                    <Activity className="h-12 w-12 text-primary" />
+                    <span className="icon-[noto-v1--running-shoe] w-12 h-12"></span>
                     <div>
                       <h3 className="text-xl font-bold">Running Classes</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -229,7 +230,7 @@ export default function LandingPage() {
         </section>
         <section
           id="pricing"
-          className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-gray-100"
+          className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-rose-50"
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12">
