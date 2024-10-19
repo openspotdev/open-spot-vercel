@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "OS Actin Sports",
-  description: "OS Action Sport Web Portal",
+  title: "Olympico Action Sports",
+  description: "Olympico Action Sport Web Portal",
 };
 
 export default function RootLayout({
@@ -45,6 +45,10 @@ export default function RootLayout({
           sizes="16x16"
           href="/favicon_io/favicon-16x16.png"
         />
+        <meta property="og:image" content="<generated>" />
+        <meta property="og:image:type" content="<generated>" />
+        <meta property="og:image:width" content="<generated>" />
+        <meta property="og:image:height" content="<generated>" />
         <link rel="manifest" href="/favicon_io/site.webmanifest" />
       </head>
       <body
