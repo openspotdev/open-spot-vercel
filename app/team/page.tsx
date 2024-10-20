@@ -32,7 +32,7 @@ export default function TeamPage() {
     {
       name: "Gabriel Alfonso",
       role: "Rollerblade Specialist & Founder",
-      bio: "Gabriel is a former professional rollerblader with over 15 years of coaching experience. She founded RollRun Academy with the vision of creating a supportive community for skating and running enthusiasts.",
+      bio: "Gabriel is a former professional rollerblader with over 15 years of coaching experience. Together founded Olympico Academy with the vision of creating a supportive community for skating and running enthusiasts.",
       image: "icon-[openmoji--man-medium-light-skin-tone-beard]",
     },
   ];
@@ -153,7 +153,7 @@ export default function TeamPage() {
                 </p>
               </div>
               <Button size="lg" asChild>
-                <Link href="mailto:info@rollrunacademy.com">Contact Us</Link>
+                <Link href="mailto:info@olympicoacademy.com">Contact Us</Link>
               </Button>
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function TeamPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-xs text-gray-500">
-              © 2024 RollRun Academy. All rights reserved.
+              © 2024 Olympico Academy. All rights reserved.
             </p>
             <nav className="flex gap-4">
               <Link

@@ -205,7 +205,8 @@ export default function LandingPage() {
                     <span className="icon-[icon-park--rollerskates] w-16 h-16"></span>
                     <div>
                       <h3 className="text-xl font-bold">
-                        Escuela de Rollerblading, Downhill, Rolleskate y Urbano.
+                        Escuela de Rollerblading, Downhill, Rollerskate y
+                        Urbano.
                       </h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
                         Desde principiantes hasta patinadores avanzados,
