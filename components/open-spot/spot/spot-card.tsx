@@ -17,7 +17,7 @@ export default function SpotCard({
   const wazeUrl = `https://www.waze.com/ul?ll=${latitude}%2C${longitude}&navigate=yes`;
 
   return (
-    <Card className="w-full hover:shadow-lg transition-shadow duration-300">
+    <Card className="w-full hover:shadow-lg transition-shadow duration-300 bg-slate-50">
       <CardContent className="p-4">
         <div className="flex justify-between items-start">
           <div className="flex-grow">

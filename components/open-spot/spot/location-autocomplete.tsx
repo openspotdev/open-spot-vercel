@@ -77,7 +77,7 @@ export default function LocationAutocomplete() {
           styles: {
             input: (provided) => ({
               ...provided,
-              width: "240px",
+              width: "200px",
             }),
           },
         }}
@@ -88,7 +88,7 @@ export default function LocationAutocomplete() {
       />
       <form id="spot-form" onSubmit={handleSave} className="mb-6 gap-2">
         <Button type="submit" disabled={!newSpot}>
-          Save
+          Agregar
         </Button>
       </form>
     </div>

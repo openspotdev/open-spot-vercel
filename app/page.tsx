@@ -48,7 +48,7 @@ export default function LandingPage() {
     { href: "#pricing", label: "Precios" },
     { href: "#testimonials", label: "Testimonios" },
     { href: "/team", label: "Equipo" },
-    { href: "/spots", label: "Spots Weather Forecast" },
+    { href: "/spots", label: "Spots" },
   ];
 
   return (

@@ -19,20 +19,20 @@ export default function TeamPage() {
   const teamMembers = [
     {
       name: "Eduardo Abella",
-      role: "Rollerblade Specialist, Youth Program Director & Founder",
-      bio: "Eduardo specializes in introducing children and teenagers to the joys of rollerblading and running. Her energetic teaching style and focus on safety have made our youth programs incredibly popular.",
+      role: "Especialista en patinaje, director del programa juvenil y fundador",
+      bio: "Eduardo se especializa en introducir a niños y adolescentes a los placeres del patinaje sobre ruedas y el running. Su enérgico estilo de enseñanza y su enfoque en la seguridad han hecho que nuestros programas para jóvenes sean increíblemente populares.",
       image: "icon-[openmoji--man-dark-skin-tone-beard]",
     },
     {
       name: "Camilo Fiallo",
-      role: "Running Specialist & Founder",
-      bio: "Camilo is a marathon runner and certified running coach. With his expertise in biomechanics and endurance training, he helps our students achieve their personal best in running.",
+      role: "Especialista en Running y Fundadora",
+      bio: "Camilo es corredor de maratón y entrenador de carrera certificado. Con su experiencia en biomecánica y entrenamiento de resistencia, ayuda a nuestros estudiantes a lograr sus mejores resultados personales en el running.",
       image: "icon-[openmoji--man-light-skin-tone-beard]",
     },
     {
       name: "Gabriel Alfonso",
-      role: "Rollerblade Specialist & Founder",
-      bio: "Gabriel is a former professional rollerblader with over 15 years of coaching experience. Together founded Olympico Academy with the vision of creating a supportive community for skating and running enthusiasts.",
+      role: "Especialista en patinaje y fundador",
+      bio: "Gabriel es un ex patinador profesional con más de 15 años de experiencia como entrenador. Juntos fundaron Olympico Academy con la visión de crear una comunidad de apoyo para los entusiastas del patinaje y el running.",
       image: "icon-[openmoji--man-medium-light-skin-tone-beard]",
     },
   ];
@@ -43,68 +43,28 @@ export default function TeamPage() {
         <nav className="container flex h-14 items-center">
           <Link className="flex items-center justify-center space-x-2" href="/">
             <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
-            <span className="font-bold">Olympico Academy</span>
+            <span className="font-bold">Volver</span>
           </Link>
 
           <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
             {navItems.map((item, index) => (
-              <Link
-                key={index}
-                className="text-sm font-medium hover:underline underline-offset-4"
-                href={item.href}
-              >
-                {item.label}
-              </Link>
+              <h1 key={index} className="font-bold">
+                {"Equipo de Trabajo"}
+              </h1>
             ))}
           </nav>
-          <Button
-            variant="ghost"
-            className="ml-auto md:hidden"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            <Menu className="h-6 w-6" />
-          </Button>
         </nav>
       </header>
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm md:hidden">
-          <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-background shadow-lg">
-            <div className="flex h-14 items-center px-4">
-              <h2 className="text-lg font-semibold">Menu</h2>
-              <Button
-                variant="ghost"
-                className="ml-auto"
-                onClick={toggleMobileMenu}
-                aria-label="Close menu"
-              >
-                <X className="h-6 w-6" />
-              </Button>
-            </div>
-            <nav className="flex flex-col space-y-4 p-4">
-              {navItems.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="text-sm font-medium hover:underline underline-offset-4"
-                  onClick={toggleMobileMenu}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </div>
-      )}
       <main className="flex-1">
         <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-gray-100">
           <div className="container px-4 md:px-6">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center mb-8">
-              Meet Our Team
+              Conoce a nuestro equipo
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center mb-12">
-              Our experienced and passionate instructors are dedicated to
-              helping you achieve your goals in rollerblading and running.
+              Nuestros instructores experimentados y apasionados están dedicados
+              a ayudarle a alcanzar sus objetivos en patinaje sobre ruedas y
+              carrera.
             </p>
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
               {teamMembers.map((member, index) => (
@@ -145,15 +105,15 @@ export default function TeamPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Get in Touch
+                  Contáctenos
                 </h2>
                 <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Have questions about our team or programs? We d love to hear
-                  from you!
+                  ¿Tienes preguntas sobre nuestro equipo o nuestros programas?
+                  ¡Nos encantaría saber de ti!
                 </p>
               </div>
               <Button size="lg" asChild>
-                <Link href="mailto:info@olympicoacademy.com">Contact Us</Link>
+                <Link href="mailto:info@olympicoacademy.com">Contáctenos</Link>
               </Button>
             </div>
           </div>
