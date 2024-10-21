@@ -2,14 +2,8 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import GooglePlacesAutocomplete, {
-  // GooglePlacesAutocompleteProps,
-  geocodeByAddress,
-  getLatLng,
-} from "react-google-places-autocomplete";
+import { geocodeByAddress, getLatLng } from "react-google-places-autocomplete";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
 const DynamicGooglePlacesAutocomplete = dynamic(
   () => import("react-google-places-autocomplete").then((mod) => mod.default),
   { ssr: false }
@@ -27,20 +21,6 @@ interface NewSpot {
   };
 }
 
-// interface SpotData {
-//   guid: string;
-//   name: string;
-//   location: {
-//     latitude: number;
-//     longitude: number;
-//   };
-//   country: string;
-//   state: string;
-//   city: string;
-//   selected: boolean;
-//   type: string;
-// }
-
 export default function LocationAutocomplete() {
   const [newSpot, setNewSpot] = useState<NewSpot | null>(null);
   const addSpotMutation = useAddSpot();
@@ -52,7 +32,6 @@ export default function LocationAutocomplete() {
     const spotData = await handleAddSpot();
     if (spotData) {
       addSpotMutation.mutate(spotData);
-      // saveSpotToLocalStorage(spotData);
     }
   };
 
