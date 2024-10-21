@@ -8,10 +8,8 @@ export interface Spot {
   country: string;
   state: string;
   city: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
+  selected: boolean;
+  type: string;
 }
 
 const STORAGE_KEY = "spots";

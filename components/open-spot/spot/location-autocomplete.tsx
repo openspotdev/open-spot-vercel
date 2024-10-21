@@ -15,6 +15,8 @@ const DynamicGooglePlacesAutocomplete = dynamic(
   { ssr: false }
 );
 
+import { useAddSpot, Spot } from "@/lib/hooks/useSpotsRepository";
+
 interface NewSpot {
   label: string;
   value: {
@@ -25,22 +27,23 @@ interface NewSpot {
   };
 }
 
-interface SpotData {
-  guid: string;
-  name: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  country: string;
-  state: string;
-  city: string;
-  selected: boolean;
-  type: string;
-}
+// interface SpotData {
+//   guid: string;
+//   name: string;
+//   location: {
+//     latitude: number;
+//     longitude: number;
+//   };
+//   country: string;
+//   state: string;
+//   city: string;
+//   selected: boolean;
+//   type: string;
+// }
 
 export default function LocationAutocomplete() {
   const [newSpot, setNewSpot] = useState<NewSpot | null>(null);
+  const addSpotMutation = useAddSpot();
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,43 +51,37 @@ export default function LocationAutocomplete() {
 
     const spotData = await handleAddSpot();
     if (spotData) {
-      saveSpotToLocalStorage(spotData);
+      addSpotMutation.mutate(spotData);
+      // saveSpotToLocalStorage(spotData);
     }
   };
 
-  const handleAddSpot = async (): Promise<SpotData | null> => {
-    try {
-      const results = await geocodeByAddress(newSpot.label);
-      const { lat, lng } = await getLatLng(results[0]);
-      const addressComponents = results[0].address_components;
+  const handleAddSpot = async (): Promise<Spot> => {
+    if (!newSpot) throw new Error("No spot selected");
 
-      return {
-        guid: newSpot.value.place_id,
-        name: newSpot.value.structured_formatting.main_text,
-        location: { latitude: lat, longitude: lng },
-        country: getAddressComponent(addressComponents, "country"),
-        state: getAddressComponent(
-          addressComponents,
-          "administrative_area_level_1"
-        ),
-        city: getAddressComponent(addressComponents, "locality"),
-        selected: false,
-        type: "sport",
-      };
-    } catch (error) {
-      console.error("Error adding spot:", error);
-      return null;
-    }
+    const results = await geocodeByAddress(newSpot.label);
+    const { lat, lng } = await getLatLng(results[0]);
+    const addressComponents = results[0].address_components;
+
+    return {
+      guid: newSpot.value.place_id,
+      name: newSpot.value.structured_formatting.main_text,
+      latitude: lat,
+      longitude: lng,
+      country: getAddressComponent(addressComponents, "country"),
+      state: getAddressComponent(
+        addressComponents,
+        "administrative_area_level_1"
+      ),
+      city: getAddressComponent(addressComponents, "locality"),
+      selected: false,
+      type: "sport",
+    };
   };
 
   const getAddressComponent = (components: any[], type: string): string => {
     const component = components.find((comp) => comp.types.includes(type));
     return component ? component.long_name : "";
-  };
-
-  const saveSpotToLocalStorage = (spotData: SpotData) => {
-    const spots = JSON.parse(localStorage.getItem("spots") || "[]");
-    localStorage.setItem("spots", JSON.stringify([...spots, spotData]));
   };
 
   return (

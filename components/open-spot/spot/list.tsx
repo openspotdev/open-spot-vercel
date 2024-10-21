@@ -14,7 +14,7 @@ import {
 import { useSpots, useDeleteSpot, Spot } from "@/lib/hooks/useSpotsRepository";
 import { Label } from "@/components/ui/label";
 
-const List: React.FC = () => {
+export default function List() {
   const { data: spots, isLoading, isError } = useSpots();
   const deleteSpotMutation = useDeleteSpot();
 
@@ -50,6 +50,6 @@ const List: React.FC = () => {
       ))}
     </div>
   );
-};
+}
 
-export default List;
+// export default List;
