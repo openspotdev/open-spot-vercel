@@ -17,32 +17,40 @@ export default function Home() {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
-
+  // <main className="flex flex-col h-[100vh] md:mx-auto space-y-8 min-h-screen bg-gradient-to-br from-blue-500 via-yellow-400 to-red-500 ">
+  //   <div className="relative">
+  {
+    /* </div>
+    </main> */
+  }
   return (
-    // <main className="flex flex-col h-[100vh] md:mx-auto space-y-8 bg-[url('/anime-bg.jpg')] bg-cover bg-center">
-    <main className="flex flex-col h-[100vh] md:mx-auto space-y-8 ">
-      <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b">
-        {/* <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"> */}
-        <nav className="container flex h-14 items-center">
-          <Link className="flex items-center justify-center space-x-2" href="/">
-            <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
-            <span className="font-bold">Volver</span>
-          </Link>
+    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
+      <div className="relative">
+        <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <nav className="container flex h-14 items-center">
+            <Link
+              className="flex items-center justify-center space-x-2"
+              href="/"
+            >
+              <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
+              <span className="font-bold">Volver</span>
+            </Link>
 
-          <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
-            {navItems.map((item, index) => (
-              <h1 key={index} className="font-bold">
-                {"Tus Spots favoritos"}
-              </h1>
-            ))}
+            <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
+              {navItems.map((item, index) => (
+                <h1 key={index} className="font-bold">
+                  {"Tus Spots favoritos"}
+                </h1>
+              ))}
+            </nav>
           </nav>
-        </nav>
-      </header>
+        </header>
 
-      <section className="mx-auto space-y-8 w-[92vw] md:w-[48vw]">
-        <LocationAutocomplete />
-        <SpotsList />
-      </section>
-    </main>
+        <section className="mx-auto w-[92vw] md:w-[48vw] py-8">
+          <LocationAutocomplete />
+          <SpotsList />
+        </section>
+      </div>
+    </div>
   );
 }
