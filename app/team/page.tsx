@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Bike, Menu, X, Linkedin, Twitter, Mail } from "lucide-react";
+import { Bike, Menu, X, Instagram, Twitter, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -22,18 +22,24 @@ export default function TeamPage() {
       role: "Especialista en patinaje, director del programa juvenil y fundador",
       bio: "Eduardo se especializa en introducir a niños y adolescentes a los placeres del patinaje sobre ruedas y el running. Su enérgico estilo de enseñanza y su enfoque en la seguridad han hecho que nuestros programas para jóvenes sean increíblemente populares.",
       image: "icon-[openmoji--man-dark-skin-tone-beard]",
+      instagram: "roll_abella",
+      email: "roll_abella@gmail.com",
     },
     {
       name: "Camilo Fiallo",
       role: "Especialista en Running y Fundadora",
       bio: "Camilo es corredor de maratón y entrenador de carrera certificado. Con su experiencia en biomecánica y entrenamiento de resistencia, ayuda a nuestros estudiantes a lograr sus mejores resultados personales en el running.",
       image: "icon-[openmoji--man-light-skin-tone-beard]",
+      instagram: "davidcarf23",
+      email: "davidcarf23@gmail.com",
     },
     {
       name: "Gabriel Alfonso",
       role: "Especialista en patinaje y fundador",
       bio: "Gabriel es un ex patinador profesional con más de 15 años de experiencia como entrenador. Juntos fundaron Olympico Academy con la visión de crear una comunidad de apoyo para los entusiastas del patinaje y el running.",
       image: "icon-[openmoji--man-medium-light-skin-tone-beard]",
+      instagram: "gabalfa",
+      email: "gabalfa@gmail.com",
     },
   ];
 
@@ -79,14 +85,22 @@ export default function TeamPage() {
                         {member.role}
                       </h3>
                       <p className="text-sm text-gray-600 mb-4">{member.bio}</p>
-                      <div className="flex space-x-4">
-                        <Link href="#" aria-label={`${member.name}'s LinkedIn`}>
-                          <Linkedin className="h-5 w-5 text-gray-600 hover:text-primary" />
+                      <div className="flex space-x-4 justify-center">
+                        <Link
+                          target="_blank"
+                          className="flex text-xs"
+                          href={`https://instagram.com/${member.instagram}`}
+                          aria-label={`${member.name}'s Instagram`}
+                        >
+                          <Instagram className="h-5 w-5 text-gray-600 hover:text-primary" />
                         </Link>
-                        <Link href="#" aria-label={`${member.name}'s Twitter`}>
+                        {/* <Link href="#" aria-label={`${member.name}'s Twitter`}>
                           <Twitter className="h-5 w-5 text-gray-600 hover:text-primary" />
-                        </Link>
-                        <Link href="#" aria-label={`Email ${member.name}`}>
+                        </Link> */}
+                        <Link
+                          href={`email:${member.email}`}
+                          aria-label={`Email ${member.name}`}
+                        >
                           <Mail className="h-5 w-5 text-gray-600 hover:text-primary" />
                         </Link>
                       </div>

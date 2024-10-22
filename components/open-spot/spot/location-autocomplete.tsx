@@ -69,7 +69,10 @@ export default function LocationAutocomplete() {
         minLengthAutocomplete={3}
         apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
         selectProps={{
-          placeholder: "Search a location",
+          placeholder: "Busca tu lugar favorito para entrenar",
+          noOptionsMessage: () => "Intenta un skatepark",
+          loadingMessage: () => "Buscando...",
+          isDisabled: false,
           isClearable: true,
           escapeClearsValue: true,
           value: newSpot,
