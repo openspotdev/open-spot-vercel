@@ -2,6 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import Image from "next/image";
+
 import { Label } from "@/components/ui/label";
 import { Bike, Menu, X, Linkedin, Twitter, Mail } from "lucide-react";
 import LocationAutocomplete from "@/components/open-spot/spot/location-autocomplete";
@@ -17,8 +19,10 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col md:mx-auto space-y-8">
-      <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    // <main className="flex flex-col h-[100vh] md:mx-auto space-y-8 bg-[url('/anime-bg.jpg')] bg-cover bg-center">
+    <main className="flex flex-col h-[100vh] md:mx-auto space-y-8 ">
+      <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b">
+        {/* <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"> */}
         <nav className="container flex h-14 items-center">
           <Link className="flex items-center justify-center space-x-2" href="/">
             <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
@@ -28,7 +32,7 @@ export default function Home() {
           <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
             {navItems.map((item, index) => (
               <h1 key={index} className="font-bold">
-                {"Pronostico del tiempo en tus Spots favoritos"}
+                {"Tus Spots favoritos"}
               </h1>
             ))}
           </nav>
