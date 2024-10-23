@@ -52,7 +52,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-rose-400 via-yellow-400 to-blue-400">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container flex h-14 items-center">
           <Link className="flex items-center justify-center space-x-2" href="/">
