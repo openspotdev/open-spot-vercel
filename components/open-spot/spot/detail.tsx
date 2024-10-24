@@ -1,6 +1,7 @@
 "use client";
 
-import { useSpotById } from "@/lib/hooks/useSpotsRepository";
+import { useRouter } from "next/navigation";
+import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 import MapViewTW from "@/components/open-spot/spot/map-view";
 
 import { Skeleton } from "@/components/ui/skeleton";
@@ -14,10 +15,28 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { MapPin, Globe, Building2, Navigation, Map } from "lucide-react";
+import {
+  MapPin,
+  Globe,
+  Building2,
+  Navigation,
+  Map,
+  Trash2,
+} from "lucide-react";
 
 export const Detail = ({ guid }: { guid: string }) => {
+  const router = useRouter();
   const { data: spot, isLoading, error } = useSpotById(guid);
+  const { mutate: deleteSpot, isPending: isDeleting } = useDeleteSpot();
+
+  const handleDelete = async () => {
+    try {
+      await deleteSpot(guid);
+    } catch (error) {
+      console.error("Error deleting spot:", error);
+    }
+    router.push("/spots");
+  };
 
   if (isLoading) {
     return (
@@ -54,12 +73,12 @@ export const Detail = ({ guid }: { guid: string }) => {
 
   return (
     <div className="relative h-screen">
-      <Card className="absolute top-4 right-4 z-10 w-[80vw] md:w-[20vw] bg-white/40 backdrop-blur-sm shadow-lg">
+      <Card className="absolute top-4 right-4 z-10 w-[80vw] md:w-[30vw] bg-white/40 backdrop-blur-sm shadow-lg">
         <CardHeader>
           <CardTitle>{spot.name}</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-2">
+          <div className="flex flex-row space-y-2">
             <div className="flex items-center">
               <Globe className="mr-2 h-4 w-4" />
               <span>{spot.country}</span>
@@ -75,6 +94,15 @@ export const Detail = ({ guid }: { guid: string }) => {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleDelete}
+            disabled={isDeleting}
+          >
+            <Trash2 className="mr-2 h-4 w-4" />
+            {isDeleting ? "Deleting..." : "Delete"}
+          </Button>
           <Button
             variant="outline"
             size="sm"
@@ -98,8 +126,7 @@ export const Detail = ({ guid }: { guid: string }) => {
               )
             }
           >
-            <Map className="mr-2 h-4 w-4" />
-            Google Maps
+            <Map className="mr-2 h-4 w-4" />G Maps
           </Button>
         </CardFooter>
       </Card>
