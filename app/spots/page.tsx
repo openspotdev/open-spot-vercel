@@ -9,7 +9,7 @@ export default function Home() {
       <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container flex h-14 items-center">
           <BackButton />
-          <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
+          <nav className="ml-auto gap-4 sm:gap-6">
             <h1 className="font-bold">{"Spots Favoritos"}</h1>
           </nav>
         </nav>

@@ -73,12 +73,16 @@ export const Detail = ({ guid }: { guid: string }) => {
 
   return (
     <div className="relative h-screen">
-      <Card className="absolute top-4 right-4 z-10 w-[80vw] md:w-[30vw] bg-white/40 backdrop-blur-sm shadow-lg">
+      <Card
+        className="absolute z-10 w-[90vw] md:w-[25vw] bg-white/40 backdrop-blur-sm shadow-lg
+                   left-1/2 -translate-x-1/2 top-2 md:top-10
+                   md:left-auto md:right-10 md:translate-x-0"
+      >
         <CardHeader>
           <CardTitle>{spot.name}</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-row space-y-2">
+          <div className="flex flex-row gap-2">
             <div className="flex items-center">
               <Globe className="mr-2 h-4 w-4" />
               <span>{spot.country}</span>
@@ -101,7 +105,7 @@ export const Detail = ({ guid }: { guid: string }) => {
             disabled={isDeleting}
           >
             <Trash2 className="mr-2 h-4 w-4" />
-            {isDeleting ? "Deleting..." : "Delete"}
+            {isDeleting ? "Borrando..." : "Borrar"}
           </Button>
           <Button
             variant="outline"

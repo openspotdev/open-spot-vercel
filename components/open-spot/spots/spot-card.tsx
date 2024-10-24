@@ -65,7 +65,7 @@ export default function SpotCard({
                 as={`/spot/${guid}/${latitude}/${longitude}`}
               >
                 <Info className="h-4 w-4 mr-2" />
-                <span>View Details</span>
+                <span>Ver en el Mapa</span>
               </Link>
             </Button>
             <Button
@@ -103,7 +103,7 @@ export default function SpotCard({
               disabled={isDeleting}
             >
               <Trash2 className="mr-2 h-4 w-4" />
-              {isDeleting ? "Deleting..." : "Delete"}
+              {isDeleting ? "Borrando..." : "Borrar"}
             </Button>
           </div>
         </div>
