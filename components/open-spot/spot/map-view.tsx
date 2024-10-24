@@ -1,8 +1,14 @@
 "use client";
 
 import { useMemo } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  MarkerProps,
+} from "react-leaflet";
+import L, { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";
 
@@ -10,7 +16,6 @@ interface MapViewTWProps {
   latitude: string;
   longitude: string;
 }
-
 const customIcon = L.icon({ iconUrl: "/location.png", iconSize: [48, 48] });
 
 const PopupButton = () => (
@@ -25,7 +30,7 @@ const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        {...({} as any)} // This is a workaround for potential type issues
+        {...({} as any)}
       />
     ),
     []
@@ -35,8 +40,9 @@ const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
     () => (
       <Marker
         key={`${latitude}-${longitude}`}
-        position={[Number(latitude), Number(longitude)]}
+        position={[Number(latitude), Number(longitude)] as LatLngExpression}
         icon={customIcon}
+        {...({} as any)}
       >
         <Popup>
           <article className="flex gap-4 flex-col py-4">
@@ -51,11 +57,12 @@ const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
   return (
     <div className="h-[72vh] rounded-lg overflow-hidden shadow-lg">
       <MapContainer
-        center={[Number(latitude), Number(longitude)]}
+        center={[Number(latitude), Number(longitude)] as LatLngExpression}
         zoom={12}
         style={{ height: "100%", width: "100%" }}
         zoomControl={false}
         className="z-0"
+        {...({} as any)}
       >
         {tileLayer}
         {memoizedMarker}
