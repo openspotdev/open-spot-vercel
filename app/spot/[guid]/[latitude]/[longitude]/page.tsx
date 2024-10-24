@@ -16,10 +16,10 @@ export default async function Home({
   const longitude = params?.["longitude"] || "";
 
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
-    queryKey: ["spot-forecast", latitude, longitude],
-    queryFn: () => getSpotForecastByLocation({ latitude, longitude }),
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["spot-forecast", latitude, longitude],
+  //   queryFn: () => getSpotForecastByLocation({ latitude, longitude }),
+  // });
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
