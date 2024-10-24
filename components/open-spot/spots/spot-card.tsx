@@ -1,8 +1,10 @@
+import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Car, Building, Info } from "lucide-react";
+import { MapPin, Car, Building, Info, Trash2 } from "lucide-react";
 import Link from "next/link";
 
+import { useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 import { Spot } from "@/lib/hooks/useSpotsRepository";
 
 export default function SpotCard({
@@ -18,6 +20,18 @@ export default function SpotCard({
 }) {
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
   const wazeUrl = `https://www.waze.com/ul?ll=${latitude}%2C${longitude}&navigate=yes`;
+
+  const router = useRouter();
+  const { mutate: deleteSpot, isPending: isDeleting } = useDeleteSpot();
+
+  const handleDelete = async () => {
+    try {
+      await deleteSpot(guid);
+    } catch (error) {
+      console.error("Error deleting spot:", error);
+    }
+    router.push("/spots");
+  };
 
   return (
     <Card className="w-full hover:shadow-lg transition-shadow duration-300 bg-slate-50">
@@ -81,6 +95,15 @@ export default function SpotCard({
                 <Car className="h-4 w-4 mr-2" />
                 <span>Waze</span>
               </Link>
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleDelete}
+              disabled={isDeleting}
+            >
+              <Trash2 className="mr-2 h-4 w-4" />
+              {isDeleting ? "Deleting..." : "Delete"}
             </Button>
           </div>
         </div>
