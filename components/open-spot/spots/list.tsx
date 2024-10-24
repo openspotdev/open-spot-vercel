@@ -19,7 +19,7 @@ export default function List() {
   if (isError) return <div>Error loading spots</div>;
 
   return (
-    <div className=" space-y-4 ">
+    <div className="space-y-4">
       {spots?.map((spot: Spot) => (
         <SpotCard key={spot.guid} {...spot} />
       ))}

@@ -13,7 +13,9 @@ export default function SpotCard({
   state,
   latitude,
   longitude,
-}: Spot & { guid: string }) {
+}: Spot & {
+  guid: string;
+}) {
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
   const wazeUrl = `https://www.waze.com/ul?ll=${latitude}%2C${longitude}&navigate=yes`;
 
@@ -44,7 +46,10 @@ export default function SpotCard({
               className="w-full"
               title="View Details"
             >
-              <Link href={`/spot/${guid}`}>
+              <Link
+                href={`/spot/[guid]/[latitude]/[longitude]`}
+                as={`/spot/${guid}/${latitude}/${longitude}`}
+              >
                 <Info className="h-4 w-4 mr-2" />
                 <span>View Details</span>
               </Link>

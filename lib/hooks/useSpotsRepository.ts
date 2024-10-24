@@ -14,7 +14,6 @@ export interface Spot {
 
 const STORAGE_KEY = "spots";
 
-// Helper functions
 const getStoredSpots = (): Spot[] => {
   if (typeof window === "undefined") return []; // Handle server-side rendering
   try {
@@ -35,7 +34,6 @@ const setStoredSpots = (spots: Spot[]): void => {
   }
 };
 
-// React Query hooks
 export const useSpots = () => {
   return useQuery<Spot[], Error>({
     queryKey: ["spots"],
@@ -63,6 +61,17 @@ export const useAddSpot = () => {
       queryClient.setQueryData<Spot[]>(["spots"], (oldSpots) =>
         oldSpots ? [...oldSpots, newSpot] : [newSpot]
       );
+    },
+  });
+};
+
+export const useSpotById = (guid: string) => {
+  return useQuery<Spot | undefined, Error>({
+    queryKey: ["spot", guid],
+    queryFn: () => {
+      const spots = getStoredSpots();
+
+      return Promise.resolve(spots.find((spot) => spot.guid === guid));
     },
   });
 };
