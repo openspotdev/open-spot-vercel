@@ -1,9 +1,67 @@
-// import AthleteWeatherLanding from "@/components/open-spot/landing";
+"use client";
 
-export default function Home() {
+import { Button } from "@/components/ui/button";
+import { ChevronUp } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+
+import Header from "@/components/open-spot/header";
+import Banner from "@/components/open-spot/shop/banner";
+
+export default function LandingPage() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <main>
-      <h1 className="text-6xl">spots</h1>
-    </main>
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
+      <Header />
+      <main className="flex-1">
+        <Banner />
+      </main>
+      <footer className="w-full py-6 bg-gray-100">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <p className="text-xs text-gray-500">
+              © 2024 Academia Olympico. All rights reserved.
+            </p>
+            <nav className="flex gap-4">
+              <Link
+                className="text-xs hover:underline underline-offset-4"
+                href="#"
+              >
+                Terms of Service
+              </Link>
+              <Link
+                className="text-xs hover:underline underline-offset-4"
+                href="#"
+              >
+                Privacy
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </footer>
+      {showBackToTop && (
+        <Button
+          className="fixed bottom-4 right-4 p-2 rounded-full shadow-lg bg-red-500"
+          onClick={scrollToTop}
+          aria-label="Back to top"
+        >
+          <ChevronUp className="h-6 w-6" />
+        </Button>
+      )}
+    </div>
   );
 }
