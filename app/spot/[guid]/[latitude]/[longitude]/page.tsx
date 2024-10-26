@@ -1,10 +1,13 @@
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import Link from "next/link";
+
 import BackButton from "@/components/open-spot/back-button";
 import { Detail } from "@/components/open-spot/spot/detail";
-
 import { getSpotForecastByLocation } from "@/lib/data/spots";
-import { QueryClient } from "@tanstack/react-query";
-
-import Link from "next/link";
 
 export default async function Home({
   params,
@@ -16,10 +19,11 @@ export default async function Home({
   const longitude = params?.["longitude"] || "";
 
   const queryClient = new QueryClient();
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["spot-forecast", latitude, longitude],
-  //   queryFn: () => getSpotForecastByLocation({ latitude, longitude }),
-  // });
+  await queryClient.prefetchQuery({
+    queryKey: ["spot-forecast", latitude, longitude],
+    queryFn: async () =>
+      await getSpotForecastByLocation({ latitude, longitude }),
+  });
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -34,8 +38,10 @@ export default async function Home({
         </nav>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <Detail guid={guid} />
+      <main className="container mx-auto p-2">
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <Detail guid={guid} />
+        </HydrationBoundary>
       </main>
     </div>
   );

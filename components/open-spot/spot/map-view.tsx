@@ -55,10 +55,10 @@ const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
   );
 
   return (
-    <div className="h-[72vh] rounded-lg overflow-hidden shadow-lg">
+    <div className="h-[90vh] rounded-lg overflow-hidden shadow-lg">
       <MapContainer
         center={[Number(latitude), Number(longitude)] as LatLngExpression}
-        zoom={14}
+        zoom={12}
         style={{ height: "100%", width: "100%" }}
         zoomControl={false}
         className="z-0"

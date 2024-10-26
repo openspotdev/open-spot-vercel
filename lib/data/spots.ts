@@ -6,15 +6,15 @@ export async function getSpotForecastByLocation({
   longitude: string;
 }) {
   if (!latitude.length && !longitude.length) return [];
-  const fullPathRequest = `${process.env.URL_WEATHER}/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.API_KEY_WEATHER}&lang='es'}`;
-
+  const fullPathRequest = `${process.env.NEXT_PUBLIC_URL_WEATHER}/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.NEXT_PUBLIC_API_KEY_WEATHER}&lng='es'}`;
   try {
     const response = await fetch(fullPathRequest);
     if (response.status === 404) {
-      return [];
+      return {};
     }
     const states = await response.json();
-    return states.data;
+
+    return { data: states };
   } catch (error) {
     console.error(`Failed getting states by country: ${error}`);
   }
