@@ -32,6 +32,7 @@ import {
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 import MapViewTW from "@/components/open-spot/spot/map-view";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
+import DeleteSpot from "@/components/open-spot/delete-spot";
 
 const WeatherIcon = ({ description }) => {
   switch (description?.toLowerCase()) {
@@ -163,44 +164,34 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
       <Separator className="my-2" />
       <CardFooter className="flex justify-between py-2">
         <Button
-          variant="destructive"
+          variant="outline"
           size="sm"
-          onClick={onDelete}
-          disabled={isDeleting}
+          onClick={() =>
+            window.open(
+              `https://www.google.com/maps/search/?api=1&query=${spot?.latitude},${spot?.longitude}`,
+              "_blank"
+            )
+          }
+          disabled={!spot?.latitude || !spot?.longitude}
         >
-          <Trash2 className="mr-2 h-4 w-4" />
-          {isDeleting ? "Borrando..." : ""}
+          <span className="icon-[logos--google-maps] w-5 h-5 mr-1"></span>
+          <h3 className="font-medium">G-Maps</h3>
         </Button>
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              window.open(
-                `https://www.waze.com/ul?ll=${spot?.latitude},${spot?.longitude}&navigate=yes`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <Navigation className="mr-2 h-4 w-4" />
-            Waze
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              window.open(
-                `https://www.google.com/maps/search/?api=1&query=${spot?.latitude},${spot?.longitude}`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <Map className="mr-2 h-4 w-4" />
-            Maps
-          </Button>
-        </div>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            window.open(
+              `https://www.waze.com/ul?ll=${spot?.latitude},${spot?.longitude}&navigate=yes`,
+              "_blank"
+            )
+          }
+          disabled={!spot?.latitude || !spot?.longitude}
+        >
+          <span className="icon-[hugeicons--waze] w-5 h-5 text-blue-500 mr-1"></span>
+          <h3 className="font-medium">Waze</h3>
+        </Button>
+        <DeleteSpot guid={spot.guid} />
       </CardFooter>
     </Card>
   );

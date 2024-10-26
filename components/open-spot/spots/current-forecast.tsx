@@ -36,8 +36,8 @@ import { getSpotForecastByLocation } from "@/lib/data/spots";
 const WeatherIcon = ({ icon, description }) => {
   return (
     <Image
-      width={10}
-      height={10}
+      width={32}
+      height={32}
       className="h-8 w-8"
       src={`${process.env.NEXT_PUBLIC_URL_WEATHER_IMG}/img/wn/${icon}@4x.png`}
       alt={`Weather icon for ${description}`}
@@ -49,7 +49,9 @@ const InfoItem = ({ icon: Icon, label, value }) => (
   <div className="flex items-center">
     <Icon className="mr-2 h-4 w-4" />
     <span className="text-slate-600 text-xs mr-2">{`${label}:`} </span>
-    <span className="font-semibold">{`${value ?? "N/A"}`}</span>
+    <span className="font-normal text-xs whitespace-nowrap">{`${
+      value ?? "N/A"
+    }`}</span>
   </div>
 );
 
@@ -146,8 +148,8 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <section className="flex gap-2">
-      <div className="w-1/2">
+    <section className="flex gap-2 md:w-fit items-center bg-slate-400 rounded-sm px-4">
+      <div className="md:w-1/2">
         <InfoItem
           icon={Wind}
           label="Wind"
@@ -159,14 +161,14 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
           value={`${forecast?.data.main?.humidity ?? "N/A"}%`}
         />
       </div>
-      <div className="w-1/2 flex items-center justify-center bg-slate-400 rounded-lg p-2">
-        <WeatherIcon
-          icon={forecast?.data.weather?.[0]?.icon}
-          description={forecast?.data.weather?.[0]?.description}
-        />
-
-        <div className="">
-          <p className="text-slate-80 text-3xl font-bold">{`${tempCelsius}°C`}</p>
+      <div className="w-1/2 flex flex-col md:flex-col items-end justify-center text-center">
+        <p className="text-slate-80 text-xs">{`${forecast?.data.weather?.[0]?.description}`}</p>
+        <div className="flex items-center justify-center">
+          <WeatherIcon
+            icon={forecast?.data.weather?.[0]?.icon}
+            description={forecast?.data.weather?.[0]?.description}
+          />
+          <p className="text-slate-80 text-lg font-bold">{`${tempCelsius}°C`}</p>
         </div>
       </div>
     </section>
