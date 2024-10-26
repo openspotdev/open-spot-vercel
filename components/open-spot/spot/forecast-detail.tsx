@@ -48,7 +48,8 @@ const WeatherIcon = ({ icon, description }) => {
 const InfoItem = ({ icon: Icon, label, value }) => (
   <div className="flex items-center">
     <Icon className="mr-2 h-4 w-4" />
-    <span>{`${label}: ${value ?? "N/A"}`}</span>
+    <span className="text-slate-600 text-xs mr-2">{`${label}:`} </span>
+    <span className="font-semibold">{`${value ?? "N/A"}`}</span>
   </div>
 );
 
@@ -145,27 +146,19 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <Card className="absolute z-10 bottom-24 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
+    <Card className="absolute z-10 bottom-44 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
       <CardHeader className="py-2">
-        <CardTitle className="text-xl font-bold">
-          {/* {spot?.name ?? "Unknown Location"} */}
-        </CardTitle>
-        {/* <p className="text-sm text-gray-500">{`${spot?.city ?? "N/A"}, ${
-          spot?.state ?? "N/A"
-        }, ${spot?.country ?? "N/A"}`}</p> */}
+        <CardTitle className="text-xl font-bold"></CardTitle>
       </CardHeader>
       <CardContent className="flex items-center justify-center gap-2 py-2">
-        <div className="w-1/2 flex items-center justify-center bg-slate-600 rounded-lg p-2">
+        <div className="w-1/2 flex items-center justify-center bg-slate-400 rounded-lg p-2">
           <WeatherIcon
             icon={forecast?.data.weather?.[0]?.icon}
             description={forecast?.data.weather?.[0]?.description}
           />
 
           <div className="">
-            <p className="text-slate-50 text-3xl font-bold">{`${tempCelsius}°C`}</p>
-            {/* <p className="text-sm text-gray-600">
-              {JSON.stringify(forecast?.data.weather?.[0]) ?? "N/A"}
-            </p> */}
+            <p className="text-slate-80 text-3xl font-bold">{`${tempCelsius}°C`}</p>
           </div>
         </div>
         <div className="w-1/2">
@@ -181,7 +174,6 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
           />
         </div>
       </CardContent>
-      {/* <Separator className="my-2" /> */}
       <CardFooter className="flex justify-between py-2">
         {/* <Button
           variant="destructive"
