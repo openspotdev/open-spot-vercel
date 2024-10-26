@@ -1,6 +1,6 @@
 //@ts-nocheck
 "use client";
-
+import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -33,21 +33,16 @@ import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 
-const WeatherIcon = ({ description }) => {
-  switch (description?.toLowerCase()) {
-    case "clear sky":
-      return <Sun className="mr-2 h-4 w-4" />;
-    case "few clouds":
-    case "scattered clouds":
-    case "broken clouds":
-      return <Cloud className="mr-2 h-4 w-4" />;
-    case "shower rain":
-    case "rain":
-    case "thunderstorm":
-      return <CloudRain className="mr-2 h-4 w-4" />;
-    default:
-      return null;
-  }
+const WeatherIcon = ({ icon, description }) => {
+  return (
+    <Image
+      width={10}
+      height={10}
+      className="h-8 w-8"
+      src={`${process.env.NEXT_PUBLIC_URL_WEATHER_IMG}/img/wn/${icon}@4x.png`}
+      alt={`Weather icon for ${description}`}
+    />
+  );
 };
 
 const InfoItem = ({ icon: Icon, label, value }) => (
@@ -160,13 +155,17 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
         }, ${spot?.country ?? "N/A"}`}</p> */}
       </CardHeader>
       <CardContent className="flex items-center justify-center gap-2 py-2">
-        <div className="w-1/2 flex items-center justify-center bg-gray-100 rounded-lg p-2">
-          <WeatherIcon description={forecast?.weather?.[0]?.description} />
-          <div className="ml-4">
-            <p className="text-3xl font-bold">{`${tempCelsius}°C`}</p>
-            <p className="text-sm text-gray-600">
-              {forecast?.data.weather?.[0]?.description ?? "N/A"}
-            </p>
+        <div className="w-1/2 flex items-center justify-center bg-slate-600 rounded-lg p-2">
+          <WeatherIcon
+            icon={forecast?.data.weather?.[0]?.icon}
+            description={forecast?.data.weather?.[0]?.description}
+          />
+
+          <div className="">
+            <p className="text-slate-50 text-3xl font-bold">{`${tempCelsius}°C`}</p>
+            {/* <p className="text-sm text-gray-600">
+              {JSON.stringify(forecast?.data.weather?.[0]) ?? "N/A"}
+            </p> */}
           </div>
         </div>
         <div className="w-1/2">
