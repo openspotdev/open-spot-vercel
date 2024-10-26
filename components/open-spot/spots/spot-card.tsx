@@ -20,13 +20,13 @@ export default function SpotCard({
     <Card className="w-full hover:shadow-lg transition-shadow duration-300 bg-slate-50 p-4">
       <div className="flex md:flex-row flex-col justify-between mb-2">
         <div className="md:w-1/2">
-          <h3 className="font-semibold text-base mb-1">{name}</h3>
-          <div className="text-xs text-gray-500 mb-2 flex items-center">
+          <div className="text-[10px] text-gray-500 flex items-center">
             <Building className="h-3 w-3 mr-1 text-primary" />
             <span>
               {city}, {state}, {country}{" "}
             </span>
           </div>
+          <h3 className="font-semibold text-base mb-1">{name}</h3>
         </div>
         <CurrentForecast guid={guid} />
       </div>
@@ -34,7 +34,6 @@ export default function SpotCard({
         <Button variant="default" asChild className="">
           <Link href={`/spot/${guid}/${latitude}/${longitude}`}>
             <span className="icon-[foundation--map] w-5 h-5"></span>
-            <h3 className="text-xs">Mapa</h3>
           </Link>
         </Button>
         <Button variant="outline" asChild className="w-full">

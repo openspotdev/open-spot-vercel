@@ -46,12 +46,10 @@ const WeatherIcon = ({ icon, description }) => {
 };
 
 const InfoItem = ({ icon: Icon, label, value }) => (
-  <div className="flex items-center">
+  <div className="flex items-center text-xs text-gray-700 whitespace-nowrap">
     <Icon className="mr-2 h-4 w-4" />
-    <span className="text-slate-600 text-xs mr-2">{`${label}:`} </span>
-    <span className="font-normal text-xs whitespace-nowrap">{`${
-      value ?? "N/A"
-    }`}</span>
+    <span className="mr-2 text-[10px]">{`${label}:`} </span>
+    <span className="text-slate-600">{`${value ?? "N/A"}`}</span>
   </div>
 );
 
@@ -148,7 +146,7 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <section className="flex gap-2 md:w-fit items-center bg-slate-400 rounded-sm px-4">
+    <section className="flex gap-2 md:w-fit items-center justify-between bg-slate-400 rounded-sm px-4">
       <div className="md:w-1/2">
         <InfoItem
           icon={Wind}
@@ -162,7 +160,7 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
         />
       </div>
       <div className="w-1/2 flex flex-col md:flex-col items-end justify-center text-center">
-        <p className="text-slate-80 text-xs">{`${forecast?.data.weather?.[0]?.description}`}</p>
+        <p className="text-slate-80 text-[10px] capitalize">{`${forecast?.data.weather?.[0]?.description}`}</p>
         <div className="flex items-center justify-center">
           <WeatherIcon
             icon={forecast?.data.weather?.[0]?.icon}
