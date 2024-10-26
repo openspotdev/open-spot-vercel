@@ -1,6 +1,6 @@
 //@ts-nocheck
 "use client";
-
+import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -30,34 +30,30 @@ import {
 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
-import MapViewTW from "@/components/open-spot/spot/map-view";
+
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 
-const WeatherIcon = ({ description }) => {
-  switch (description?.toLowerCase()) {
-    case "clear sky":
-      return <Sun className="mr-2 h-4 w-4" />;
-    case "few clouds":
-    case "scattered clouds":
-    case "broken clouds":
-      return <Cloud className="mr-2 h-4 w-4" />;
-    case "shower rain":
-    case "rain":
-    case "thunderstorm":
-      return <CloudRain className="mr-2 h-4 w-4" />;
-    default:
-      return null;
-  }
+const WeatherIcon = ({ icon, description }) => {
+  return (
+    <Image
+      width={10}
+      height={10}
+      className="h-8 w-8"
+      src={`${process.env.NEXT_PUBLIC_URL_WEATHER_IMG}/img/wn/${icon}@4x.png`}
+      alt={`Weather icon for ${description}`}
+    />
+  );
 };
 
 const InfoItem = ({ icon: Icon, label, value }) => (
   <div className="flex items-center">
     <Icon className="mr-2 h-4 w-4" />
-    <span>{`${label}: ${value ?? "N/A"}`}</span>
+    <span className="text-slate-600 text-xs mr-2">{`${label}:`} </span>
+    <span className="font-semibold">{`${value ?? "N/A"}`}</span>
   </div>
 );
 
-export const LocationDetail = ({ guid }: { guid: string }) => {
+export const CurrentForecast = ({ guid }: { guid: string }) => {
   const router = useRouter();
   const {
     data: spot,
@@ -150,58 +146,29 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <Card className="absolute z-10 top-2 md:top-10 left-1/2 w-[90vw] md:w-[350px] md:left-auto md:right-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
-      <CardHeader className="py-2">
-        <CardTitle className="text-xl font-bold">
-          {spot?.name ?? "Unknown Location"}
-        </CardTitle>
-        <p className="text-sm text-gray-500">{`${spot?.city ?? "N/A"}, ${
-          spot?.state ?? "N/A"
-        }, ${spot?.country ?? "N/A"}`}</p>
-      </CardHeader>
-      {/* <CardContent className="flex items-center justify-center gap-2 py-2"></CardContent> */}
-      <Separator className="my-2" />
-      <CardFooter className="flex justify-between py-2">
-        <Button
-          variant="destructive"
-          size="sm"
-          onClick={onDelete}
-          disabled={isDeleting}
-        >
-          <Trash2 className="mr-2 h-4 w-4" />
-          {isDeleting ? "Borrando..." : ""}
-        </Button>
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              window.open(
-                `https://www.waze.com/ul?ll=${spot?.latitude},${spot?.longitude}&navigate=yes`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <Navigation className="mr-2 h-4 w-4" />
-            Waze
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              window.open(
-                `https://www.google.com/maps/search/?api=1&query=${spot?.latitude},${spot?.longitude}`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <Map className="mr-2 h-4 w-4" />
-            Maps
-          </Button>
+    <section className="flex gap-2">
+      <div className="w-1/2">
+        <InfoItem
+          icon={Wind}
+          label="Wind"
+          value={`${forecast?.data.wind.speed ?? "N/A"} m/s`}
+        />
+        <InfoItem
+          icon={Droplets}
+          label="Humidity"
+          value={`${forecast?.data.main?.humidity ?? "N/A"}%`}
+        />
+      </div>
+      <div className="w-1/2 flex items-center justify-center bg-slate-400 rounded-lg p-2">
+        <WeatherIcon
+          icon={forecast?.data.weather?.[0]?.icon}
+          description={forecast?.data.weather?.[0]?.description}
+        />
+
+        <div className="">
+          <p className="text-slate-80 text-3xl font-bold">{`${tempCelsius}°C`}</p>
         </div>
-      </CardFooter>
-    </Card>
+      </div>
+    </section>
   );
 };

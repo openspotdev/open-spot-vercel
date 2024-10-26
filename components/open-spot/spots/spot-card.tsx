@@ -1,11 +1,11 @@
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MapPin, Car, Building, Info, Trash2 } from "lucide-react";
-import Link from "next/link";
 
-import { useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
-import { Spot } from "@/lib/hooks/useSpotsRepository";
+import { useDeleteSpot, Spot } from "@/lib/hooks/useSpotsRepository";
+import { CurrentForecast } from "@/components/open-spot/spots/current-forecast";
 
 export default function SpotCard({
   guid,
@@ -15,97 +15,71 @@ export default function SpotCard({
   state,
   latitude,
   longitude,
-}: Spot & {
-  guid: string;
-}) {
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
-  const wazeUrl = `https://www.waze.com/ul?ll=${latitude}%2C${longitude}&navigate=yes`;
-
+}: Spot & { guid: string }) {
   const router = useRouter();
   const { mutate: deleteSpot, isPending: isDeleting } = useDeleteSpot();
 
   const handleDelete = async () => {
     try {
       await deleteSpot(guid);
+      router.push("/spots");
     } catch (error) {
       console.error("Error deleting spot:", error);
     }
-    router.push("/spots");
   };
 
   return (
     <Card className="w-full hover:shadow-lg transition-shadow duration-300 bg-slate-50">
-      <CardContent className="p-4">
-        <div className="flex flex-col space-y-4">
-          <div className="flex justify-between items-start">
-            <div className="flex-grow">
-              <h3 className="font-semibold text-lg mb-1">{name}</h3>
-              <div className="flex items-center text-sm text-gray-500 mb-1">
-                <Building className="h-4 w-4 mr-2 text-primary flex-shrink-0" />
-                <span>
-                  {city}, {state}
-                </span>
-              </div>
-              <div className="flex items-start">
-                <MapPin className="h-4 w-4 mr-2 text-primary flex-shrink-0 mt-1" />
-                <p className="text-sm">{country}</p>
-              </div>
+      <CardContent className="p-3">
+        <div className="flex justify-between mb-2">
+          <div className="">
+            <h3 className="font-semibold text-base mb-1">{name}</h3>
+            <div className="text-xs text-gray-500 mb-2 flex items-center">
+              <Building className="h-3 w-3 mr-1 text-primary" />
+              <span>
+                {city}, {state}, {country}{" "}
+              </span>
             </div>
           </div>
-          <div className="flex flex-col space-y-2">
-            <Button
-              size="sm"
-              variant="default"
-              asChild
-              className="w-full"
-              title="View Details"
+          <CurrentForecast guid={guid} />
+        </div>
+        <div className="grid grid-cols-4 gap-2 text-xs">
+          <Button size="sm" variant="default" asChild className="w-full">
+            <Link href={`/spot/${guid}/${latitude}/${longitude}`}>
+              <Info className="h-3 w-3 mr-1" />
+              Mapa
+            </Link>
+          </Button>
+          <Button size="sm" variant="outline" asChild className="w-full">
+            <Link
+              href={`https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Link
-                href={`/spot/[guid]/[latitude]/[longitude]`}
-                as={`/spot/${guid}/${latitude}/${longitude}`}
-              >
-                <Info className="h-4 w-4 mr-2" />
-                <span>Ver en el Mapa</span>
-              </Link>
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              asChild
-              className="w-full"
-              title="Open in Google Maps"
+              <MapPin className="h-3 w-3 mr-1" />
+              G-Maps
+            </Link>
+          </Button>
+          <Button size="sm" variant="outline" asChild className="w-full">
+            <Link
+              href={`https://www.waze.com/ul?ll=${latitude}%2C${longitude}&navigate=yes`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Link
-                href={googleMapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MapPin className="h-4 w-4 mr-2" />
-                <span>Google Maps</span>
-              </Link>
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              asChild
-              className="w-full"
-              title="Open in Waze"
-            >
-              <Link href={wazeUrl} target="_blank" rel="noopener noreferrer">
-                <Car className="h-4 w-4 mr-2" />
-                <span>Waze</span>
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleDelete}
-              disabled={isDeleting}
-            >
-              <Trash2 className="mr-2 h-4 w-4" />
-              {isDeleting ? "Borrando..." : "Borrar"}
-            </Button>
-          </div>
+              <Car className="h-3 w-3 mr-1" />
+              Waze
+            </Link>
+          </Button>
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={handleDelete}
+            disabled={isDeleting}
+            className="w-full"
+          >
+            <Trash2 className="h-3 w-3 mr-1" />
+            {isDeleting ? "Borrando..." : ""}
+          </Button>
         </div>
       </CardContent>
     </Card>
