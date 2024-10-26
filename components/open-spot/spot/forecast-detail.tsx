@@ -30,7 +30,7 @@ import {
 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
-import MapViewTW from "@/components/open-spot/spot/map-view";
+
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 
 const WeatherIcon = ({ description }) => {
@@ -57,7 +57,7 @@ const InfoItem = ({ icon: Icon, label, value }) => (
   </div>
 );
 
-export const Detail = ({ guid }: { guid: string }) => {
+export const ForecastDetail = ({ guid }: { guid: string }) => {
   const router = useRouter();
   const {
     data: spot,
@@ -90,42 +90,25 @@ export const Detail = ({ guid }: { guid: string }) => {
       console.error("Error deleting spot:", error);
     }
   };
+  if (isLoadingSpot || isLoadingForecast) {
+    return <LoadingSkeleton />;
+  }
 
-  const renderContent = () => {
-    if (isLoadingSpot || isLoadingForecast) {
-      return <LoadingSkeleton />;
-    }
+  if (spotError || forecastError) {
+    return <ErrorAlert error={spotError || forecastError} />;
+  }
 
-    if (spotError || forecastError) {
-      return <ErrorAlert error={spotError || forecastError} />;
-    }
-
-    if (!spot || !forecast) {
-      return <NotFoundAlert />;
-    }
-
-    return (
-      <SpotDetails
-        spot={spot}
-        forecast={forecast}
-        onDelete={handleDelete}
-        isDeleting={isDeleting}
-      />
-    );
-  };
+  if (!spot || !forecast) {
+    return <NotFoundAlert />;
+  }
 
   return (
-    <div className="relative h-screen">
-      {renderContent()}
-      {spot?.latitude && spot?.longitude && (
-        <div className="h-full w-full">
-          <MapViewTW
-            latitude={spot.latitude.toString()}
-            longitude={spot.longitude.toString()}
-          />
-        </div>
-      )}
-    </div>
+    <SpotDetails
+      spot={spot}
+      forecast={forecast}
+      onDelete={handleDelete}
+      isDeleting={isDeleting}
+    />
   );
 };
 
@@ -167,14 +150,14 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <Card className="absolute z-10 top-2 md:top-10 left-1/2 w-[90vw] md:w-[350px] md:left-auto md:right-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
+    <Card className="absolute z-10 bottom-24 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
       <CardHeader className="py-2">
         <CardTitle className="text-xl font-bold">
-          {spot?.name ?? "Unknown Location"}
+          {/* {spot?.name ?? "Unknown Location"} */}
         </CardTitle>
-        <p className="text-sm text-gray-500">{`${spot?.city ?? "N/A"}, ${
+        {/* <p className="text-sm text-gray-500">{`${spot?.city ?? "N/A"}, ${
           spot?.state ?? "N/A"
-        }, ${spot?.country ?? "N/A"}`}</p>
+        }, ${spot?.country ?? "N/A"}`}</p> */}
       </CardHeader>
       <CardContent className="flex items-center justify-center gap-2 py-2">
         <div className="w-1/2 flex items-center justify-center bg-gray-100 rounded-lg p-2">
@@ -199,9 +182,9 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
           />
         </div>
       </CardContent>
-      <Separator className="my-2" />
+      {/* <Separator className="my-2" /> */}
       <CardFooter className="flex justify-between py-2">
-        <Button
+        {/* <Button
           variant="destructive"
           size="sm"
           onClick={onDelete}
@@ -239,7 +222,7 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
             <Map className="mr-2 h-4 w-4" />
             Maps
           </Button>
-        </div>
+        </div> */}
       </CardFooter>
     </Card>
   );

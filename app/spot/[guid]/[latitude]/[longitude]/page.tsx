@@ -6,7 +6,9 @@ import {
 import Link from "next/link";
 
 import BackButton from "@/components/open-spot/back-button";
-import { Detail } from "@/components/open-spot/spot/detail";
+import MapViewTW from "@/components/open-spot/spot/map-view";
+import { LocationDetail } from "@/components/open-spot/spot/location-detail";
+import { ForecastDetail } from "@/components/open-spot/spot/forecast-detail";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 
 export default async function Home({
@@ -24,6 +26,7 @@ export default async function Home({
     queryFn: async () =>
       await getSpotForecastByLocation({ latitude, longitude }),
   });
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -39,9 +42,18 @@ export default async function Home({
       </header>
 
       <main className="container mx-auto p-2">
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <Detail guid={guid} />
-        </HydrationBoundary>
+        <div className="relative h-screen">
+          <div className="h-full w-full">
+            <HydrationBoundary state={dehydrate(queryClient)}>
+              <MapViewTW
+                latitude={latitude.toString()}
+                longitude={longitude.toString()}
+              />
+              <LocationDetail guid={guid} />
+              <ForecastDetail guid={guid} />
+            </HydrationBoundary>
+          </div>
+        </div>
       </main>
     </div>
   );
