@@ -48,8 +48,8 @@ export function ShareButton({ guid, latitude, longitude }: ShareButtonProps) {
   return (
     <Button
       variant="link"
-      onClick={handleCopy}
-      disabled={isCopying}
+      // onClick={handleCopy}
+      // disabled={isCopying}
       className="px-2"
     >
       <span className="icon-[charm--share] w-5 h-5 bg-blue-600"></span>
