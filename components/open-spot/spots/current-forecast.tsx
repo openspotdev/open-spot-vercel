@@ -111,33 +111,13 @@ const SpotDetails = ({ spot, forecast, isDeleting }) => {
     : "N/A";
 
   return (
-    <section className="flex p-2 gap-2 h-20 w-full md:w-fit justify-around bg-slate-400 rounded-sm md:px-6">
-      <div className="w-1/2 gap-2 flex flex-col">
-        <div className="flex items-center text-xs text-gray-700 whitespace-nowrap">
-          <span className="text-slate-600">{`Viento`}</span>
-          <span className="icon-[la--wind] mx-2 w-6 h-6"></span>
-          <span className="text-slate-600">{`${
-            forecast?.data.wind.speed + " " + "mt/s" ?? "N/A"
-          }`}</span>
-        </div>
-        <div className="flex items-center text-xs text-gray-700 whitespace-nowrap">
-          <span className="text-slate-600">{`Humedad`}</span>
-          <span className="icon-[bi--moisture] w-5 h-5 mx-2"></span>
-          <span className="text-slate-600">{`${
-            forecast?.data.main?.humidity + "%" ?? "N/A"
-          }`}</span>
-        </div>
-      </div>
-      <div className="w-1/2 gap-2 flex flex-col p-1 text-right">
-        <p className="text-slate-80 text-xs capitalize whitespace-nowrap">{`${forecast?.data.weather?.[0]?.description}`}</p>
-        <div className="flex items-center justify-end">
-          <WeatherIcon
-            icon={forecast?.data.weather?.[0]?.icon}
-            description={forecast?.data.weather?.[0]?.description}
-          />
-          <p className="text-slate-80 text-lg font-bold">{`${tempCelsius}°C`}</p>
-        </div>
-      </div>
-    </section>
+    <div className="flex items-center justify-end mx-1">
+      <p className="text-slate-80 text-xs capitalize whitespace-nowrap">{`${forecast?.data.weather?.[0]?.description}`}</p>
+      <WeatherIcon
+        icon={forecast?.data.weather?.[0]?.icon}
+        description={forecast?.data.weather?.[0]?.description}
+      />
+      <p className="text-slate-80 text-lg font-bold">{`${tempCelsius}°C`}</p>
+    </div>
   );
 };

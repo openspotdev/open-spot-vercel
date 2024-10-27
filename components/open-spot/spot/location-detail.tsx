@@ -1,4 +1,3 @@
-//@ts-nocheck
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
@@ -30,6 +29,7 @@ import {
 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
+import { ShareButton } from "@/components/open-spot/share-button";
 import MapViewTW from "@/components/open-spot/spot/map-view";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 import DeleteSpot from "@/components/open-spot/delete-spot";
@@ -191,6 +191,11 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
             <span className="icon-[hugeicons--waze] w-5 h-5 text-blue-500 mr-1"></span>
             <span className="font-medium">Waze</span>
           </Button>
+          <ShareButton
+            guid={spot.guid}
+            latitude={spot.latitude}
+            longitude={spot.longitude}
+          />
           <DeleteSpot guid={spot.guid} />
         </div>
       </CardHeader>
