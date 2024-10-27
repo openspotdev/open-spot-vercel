@@ -70,7 +70,7 @@ export default function LocationAutocomplete() {
         apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
         selectProps={{
           placeholder: "Buscar spots...",
-          noOptionsMessage: () => "Intenta un skatepark",
+          noOptionsMessage: () => "Por ejemplo ser un skatepark",
           loadingMessage: () => "Buscando...",
           isDisabled: false,
           isClearable: true,
