@@ -1,13 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  MarkerProps,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L, { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Button } from "@/components/ui/button";

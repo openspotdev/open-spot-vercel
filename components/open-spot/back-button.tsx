@@ -2,8 +2,6 @@
 
 import { ArrowLeftCircleIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export default function BackButton() {
   const router = useRouter();

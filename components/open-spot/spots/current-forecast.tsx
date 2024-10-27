@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,10 +26,10 @@ import {
   Sun,
   Cloud,
   CloudRain,
+  Loader2,
 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
-
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 
 const WeatherIcon = ({ icon, description }) => {
@@ -70,16 +69,8 @@ export const CurrentForecast = ({ guid }: { guid: string }) => {
     enabled: !!spot?.latitude && !!spot?.longitude,
   });
 
-  const handleDelete = async () => {
-    try {
-      await deleteSpot(guid);
-      router.push("/spots");
-    } catch (error) {
-      console.error("Error deleting spot:", error);
-    }
-  };
   if (isLoadingSpot || isLoadingForecast) {
-    return <LoadingSkeleton />;
+    return <Loader2 className="mr-2 w-4 animate-spin h-20" />;
   }
 
   if (spotError || forecastError) {
@@ -91,27 +82,9 @@ export const CurrentForecast = ({ guid }: { guid: string }) => {
   }
 
   return (
-    <SpotDetails
-      spot={spot}
-      forecast={forecast}
-      onDelete={handleDelete}
-      isDeleting={isDeleting}
-    />
+    <SpotDetails spot={spot} forecast={forecast} isDeleting={isDeleting} />
   );
 };
-
-const LoadingSkeleton = () => (
-  <Card className="absolute z-10 w-[90vw] md:w-[25vw] bg-white/40 backdrop-blur-sm shadow-lg left-1/2 -translate-x-1/2 top-2 md:top-10 md:left-auto md:right-10 md:translate-x-0">
-    <CardHeader>
-      <Skeleton className="h-8 w-3/4" />
-    </CardHeader>
-    <CardContent>
-      <Skeleton className="h-4 w-full mb-2" />
-      <Skeleton className="h-4 w-full mb-2" />
-      <Skeleton className="h-4 w-full mb-2" />
-    </CardContent>
-  </Card>
-);
 
 const ErrorAlert = ({ error }) => (
   <Alert
@@ -132,13 +105,13 @@ const NotFoundAlert = () => (
   </Alert>
 );
 
-const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
+const SpotDetails = ({ spot, forecast, isDeleting }) => {
   const tempCelsius = forecast?.data?.main?.temp
     ? (forecast.data.main.temp - 273.15).toFixed(1)
     : "N/A";
 
   return (
-    <section className="flex p-2 gap-2 w-full md:w-fit justify-around bg-slate-400 rounded-sm md:px-6">
+    <section className="flex p-2 gap-2 h-20 w-full md:w-fit justify-around bg-slate-400 rounded-sm md:px-6">
       <div className="w-1/2 gap-2 flex flex-col">
         <div className="flex items-center text-xs text-gray-700 whitespace-nowrap">
           <span className="text-slate-600">{`Viento`}</span>

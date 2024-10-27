@@ -95,9 +95,7 @@ export const LocationDetail = ({ guid }: { guid: string }) => {
     return <LoadingSkeleton />;
   }
 
-  if (spotError || forecastError) {
-    return <ErrorAlert error={spotError || forecastError} />;
-  }
+  if (spotError || forecastError) router.back();
 
   if (!spot || !forecast) {
     return <NotFoundAlert />;

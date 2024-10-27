@@ -1,24 +1,57 @@
 "use client";
 
 import React from "react";
-import SpotCard from "./spot-card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Loader2, MapPin } from "lucide-react";
 
-import { useSpots, useDeleteSpot, Spot } from "@/lib/hooks/useSpotsRepository";
+import SpotCard from "./spot-card";
+import { useSpots, Spot } from "@/lib/hooks/useSpotsRepository";
 
 export default function List() {
   const { data: spots, isLoading, isError } = useSpots();
-  const deleteSpotMutation = useDeleteSpot();
 
-  const handleDelete = (guid: string) => {
-    deleteSpotMutation.mutate(guid);
-  };
+  if (isLoading)
+    return (
+      <Card className="w-full bg-white/40 backdrop-blur-sm shadow-lg">
+        <CardHeader className="space-y-2">
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-8 w-1/2" />
+        </CardHeader>
+        <CardContent className="grid grid-cols-4 gap-2">
+          <Skeleton className="h-9 w-full" />
+          <Skeleton className="h-9 w-full" />
+          <Skeleton className="h-9 w-full" />
+          <Skeleton className="h-9 w-full" />
+        </CardContent>
+      </Card>
+    );
 
-  if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading spots</div>;
-  const reversed = spots.reduce((acc, item) => [item].concat(acc), []);
+  if (spots.length < 1)
+    return (
+      <Card className="w-full max-w-md mx-auto mt-32">
+        <CardHeader>
+          <CardTitle className="flex items-center text-lg font-medium">
+            <MapPin className="mr-2 h-5 w-5" />
+            No hay spots agregados
+          </CardTitle>
+          <CardDescription>
+            Agrega lugares en los que te gustaría entrenar
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    );
+  const ordered = spots.reduce((acc, item) => [item].concat(acc), []);
   return (
     <div className="space-y-4">
-      {reversed?.map((spot: Spot) => (
+      {ordered?.map((spot: Spot) => (
         <SpotCard key={spot.guid} {...spot} />
       ))}
     </div>

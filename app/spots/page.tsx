@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { ChevronUp, Menu, X } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 import LocationAutocomplete from "@/components/open-spot/spots/location-autocomplete";
 import SpotsList from "@/components/open-spot/spots/list";
-import BackButton from "@/components/open-spot/back-button";
 import Header from "@/components/open-spot/header";
 
 export default function Home() {

@@ -1,7 +1,6 @@
-import { Card } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Building } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 import { Spot } from "@/lib/hooks/useSpotsRepository";
 import { CurrentForecast } from "@/components/open-spot/spots/current-forecast";
@@ -17,11 +16,10 @@ export default function SpotCard({
   longitude,
 }: Spot) {
   return (
-    <Card className="w-full hover:shadow-lg transition-shadow duration-300 bg-slate-50 p-4">
+    <Card className="w-full hover:shadow-lg transition-shadow duration-300 bg-slate-50 p-4 md:h-40">
       <div className="flex md:flex-row flex-col justify-between mb-2">
         <div className="md:w-1/2">
           <div className="text-[10px] text-gray-500 flex items-center">
-            {/* <Building className="h-3 w-3 mr-1 text-primary" /> */}
             <span className="icon-[duo-icons--location] w-5 h-5 mr-1"></span>
             <span>
               {city}, {state}, {country}{" "}

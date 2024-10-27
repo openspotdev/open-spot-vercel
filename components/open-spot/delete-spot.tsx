@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
-import { useDeleteSpot, Spot } from "@/lib/hooks/useSpotsRepository";
+import { useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 
 export default function DeleteSpot({ guid }: { guid: string }) {
   const router = useRouter();
