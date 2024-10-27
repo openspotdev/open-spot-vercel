@@ -21,7 +21,8 @@ export default function SpotCard({
       <div className="flex md:flex-row flex-col justify-between mb-2">
         <div className="md:w-1/2">
           <div className="text-[10px] text-gray-500 flex items-center">
-            <Building className="h-3 w-3 mr-1 text-primary" />
+            {/* <Building className="h-3 w-3 mr-1 text-primary" /> */}
+            <span className="icon-[duo-icons--location] w-5 h-5 mr-1"></span>
             <span>
               {city}, {state}, {country}{" "}
             </span>

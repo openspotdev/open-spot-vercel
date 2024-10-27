@@ -14,10 +14,8 @@ export default function Header() {
 
   const navItems = [
     { href: "/spots", label: "Spots" },
-    // { href: "#features", label: "Ventajas" },
-    { href: "/shools", label: "Escuelas" },
+    { href: "/shools", label: "Escuela" },
     // { href: "/shop", label: "Tienda" },
-    // { href: "#testimonials", label: "Testimonios" },
     // { href: "/team", label: "Equipo" },
   ];
 
