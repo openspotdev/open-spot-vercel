@@ -56,18 +56,18 @@ export default function LandingPage() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <Header />
       <main className="flex-1">
-        <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-slate-700 text-white">
+        <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 xl:py-48  text-slate-800">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                   ¡Entrena con nosotros!
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Únete a Academia Olympico y descubre la emoción del patinaje
-                  en línea y la alegría de correr. Te esperan instructores
-                  expertos, instalaciones de última generación y una comunidad
-                  solidaria.
+                <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-800">
+                  Únete a{" "}
+                  <span className="font-bold text-2xl">OS Action Sports</span> y
+                  descubre la emoción del patinaje en línea. Te esperan
+                  instructores expertos y una comunidad solidaria.
                 </p>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-4">
@@ -99,7 +99,7 @@ export default function LandingPage() {
                     "Aprende de los mejores en el campo, con años de experiencia.",
                 },
                 {
-                  title: "Instalaciones de última generación",
+                  title: "Skateparks",
                   icon: "icon-[icon-park--skate]",
                   description:
                     "Entrena en espacios modernos y bien equipados, diseñados para un aprendizaje óptimo.",
