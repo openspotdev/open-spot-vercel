@@ -36,9 +36,9 @@ import { getSpotForecastByLocation } from "@/lib/data/spots";
 const WeatherIcon = ({ icon, description }) => {
   return (
     <Image
-      width={10}
-      height={10}
-      className="h-8 w-8"
+      width={64}
+      height={64}
+      className="h-16 w-16"
       src={`${process.env.NEXT_PUBLIC_URL_WEATHER_IMG}/img/wn/${icon}@4x.png`}
       alt={`Weather icon for ${description}`}
     />
@@ -46,7 +46,7 @@ const WeatherIcon = ({ icon, description }) => {
 };
 
 const InfoItem = ({ icon: Icon, label, value }) => (
-  <div className="flex items-center">
+  <div className="flex items-center whitespace-nowrap">
     <Icon className="mr-2 h-4 w-4" />
     <span className="text-slate-600 text-xs mr-2">{`${label}:`} </span>
     <span className="font-semibold">{`${value ?? "N/A"}`}</span>
@@ -149,14 +149,14 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     <Card className="p-2 absolute z-10 bottom-44 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
       <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${forecast?.data.weather?.[0]?.description}`}</p>
       <div className="flex gap-4">
-        <div className="w-1/2 flex items-center justify-center bg-slate-400 rounded-lg p-2">
+        <div className="w-fit flex items-center justify-center bg-slate-400 rounded-lg p-2 px-4">
           <WeatherIcon
             icon={forecast?.data.weather?.[0]?.icon}
             description={forecast?.data.weather?.[0]?.description}
           />
           <p className="text-slate-80 text-3xl font-bold">{`${tempCelsius}°C`}</p>
         </div>
-        <div className="w-1/2">
+        <div className="w-fit">
           <InfoItem
             icon={Wind}
             label="Viento"

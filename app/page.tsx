@@ -14,19 +14,19 @@ export default function LandingPage() {
         <motion.img
           src={`/shop/olympic.svg`}
           alt={"olympic"}
-          className="hidden md:block absolute inset-0 w-[50vw] h-full object-cover mx-auto"
+          className="absolute inset-0 h-full mx-auto"
           initial={{ opacity: 0, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 3 }}
         />
-        <motion.img
+        {/* <motion.img
           src={`/shop/olympic-flame.svg`}
           alt={"olympic"}
           className="md:hidden mx-auto h-[75vh] w-fit"
           initial={{ opacity: 0, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 3 }}
-        />
+        /> */}
       </main>
       <footer className="w-full py-6 bg-gray-100">
         <div className="container px-4 md:px-6">
