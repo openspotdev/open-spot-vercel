@@ -111,13 +111,14 @@ const SpotDetails = ({ spot, forecast, isDeleting }) => {
     : "N/A";
 
   return (
-    <div className="flex items-center justify-end mx-1">
+    <div className="flex items-center justify-end">
       <p className="text-slate-80 text-xs capitalize whitespace-nowrap">{`${forecast?.data.weather?.[0]?.description}`}</p>
       <WeatherIcon
         icon={forecast?.data.weather?.[0]?.icon}
         description={forecast?.data.weather?.[0]?.description}
       />
       <p className="text-slate-80 text-lg font-bold">{`${tempCelsius}°C`}</p>
+      <span className="icon-[icon-park--info] w-5 h-5 ml-2"></span>
     </div>
   );
 };

@@ -18,13 +18,12 @@ export default function DeleteSpot({ guid }: { guid: string }) {
 
   return (
     <Button
-      variant="outline"
+      variant="link"
       onClick={handleDelete}
       disabled={isDeleting}
-      className="w-fit"
+      className="px-2"
     >
       <span className="icon-[entypo--trash] w-5 h-5 text-rose-500"></span>
-      {isDeleting ? "Borrando..." : ""}
     </Button>
   );
 }
