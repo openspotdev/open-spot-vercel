@@ -146,75 +146,29 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <Card className="absolute z-10 bottom-44 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
-      <CardHeader className="py-2">
-        <CardTitle className="text-xl font-bold"></CardTitle>
-      </CardHeader>
-      <CardContent className="flex items-center justify-center gap-2 py-2">
+    <Card className="p-2 absolute z-10 bottom-44 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
+      <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${forecast?.data.weather?.[0]?.description}`}</p>
+      <div className="flex gap-4">
         <div className="w-1/2 flex items-center justify-center bg-slate-400 rounded-lg p-2">
           <WeatherIcon
             icon={forecast?.data.weather?.[0]?.icon}
             description={forecast?.data.weather?.[0]?.description}
           />
-
-          <div className="">
-            <p className="text-slate-80 text-3xl font-bold">{`${tempCelsius}°C`}</p>
-          </div>
+          <p className="text-slate-80 text-3xl font-bold">{`${tempCelsius}°C`}</p>
         </div>
         <div className="w-1/2">
           <InfoItem
             icon={Wind}
-            label="Wind"
+            label="Viento"
             value={`${forecast?.data.wind.speed ?? "N/A"} m/s`}
           />
           <InfoItem
             icon={Droplets}
-            label="Humidity"
+            label="Humedad"
             value={`${forecast?.data.main?.humidity ?? "N/A"}%`}
           />
         </div>
-      </CardContent>
-      <CardFooter className="flex justify-between py-2">
-        {/* <Button
-          variant="destructive"
-          size="sm"
-          onClick={onDelete}
-          disabled={isDeleting}
-        >
-          <Trash2 className="mr-2 h-4 w-4" />
-          {isDeleting ? "Deleting..." : "Delete"}
-        </Button>
-        <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              window.open(
-                `https://www.waze.com/ul?ll=${spot?.latitude},${spot?.longitude}&navigate=yes`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <Navigation className="mr-2 h-4 w-4" />
-            Waze
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              window.open(
-                `https://www.google.com/maps/search/?api=1&query=${spot?.latitude},${spot?.longitude}`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <Map className="mr-2 h-4 w-4" />
-            Maps
-          </Button>
-        </div> */}
-      </CardFooter>
+      </div>
     </Card>
   );
 };

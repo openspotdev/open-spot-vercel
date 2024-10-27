@@ -50,7 +50,7 @@ export default function List() {
     );
   const ordered = spots.reduce((acc, item) => [item].concat(acc), []);
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {ordered?.map((spot: Spot) => (
         <SpotCard key={spot.guid} {...spot} />
       ))}

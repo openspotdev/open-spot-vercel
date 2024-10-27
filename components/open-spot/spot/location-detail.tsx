@@ -134,8 +134,6 @@ const SpotDetails = ({ spot }) => {
           >
             <span className="icon-[hugeicons--waze] w-5 h-5 text-blue-500"></span>
           </Button>
-
-          {/* <DeleteSpot guid={spot.guid} /> */}
         </div>
       </CardHeader>
     </Card>

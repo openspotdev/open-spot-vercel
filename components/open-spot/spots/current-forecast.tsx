@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -111,14 +112,16 @@ const SpotDetails = ({ spot, forecast, isDeleting }) => {
     : "N/A";
 
   return (
-    <div className="flex items-center justify-end">
-      <p className="text-slate-80 text-xs capitalize whitespace-nowrap">{`${forecast?.data.weather?.[0]?.description}`}</p>
-      <WeatherIcon
-        icon={forecast?.data.weather?.[0]?.icon}
-        description={forecast?.data.weather?.[0]?.description}
-      />
+    <div className="flex items-center justify-center gap-1">
+      <span className="icon-[icon-park--info] w-5 h-5 mr-2"></span>
       <p className="text-slate-80 text-lg font-bold">{`${tempCelsius}°C`}</p>
-      <span className="icon-[icon-park--info] w-5 h-5 ml-2"></span>
+      <Badge className="whitespace-nowrap bg-slate-300 text-slate-800 ml-2 hover:bg-slate-200">
+        <WeatherIcon
+          icon={forecast?.data.weather?.[0]?.icon}
+          description={forecast?.data.weather?.[0]?.description}
+        />
+        {`${forecast?.data.weather?.[0]?.description}`}
+      </Badge>
     </div>
   );
 };

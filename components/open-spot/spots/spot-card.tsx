@@ -17,7 +17,7 @@ export default function SpotCard({
   longitude,
 }: Spot) {
   return (
-    <Card className="flex flex-col md:flex-row justify-between w-full hover:shadow-lg transition-shadow duration-300 bg-slate-50 p-4">
+    <Card className="flex flex-col md:flex-row justify-between w-full hover:shadow-lg transition-shadow duration-300 bg-slate-100 p-2 px-4">
       <div className="flex md:flex-row flex-col justify-between md:w-1/2">
         <div className="w-full">
           <div className="text-[10px] text-gray-500 flex items-center">
@@ -29,12 +29,12 @@ export default function SpotCard({
           <h3 className="font-semibold text-base mb-1">{name}</h3>
         </div>
       </div>
-      <div className="flex md:w-1/2 justify-between items-center gap-1 text-xs">
-        <Button variant="link" asChild className="bg-slate-300">
+      <div className="flex md:w-1/2 justify-between md:justify-end items-center gap-1 text-xs">
+        <article className="">
           <Link href={`/spot/${guid}/${latitude}/${longitude}`}>
             <CurrentForecast guid={guid} />
           </Link>
-        </Button>
+        </article>
         <div className="flex flex-row">
           <ShareButton guid={guid} latitude={latitude} longitude={longitude} />
           <DeleteSpot guid={guid} />
