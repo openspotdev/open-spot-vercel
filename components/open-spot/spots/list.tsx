@@ -40,7 +40,7 @@ export default function List() {
         <CardHeader>
           <CardTitle className="flex items-center text-lg font-medium">
             <MapPin className="mr-2 h-5 w-5" />
-            No hay spots agregados
+            Aún no tiene Spots guardados
           </CardTitle>
           <CardDescription>
             Agrega lugares en los que te gustaría entrenar
