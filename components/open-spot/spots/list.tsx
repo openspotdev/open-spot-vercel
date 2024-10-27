@@ -43,7 +43,7 @@ export default function List() {
             Aún no tiene Spots guardados
           </CardTitle>
           <CardDescription>
-            Agrega lugares en los que te gustaría entrenar
+            Busque y guarde los lugares en los que le gustaría entrenar
           </CardDescription>
         </CardHeader>
       </Card>
