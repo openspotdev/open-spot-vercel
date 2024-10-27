@@ -112,16 +112,15 @@ const SpotDetails = ({ spot, forecast, isDeleting }) => {
     : "N/A";
 
   return (
-    <div className="flex items-center justify-center gap-1">
+    <Badge className="whitespace-nowrap bg-slate-300 text-slate-800 hover:bg-slate-200">
       <span className="icon-[icon-park--info] w-5 h-5 mr-2"></span>
       <p className="text-slate-80 text-lg font-bold">{`${tempCelsius}°C`}</p>
-      <Badge className="whitespace-nowrap bg-slate-300 text-slate-800 ml-2 hover:bg-slate-200">
-        <WeatherIcon
-          icon={forecast?.data.weather?.[0]?.icon}
-          description={forecast?.data.weather?.[0]?.description}
-        />
-        {`${forecast?.data.weather?.[0]?.description}`}
-      </Badge>
-    </div>
+
+      <WeatherIcon
+        icon={forecast?.data.weather?.[0]?.icon}
+        description={forecast?.data.weather?.[0]?.description}
+      />
+      {`${forecast?.data.weather?.[0]?.description}`}
+    </Badge>
   );
 };
