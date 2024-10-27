@@ -33,7 +33,8 @@ export default function SpotCard({
       <div className="flex justify-between gap-2 text-xs">
         <Button variant="default" asChild className="">
           <Link href={`/spot/${guid}/${latitude}/${longitude}`}>
-            <span className="icon-[foundation--map] w-5 h-5"></span>
+            <span className="icon-[flat-ui--weather] w-5 h-5 mr-2"></span>
+            <span className="icon-[gis--direction] w-5 h-5"></span>
           </Link>
         </Button>
         <Button variant="outline" asChild className="w-full">

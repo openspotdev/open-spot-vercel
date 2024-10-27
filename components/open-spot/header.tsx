@@ -16,7 +16,7 @@ export default function Header() {
     { href: "/spots", label: "Spots" },
     // { href: "#features", label: "Ventajas" },
     { href: "/shools", label: "Escuelas" },
-    { href: "/shop", label: "Tienda" },
+    // { href: "/shop", label: "Tienda" },
     // { href: "#testimonials", label: "Testimonios" },
     // { href: "/team", label: "Equipo" },
   ];

@@ -45,14 +45,6 @@ const WeatherIcon = ({ icon, description }) => {
   );
 };
 
-const InfoItem = ({ icon: Icon, label, value }) => (
-  <div className="flex items-center text-xs text-gray-700 whitespace-nowrap">
-    <Icon className="mr-2 h-4 w-4" />
-    <span className="mr-2 text-[10px]">{`${label}:`} </span>
-    <span className="text-slate-600">{`${value ?? "N/A"}`}</span>
-  </div>
-);
-
 export const CurrentForecast = ({ guid }: { guid: string }) => {
   const router = useRouter();
   const {
@@ -146,22 +138,26 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <section className="flex gap-2 md:w-fit items-center justify-between bg-slate-400 rounded-sm px-4">
-      <div className="md:w-1/2">
-        <InfoItem
-          icon={Wind}
-          label="Wind"
-          value={`${forecast?.data.wind.speed ?? "N/A"} m/s`}
-        />
-        <InfoItem
-          icon={Droplets}
-          label="Humidity"
-          value={`${forecast?.data.main?.humidity ?? "N/A"}%`}
-        />
+    <section className="flex p-2 gap-2 w-full md:w-fit justify-around bg-slate-400 rounded-sm md:px-6">
+      <div className="w-1/2 gap-2 flex flex-col">
+        <div className="flex items-center text-xs text-gray-700 whitespace-nowrap">
+          <span className="text-slate-600">{`Viento`}</span>
+          <span className="icon-[la--wind] mx-2 w-6 h-6"></span>
+          <span className="text-slate-600">{`${
+            forecast?.data.wind.speed + " " + "mt/s" ?? "N/A"
+          }`}</span>
+        </div>
+        <div className="flex items-center text-xs text-gray-700 whitespace-nowrap">
+          <span className="text-slate-600">{`Humedad`}</span>
+          <span className="icon-[bi--moisture] w-5 h-5 mx-2"></span>
+          <span className="text-slate-600">{`${
+            forecast?.data.main?.humidity + "%" ?? "N/A"
+          }`}</span>
+        </div>
       </div>
-      <div className="w-1/2 flex flex-col md:flex-col items-end justify-center text-center">
-        <p className="text-slate-80 text-[10px] capitalize">{`${forecast?.data.weather?.[0]?.description}`}</p>
-        <div className="flex items-center justify-center">
+      <div className="w-1/2 gap-2 flex flex-col p-1 text-right">
+        <p className="text-slate-80 text-xs capitalize whitespace-nowrap">{`${forecast?.data.weather?.[0]?.description}`}</p>
+        <div className="flex items-center justify-end">
           <WeatherIcon
             icon={forecast?.data.weather?.[0]?.icon}
             description={forecast?.data.weather?.[0]?.description}
