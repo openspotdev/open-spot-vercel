@@ -1,16 +1,8 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
 import Link from "next/link";
 
-import { Spot } from "@/lib/hooks/useSpotsRepository";
-import BackButton from "@/components/open-spot/back-button";
 import MapViewTW from "@/components/open-spot/spot/map-view";
 import { LocationDetail } from "@/components/open-spot/spot/shared-spot/location-detail";
-import { ForecastDetail } from "@/components/open-spot/spot/forecast-detail";
-import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { ForecastDetail } from "@/components/open-spot/spot/shared-spot/forecast-detail";
 
 export default async function Home({
   searchParams,
@@ -63,11 +55,9 @@ export default async function Home({
       <main className="container mx-auto p-2">
         <div className="relative h-screen">
           <div className="h-full w-full">
-            {/* <HydrationBoundary state={dehydrate(queryClient)}> */}
             <MapViewTW latitude={latitude} longitude={longitude} />
             <LocationDetail {...spot} />
             <ForecastDetail {...spot} />
-            {/* </HydrationBoundary> */}
           </div>
         </div>
       </main>

@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -13,22 +12,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import {
-  Globe,
-  Building2,
-  MapPin,
-  Thermometer,
-  Wind,
-  Droplets,
-  Trash2,
-  Navigation,
-  Map,
-  Sun,
-  Cloud,
-  CloudRain,
-} from "lucide-react";
-
-import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
+import { Wind, Droplets } from "lucide-react";
 
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 

@@ -30,7 +30,6 @@ import {
 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
-
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 
 const WeatherIcon = ({ icon, description }) => {
@@ -147,7 +146,7 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
 
   return (
     <Card className="p-2 absolute z-10 bottom-44 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
-      <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${forecast?.data.weather?.[0]?.description}`}</p>
+      {/* <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${forecast?.data.weather?.[0]?.description}`}</p>
       <div className="flex gap-4">
         <div className="w-fit flex items-center justify-center bg-slate-400 rounded-lg p-2 px-4">
           <WeatherIcon
@@ -168,7 +167,7 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
             value={`${forecast?.data.main?.humidity ?? "N/A"}%`}
           />
         </div>
-      </div>
+      </div> */}
     </Card>
   );
 };
