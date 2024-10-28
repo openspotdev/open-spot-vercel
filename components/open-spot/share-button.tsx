@@ -24,15 +24,15 @@ export function ShareButton({ guid }: ShareButtonProps) {
     const longUrl = `${window.location.origin}/spot/shared-spot?guid=${spot.guid}&latitude=${spot.latitude}&longitude=${spot.longitude}&country=${spot.country}&state=${spot.state}&city=${spot.city}&name=${spot.name}`;
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_SHORT_URL}${longUrl}`
-      );
+      // const response = await fetch(
+      //   `${process.env.NEXT_PUBLIC_URL_SHORT_URL}${longUrl}`
+      // );
 
-      if (!response.ok) {
-        throw new Error("Failed to shorten URL");
-      }
-      const shortUrl = await response.text();
-      await navigator.clipboard.writeText(shortUrl);
+      // if (!response.ok) {
+      //   throw new Error("Failed to shorten URL");
+      // }
+      // const shortUrl = await response.text();
+      await navigator.clipboard.writeText(longUrl);
       toast({
         title: "Listo para compartir!",
         description:
