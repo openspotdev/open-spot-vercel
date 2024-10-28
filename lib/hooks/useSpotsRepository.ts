@@ -3,8 +3,8 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 export interface Spot {
   guid: string;
   name: string;
-  latitude: number;
-  longitude: number;
+  latitude: string;
+  longitude: string;
   country: string;
   state: string;
   city: string;

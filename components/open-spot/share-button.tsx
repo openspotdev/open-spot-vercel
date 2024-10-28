@@ -4,19 +4,24 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
+import { useSpotById } from "@/lib/hooks/useSpotsRepository";
+
 interface ShareButtonProps {
   guid: string;
-  latitude: number;
-  longitude: number;
 }
 
-export function ShareButton({ guid, latitude, longitude }: ShareButtonProps) {
+export function ShareButton({ guid }: ShareButtonProps) {
   const [isCopying, setIsCopying] = useState(false);
   const { toast } = useToast();
+  const {
+    data: spot,
+    // isLoading: isLoadingSpot,
+    // error: spotError,
+  } = useSpotById(guid);
 
   const handleCopy = async () => {
     setIsCopying(true);
-    const longUrl = `${window.location.origin}/spot/${guid}/${latitude}/${longitude}`;
+    const longUrl = `${window.location.origin}/spot/shared-spot?guid=${spot.guid}&latitude=${spot.latitude}&longitude=${spot.longitude}&country=${spot.country}&state=${spot.state}&city=${spot.city}&name=${spot.name}`;
 
     try {
       const response = await fetch(
@@ -48,8 +53,8 @@ export function ShareButton({ guid, latitude, longitude }: ShareButtonProps) {
   return (
     <Button
       variant="link"
-      // onClick={handleCopy}
-      // disabled={isCopying}
+      onClick={handleCopy}
+      disabled={isCopying}
       className="px-2"
     >
       <span className="icon-[charm--share] w-5 h-5 bg-blue-600"></span>

@@ -45,8 +45,8 @@ export default function LocationAutocomplete() {
     return {
       guid: newSpot.value.place_id,
       name: newSpot.value.structured_formatting.main_text,
-      latitude: lat,
-      longitude: lng,
+      latitude: lat.toString(),
+      longitude: lng.toString(),
       country: getAddressComponent(addressComponents, "country"),
       state: getAddressComponent(
         addressComponents,

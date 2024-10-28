@@ -36,7 +36,7 @@ export default function SpotCard({
           </Link>
         </article>
         <div className="flex flex-row">
-          <ShareButton guid={guid} latitude={latitude} longitude={longitude} />
+          <ShareButton guid={guid} />
           <DeleteSpot guid={guid} />
         </div>
       </div>

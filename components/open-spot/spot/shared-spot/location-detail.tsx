@@ -13,45 +13,63 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-import { useSpotById } from "@/lib/hooks/useSpotsRepository";
+import { Spot, useSpotById } from "@/lib/hooks/useSpotsRepository";
 import { ShareButton } from "@/components/open-spot/share-button";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 
-export const LocationDetail = ({ guid }: { guid: string }) => {
+export const LocationDetail = ({
+  latitude,
+  longitude,
+  name,
+  country,
+  state,
+  city,
+}: {
+  latitude: string;
+  longitude: string;
+  name: string;
+  country: string;
+  state: string;
+  city: string;
+}) => {
   const router = useRouter();
-  const {
-    data: spot,
-    isLoading: isLoadingSpot,
-    error: spotError,
-  } = useSpotById(guid);
 
   const {
     data: forecast,
     isLoading: isLoadingForecast,
     error: forecastError,
   } = useQuery({
-    queryKey: ["spot-forecast", spot?.latitude, spot?.longitude],
+    queryKey: ["spot-forecast", latitude, longitude],
     queryFn: async () => {
-      if (!spot) return null;
+      // if (!spot) return null;
       return await getSpotForecastByLocation({
-        latitude: spot.latitude?.toString(),
-        longitude: spot.longitude?.toString(),
+        latitude,
+        longitude,
       });
     },
-    enabled: !!spot?.latitude && !!spot?.longitude,
+    enabled: !!latitude && !!longitude,
   });
 
-  if (isLoadingSpot || isLoadingForecast) {
+  if (isLoadingForecast) {
     return <LoadingSkeleton />;
   }
 
-  if (spotError || forecastError) router.back();
+  if (forecastError) router.back();
 
-  if (!spot || !forecast) {
+  if (!forecast) {
     return <NotFoundAlert />;
   }
 
-  return <SpotDetails spot={spot} />;
+  const spot = {
+    latitude,
+    longitude,
+    name,
+    country,
+    state,
+    city,
+  };
+
+  return <SpotDetails {...spot} />;
 };
 
 const LoadingSkeleton = () => (
@@ -86,7 +104,21 @@ const NotFoundAlert = () => (
   </Alert>
 );
 
-const SpotDetails = ({ spot }) => {
+const SpotDetails = ({
+  latitude,
+  longitude,
+  name,
+  country,
+  state,
+  city,
+}: {
+  latitude: string;
+  longitude: string;
+  name: string;
+  country: string;
+  state: string;
+  city: string;
+}) => {
   return (
     <Card
       className="absolute z-10 top-2 md:left-10 md:top-10 md:w-fit bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0
@@ -95,24 +127,24 @@ const SpotDetails = ({ spot }) => {
     >
       <CardHeader className="py-2 flex md:flex-row gap-1 md:gap-4">
         <CardTitle className="text-xl font-bold">
-          {spot?.name ?? "Unknown Location"}
-          <p className="text-sm font-thin text-gray-500">{`${
-            spot?.city ?? "N/A"
-          }, ${spot?.state ?? "N/A"}, ${spot?.country ?? "N/A"}`}</p>
+          {name ?? "Unknown Location"}
+          <p className="text-sm font-thin text-gray-500">{`${city ?? "N/A"}, ${
+            state ?? "N/A"
+          }, ${country ?? "N/A"}`}</p>
         </CardTitle>
 
         <div className="flex flex-row items-start">
-          <ShareButton guid={spot.guid} />
+          {/* <ShareButton guid={guid} /> */}
           <Button
             className="w-fit px-2"
             variant="link"
             onClick={() =>
               window.open(
-                `https://www.google.com/maps/search/?api=1&query=${spot?.latitude},${spot?.longitude}`,
+                `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`,
                 "_blank"
               )
             }
-            disabled={!spot?.latitude || !spot?.longitude}
+            disabled={!latitude || !longitude}
           >
             <span className="icon-[logos--google-maps] w-5 h-5"></span>
           </Button>
@@ -121,11 +153,11 @@ const SpotDetails = ({ spot }) => {
             variant="link"
             onClick={() =>
               window.open(
-                `https://www.waze.com/ul?ll=${spot?.latitude},${spot?.longitude}&navigate=yes`,
+                `https://www.waze.com/ul?ll=${latitude},${longitude}&navigate=yes`,
                 "_blank"
               )
             }
-            disabled={!spot?.latitude || !spot?.longitude}
+            disabled={!latitude || !longitude}
           >
             <span className="icon-[hugeicons--waze] w-5 h-5 text-blue-500"></span>
           </Button>
