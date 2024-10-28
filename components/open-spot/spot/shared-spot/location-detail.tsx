@@ -16,8 +16,10 @@ import {
 import { Spot, useSpotById } from "@/lib/hooks/useSpotsRepository";
 import { ShareButton } from "@/components/open-spot/share-button";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
+import AddSpot from "@/components/open-spot/add-spot";
 
 export const LocationDetail = ({
+  guid,
   latitude,
   longitude,
   name,
@@ -25,6 +27,7 @@ export const LocationDetail = ({
   state,
   city,
 }: {
+  guid: string;
   latitude: string;
   longitude: string;
   name: string;
@@ -61,6 +64,7 @@ export const LocationDetail = ({
   }
 
   const spot = {
+    guid,
     latitude,
     longitude,
     name,
@@ -105,6 +109,7 @@ const NotFoundAlert = () => (
 );
 
 const SpotDetails = ({
+  guid,
   latitude,
   longitude,
   name,
@@ -112,6 +117,7 @@ const SpotDetails = ({
   state,
   city,
 }: {
+  guid: string;
   latitude: string;
   longitude: string;
   name: string;
@@ -119,6 +125,17 @@ const SpotDetails = ({
   state: string;
   city: string;
 }) => {
+  const spot: Spot = {
+    guid,
+    latitude,
+    longitude,
+    name,
+    country,
+    state,
+    city,
+    selected: false,
+    type: "",
+  };
   return (
     <Card
       className="absolute z-10 top-2 md:left-10 md:top-10 md:w-fit bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0
@@ -161,6 +178,7 @@ const SpotDetails = ({
           >
             <span className="icon-[hugeicons--waze] w-5 h-5 text-blue-500"></span>
           </Button>
+          <AddSpot {...spot} />
         </div>
       </CardHeader>
     </Card>
