@@ -9,7 +9,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <Header />
-      <main className="flex-grow relative bg-[#b7e0ff]">
+      <main className="flex-grow relative bg-sky-200">
         {/* <main className="flex-grow relative bg-[url('/bg-675x900.svg')] md:bg-[url('/900x600.svg')] bg-cover bg-center sm:bg-none sm:bg-[#b7e0ff]"> */}
         <motion.img
           src={`/shop/olympic.svg`}
