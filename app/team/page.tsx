@@ -6,37 +6,39 @@ import { Bike, Menu, X, Instagram, Twitter, Mail } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useLanguage } from "@/app/languageContext";
 
 export default function TeamPage() {
+  const { texts } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const navItems = [{ href: "/", label: "Home" }];
+  const navItems = [{ href: "/", label: texts.home }];
 
   const teamMembers = [
     {
-      name: "Eduardo Abella",
-      role: "Especialista en patinaje, director del programa juvenil y fundador",
-      bio: "Eduardo se especializa en introducir a niños y adolescentes a los placeres del patinaje sobre ruedas y el running. Su enérgico estilo de enseñanza y su enfoque en la seguridad han hecho que nuestros programas para jóvenes sean increíblemente populares.",
+      name: texts.teamMember1Name,
+      role: texts.teamMember1Role,
+      bio: texts.teamMember1Bio,
       image: "icon-[openmoji--man-dark-skin-tone-beard]",
       instagram: "roll_abella",
       email: "roll_abella@gmail.com",
     },
     {
-      name: "Camilo Fiallo",
-      role: "Especialista en Running y Fundadora",
-      bio: "Camilo es corredor de maratón y entrenador de carrera certificado. Con su experiencia en biomecánica y entrenamiento de resistencia, ayuda a nuestros estudiantes a lograr sus mejores resultados personales en el running.",
+      name: texts.teamMember2Name,
+      role: texts.teamMember2Role,
+      bio: texts.teamMember2Bio,
       image: "icon-[openmoji--man-light-skin-tone-beard]",
       instagram: "davidcarf23",
       email: "davidcarf23@gmail.com",
     },
     {
-      name: "Gabriel Alfonso",
-      role: "Especialista en patinaje y fundador",
-      bio: "Gabriel es un ex patinador profesional con más de 15 años de experiencia como entrenador. Juntos fundaron Olympico Academy con la visión de crear una comunidad de apoyo para los entusiastas del patinaje y el running.",
+      name: texts.teamMember3Name,
+      role: texts.teamMember3Role,
+      bio: texts.teamMember3Bio,
       image: "icon-[openmoji--man-medium-light-skin-tone-beard]",
       instagram: "gabalfa",
       email: "gabalfa@gmail.com",
@@ -65,12 +67,10 @@ export default function TeamPage() {
         <section className="flex justify-center w-full py-12 md:py-24 lg:py-32 bg-gray-100">
           <div className="container px-4 md:px-6">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center mb-8">
-              Conoce a nuestro equipo
+              {texts.meetOurTeam}
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center mb-12">
-              Nuestros instructores experimentados y apasionados están dedicados
-              a ayudarle a alcanzar sus objetivos en patinaje sobre ruedas y
-              carrera.
+              {texts.teamDescription}
             </p>
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-12">
               {teamMembers.map((member, index) => (
@@ -119,15 +119,14 @@ export default function TeamPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Contáctenos
+                  {texts.contactUs}
                 </h2>
                 <p className="mx-auto max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  ¿Tienes preguntas sobre nuestro equipo o nuestros programas?
-                  ¡Nos encantaría saber de ti!
+                  {texts.contactDescription}
                 </p>
               </div>
               <Button size="lg" asChild>
-                <Link href="mailto:info@olympicoacademy.com">Contáctenos</Link>
+                <Link href="mailto:info@olympicoacademy.com">{texts.contactUs}</Link>
               </Button>
             </div>
           </div>
@@ -137,20 +136,20 @@ export default function TeamPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-xs text-gray-500">
-              © 2024 Olympico Academy. All rights reserved.
+              © 2024 {texts.title}. {texts.footerRights}
             </p>
             <nav className="flex gap-4">
               <Link
                 className="text-xs hover:underline underline-offset-4"
                 href="#"
               >
-                Terms of Service
+                {texts.termsOfService}
               </Link>
               <Link
                 className="text-xs hover:underline underline-offset-4"
                 href="#"
               >
-                Privacy
+                {texts.privacyPolicy}
               </Link>
             </nav>
           </div>

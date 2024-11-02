@@ -9,6 +9,7 @@ import Header from "@/components/open-spot/header";
 import Banner from "@/components/open-spot/shop/banner";
 
 export default function LandingPage() {
+  const { texts } = useLanguage();
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
@@ -34,20 +35,20 @@ export default function LandingPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-xs text-gray-500">
-              © 2024 Academia Olympico. All rights reserved.
+              © 2024 {texts.title}. {texts.footerRights}
             </p>
             <nav className="flex gap-4">
               <Link
                 className="text-xs hover:underline underline-offset-4"
                 href="#"
               >
-                Terms of Service
+                {texts.termsOfService}
               </Link>
               <Link
                 className="text-xs hover:underline underline-offset-4"
                 href="#"
               >
-                Privacy
+                {texts.privacyPolicy}
               </Link>
             </nav>
           </div>
@@ -57,7 +58,7 @@ export default function LandingPage() {
         <Button
           className="fixed bottom-4 right-4 p-2 rounded-full shadow-lg bg-red-500"
           onClick={scrollToTop}
-          aria-label="Back to top"
+          aria-label={texts.backToTop}
         >
           <ChevronUp className="h-6 w-6" />
         </Button>

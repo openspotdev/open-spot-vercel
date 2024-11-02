@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
+import { LanguageProvider } from "./languageContext";
 
 import localFont from "next/font/local";
 import "./globals.css";
@@ -67,7 +68,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <LanguageProvider>{children}</LanguageProvider>
+        </Providers>
       </body>
     </html>
   );

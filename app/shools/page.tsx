@@ -21,8 +21,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLanguage } from "../languageContext";
 
 export default function LandingPage() {
+  const { texts } = useLanguage();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -43,42 +45,29 @@ export default function LandingPage() {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const navItems = [
-    // { href: "#features", label: "Ventajas" },
-    { href: "/shools", label: "Escuelas" },
-    { href: "/shop", label: "Tienda" },
-    // { href: "#testimonials", label: "Testimonios" },
-    // { href: "/team", label: "Equipo" },
-    { href: "/spots", label: "Spots" },
-  ];
-
   return (
     <div className="flex flex-col min-h-screen bg-sky-200">
       <Header />
       <main className="flex-1">
         <section className="flex justify-center h-screen w-full py-12 md:py-24 lg:py-32 xl:py-48  text-slate-800">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h1 className="text-3xl text-orange-600 font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                  ¡Entrena con nosotros!
-                </h1>
-                <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-800">
-                  Únete a{" "}
-                  <span className="font-bold text-2xl">OS Action Sports</span> y
-                  descubre la emoción del patinaje en línea. Te esperan
-                  instructores expertos y una comunidad solidaria.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                {/* <Button asChild size="lg">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mx-4">
+            <div className="space-y-2">
+              <h1 className="text-3xl text-orange-600 font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                {texts.school.title}
+              </h1>
+              <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-800">
+                {/* <span className="font-bold text-2xl mr-2">Open Spot</span> */}
+                {texts.school.description}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              {/* <Button asChild size="lg">
                   <Link href="#signup">Get Started</Link>
                 </Button> */}
-                <Button variant="outline" size="lg" className="text-black">
-                  Contactanos
-                  <span className="icon-[cib--whatsapp] ml-2 w-6 h-6"></span>
-                </Button>
-              </div>
+              <Button variant="outline" size="lg" className="text-black">
+                {texts.school.contactUs}
+                <span className="icon-[cib--whatsapp] ml-2 w-6 h-6"></span>
+              </Button>
             </div>
           </div>
         </section>
@@ -88,7 +77,7 @@ export default function LandingPage() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center">
-              ¿Por qué elegirnos?
+              {texts.school.whyChooseUs}
             </h2>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
               {[
@@ -133,15 +122,19 @@ export default function LandingPage() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12">
-              Escuelas
+              {texts.school.schools}
             </h2>
             <Tabs
               defaultValue="rollerblading"
               className="w-full max-w-3xl mx-auto"
             >
               <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="rollerblading">Patinaje</TabsTrigger>
-                <TabsTrigger value="running">Running</TabsTrigger>
+                <TabsTrigger value="rollerblading">
+                  {texts.school.skating}
+                </TabsTrigger>
+                <TabsTrigger value="running">
+                  {texts.school.running}
+                </TabsTrigger>
               </TabsList>
               <TabsContent value="rollerblading">
                 <Card>
@@ -187,30 +180,27 @@ export default function LandingPage() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12">
-              Planes
+              {texts.school.plans}
             </h2>
             <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-3 lg:gap-12">
               {[
                 {
-                  title: "Clases Grupales",
+                  title: texts.school.groupClasses,
                   icon: "icon-[ls--group]",
-                  price: "$29mil/sesión",
-                  description:
-                    "Únete a nuestras dinámicas sesiones en grupo y aprende con tus compañeros. Perfecto para principiantes y aprendices sociales.",
+                  price: texts.school.groupClassesPrice,
+                  description: texts.school.groupClassesDescription,
                 },
                 {
-                  title: "Entramiento Personalizado",
+                  title: texts.school.personalTraining,
                   icon: "icon-[icon-park--focus-one]",
-                  price: "$49mil/sesión",
-                  description:
-                    "Sesiones individuales adaptadas a tus necesidades y objetivos específicos. Acelera tu progreso con atención personalizada.",
+                  price: texts.school.personalTrainingPrice,
+                  description: texts.school.personalTrainingDescription,
                 },
                 {
-                  title: "Cursos Espcializados",
+                  title: texts.school.specializedCourses,
                   icon: "icon-[arcticons--weatherbug-elite]",
-                  price: "$89mil/course",
-                  description:
-                    "Cursos intensivos centrados en técnicas avanzadas, preparación para carreras o habilidades específicas. Lleva tus habilidades al siguiente nivel.",
+                  price: texts.school.specializedCoursesPrice,
+                  description: texts.school.specializedCoursesDescription,
                 },
               ].map((rate, index) => (
                 <Card key={index}>
@@ -238,21 +228,21 @@ export default function LandingPage() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12">
-              Lo que dicen nuestros estudiantes
+              {texts.school.whatOurStudentsSay}
             </h2>
             <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-3 lg:gap-12">
               {[
                 {
-                  name: "Bryan Arango",
-                  text: "¡La Academia Olympico transformó mis habilidades de patinaje! ¡Los instructores son de primera!",
+                  name: texts.school.testimonial1Name,
+                  text: texts.school.testimonial1Text,
                 },
                 {
-                  name: "Richard Jhonson",
-                  text: "He mejorado mucho como corredor gracias a las increíbles clases aquí.",
+                  name: texts.school.testimonial2Name,
+                  text: texts.school.testimonial2Text,
                 },
                 {
-                  name: "Usain Bolt",
-                  text: "La comunidad en Olympico es increíble. He hecho amigos para toda la vida aquí.",
+                  name: texts.school.testimonial3Name,
+                  text: texts.school.testimonial3Text,
                 },
               ].map((testimonial, index) => (
                 <Card key={index}>
@@ -275,11 +265,10 @@ export default function LandingPage() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Listo para comenzar el entrenamiento?
+                  {texts.school.readyToStartTraining}
                 </h2>
                 <p className="mx-auto max-w-[600px] text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                  Únete a Academia Olympico hoy y da el primer paso hacia el
-                  dominio del patinaje en línea y la carrera.
+                  {texts.school.joinAcademyDescription}
                 </p>
               </div>
             </div>
@@ -290,20 +279,20 @@ export default function LandingPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-xs text-gray-500">
-              © 2024 Academia Olympico. All rights reserved.
+              © 2024 {texts.title}. {texts.footerRights}
             </p>
             <nav className="flex gap-4">
               <Link
                 className="text-xs hover:underline underline-offset-4"
                 href="#"
               >
-                Terms of Service
+                {texts.termsOfService}
               </Link>
               <Link
                 className="text-xs hover:underline underline-offset-4"
                 href="#"
               >
-                Privacy
+                {texts.privacyPolicy}
               </Link>
             </nav>
           </div>
