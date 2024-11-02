@@ -120,7 +120,7 @@ const SpotDetails = ({ spot, forecast, isDeleting }) => {
         icon={forecast?.data.weather?.[0]?.icon}
         description={forecast?.data.weather?.[0]?.description}
       />
-      {`${forecast?.data.weather?.[0]?.description}`}
+      <span className="truncate max-w-[20ch] overflow-hidden whitespace-nowrap">{`${forecast?.data.weather?.[0]?.description}`}</span>
     </Badge>
   );
 };

@@ -8,6 +8,7 @@ import LocationAutocomplete from "@/components/open-spot/spots/location-autocomp
 import SpotsList from "@/components/open-spot/spots/list";
 import Header from "@/components/open-spot/header";
 import { useLanguage } from "@/app/languageContext";
+import Footer from "@/components/open-spot/footer";
 
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -36,6 +37,7 @@ export default function Home() {
           <SpotsList />
         </div>
       </main>
+      <Footer />
       {showBackToTop && (
         <Button
           className="fixed bottom-4 right-4 p-2 rounded-full shadow-lg bg-red-500"

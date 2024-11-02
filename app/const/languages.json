@@ -29,8 +29,8 @@
     "language": "Language",
     "backToTop": "Back to top",
     "school": {
-      "title": "workout with us",
-      "description": "This website is made to promote skating through its school and tools.",
+      "title": "¡Skate with us!",
+      "description": "We offer classes for all levels and ages, we focus on confidence and support in the learning process.",
       "contactUs": "Contact Us",
       "whyChooseUs": "Why Choose Us?",
       "schools": "Our Training Schools",
@@ -56,7 +56,7 @@
       "readyToStartTraining": "Ready to Start Your Training?",
       "joinAcademyDescription": "Join our academy today and embark on your journey to better fitness and skills!"
     },
-    "footerRights": "© 2023 Our Training Academy. All rights reserved."
+    "footerRights": "© 2024 Opon Spot. All rights reserved."
   },
   "es": {
     "title": "Open Spot",
@@ -89,7 +89,7 @@
     "backToTop": "Volver arriba",
     "school": {
       "title": "¡Patina con nosotros!",
-      "description": "Este sitio web esta hecho para promover el patinaje a través de su escuela y herramientas",
+      "description": "Ofrecemos clases para todos los niveles y edades, nos enfocamos en la confianza y acompañamieto en el proceso de aprendizaje",
       "contactUs": "Escribenos",
       "whyChooseUs": "¿Por qué elegirnos?",
       "schools": "Nuestras Escuelas de Entrenamiento",
@@ -115,7 +115,7 @@
       "readyToStartTraining": "¿Listo para comenzar tu entrenamiento?",
       "joinAcademyDescription": "¡Únete a nuestra academia hoy y embárcate en tu viaje hacia una mejor condición física y habilidades!"
     },
-    "footerRights": "© 2023 Nuestra. All rights reserved."
+    "footerRights": "© 2024 Opon Spot. All rights reserved."
   },
   "fr": {
     "title": "Open Spot",
@@ -148,7 +148,7 @@
     "backToTop": "Retour en haut",
     "school": {
       "title": "¡Patinez avec nous!",
-      "description": "Ce site Internet a pour but de promouvoir le patinage à travers son école et ses outils.",
+      "description": "Nous proposons des cours pour tous les niveaux et tous les âges, nous nous concentrons sur la confiance et le soutien dans le processus d'apprentissage.",
       "contactUs": "Contactez-nous",
       "whyChooseUs": "Pourquoi Nous Choisir ?",
       "schools": "Nos Écoles de Formation",
@@ -174,6 +174,6 @@
       "readyToStartTraining": "Prêt à Commencer Votre Entraînement ?",
       "joinAcademyDescription": "Rejoignez notre académie aujourd'hui et commencez votre parcours vers une meilleure forme physique et des compétences !"
     },
-    "footerRights": "© 2023 Notre Académie de Formation. Tous droits réservés."
+    "footerRights": "© 2024 Opon Spot. Tous droits réservés."
   }
 }
