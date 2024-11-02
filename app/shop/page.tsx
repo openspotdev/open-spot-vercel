@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import Header from "@/components/open-spot/header";
 import Banner from "@/components/open-spot/shop/banner";
+import { useLanguage } from "../languageContext";
 
 export default function LandingPage() {
   const { texts } = useLanguage();
