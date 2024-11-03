@@ -16,9 +16,11 @@ import {
 import { useSpotById } from "@/lib/hooks/useSpotsRepository";
 import { ShareButton } from "@/components/open-spot/share-button";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { useLanguage } from "@/app/languageContext";
 
 export const LocationDetail = ({ guid }: { guid: string }) => {
   const router = useRouter();
+  const { language } = useLanguage();
   const {
     data: spot,
     isLoading: isLoadingSpot,
@@ -36,6 +38,7 @@ export const LocationDetail = ({ guid }: { guid: string }) => {
       return await getSpotForecastByLocation({
         latitude: spot.latitude?.toString(),
         longitude: spot.longitude?.toString(),
+        language,
       });
     },
     enabled: !!spot?.latitude && !!spot?.longitude,

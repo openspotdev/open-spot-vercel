@@ -11,10 +11,10 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { Wind, Droplets } from "lucide-react";
 
 import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { useLanguage } from "@/app/languageContext";
 
 const WeatherIcon = ({ icon, description }) => {
   return (
@@ -44,7 +44,7 @@ export const ForecastDetail = ({
   longitude: string;
 }) => {
   const router = useRouter();
-
+  const { language } = useLanguage();
   const {
     data: forecast,
     isLoading: isLoadingForecast,
@@ -55,6 +55,7 @@ export const ForecastDetail = ({
       return await getSpotForecastByLocation({
         latitude,
         longitude,
+        language,
       });
     },
     enabled: !!latitude && !!longitude,
