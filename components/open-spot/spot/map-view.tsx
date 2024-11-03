@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, Suspense } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L, { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -19,6 +19,8 @@ const PopupButton = () => (
 );
 
 const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
+  console.log({ latitude, longitude });
+
   const tileLayer = useMemo(
     () => (
       <TileLayer
@@ -50,17 +52,19 @@ const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
 
   return (
     <div className="h-[82vh] rounded-lg overflow-hidden shadow-lg">
-      <MapContainer
-        center={[Number(latitude), Number(longitude)] as LatLngExpression}
-        zoom={12}
-        style={{ height: "100%", width: "100%" }}
-        zoomControl={false}
-        className="z-0"
-        {...({} as any)}
-      >
-        {tileLayer}
-        {memoizedMarker}
-      </MapContainer>
+      <Suspense key={crypto.randomUUID()} fallback={<>Loading....</>}>
+        <MapContainer
+          center={[Number(latitude), Number(longitude)] as LatLngExpression}
+          zoom={12}
+          style={{ height: "100%", width: "100%" }}
+          zoomControl={false}
+          className="z-0"
+          {...({} as any)}
+        >
+          {tileLayer}
+          {memoizedMarker}
+        </MapContainer>
+      </Suspense>
     </div>
   );
 };

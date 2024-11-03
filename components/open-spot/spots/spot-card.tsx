@@ -15,6 +15,7 @@ export default function SpotCard({
   state,
   latitude,
   longitude,
+  language,
 }: Spot) {
   return (
     <Card className="flex flex-col md:flex-row justify-between w-full hover:shadow-lg transition-shadow duration-300 bg-white p-2 px-4">
@@ -31,7 +32,12 @@ export default function SpotCard({
       </div>
       <div className="flex md:w-1/2 justify-between md:justify-end items-center gap-1 text-xs">
         <article className="">
-          <Link href={`/spot/${guid}/${latitude}/${longitude}`}>
+          <Link
+            href={{
+              pathname: `/spot/${guid}`,
+              query: { lat: latitude, lon: longitude, lan: language },
+            }}
+          >
             <CurrentForecast guid={guid} />
           </Link>
         </article>

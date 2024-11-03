@@ -10,6 +10,7 @@ export interface Spot {
   city: string;
   selected: boolean;
   type: string;
+  language?: string;
 }
 
 const STORAGE_KEY = "spots";

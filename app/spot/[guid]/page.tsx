@@ -3,9 +3,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import Link from "next/link";
 
-import BackButton from "@/components/open-spot/back-button";
 import MapViewTW from "@/components/open-spot/spot/map-view";
 import { LocationDetail } from "@/components/open-spot/spot/location-detail";
 import { ForecastDetail } from "@/components/open-spot/spot/forecast-detail";
@@ -15,17 +13,19 @@ import Header from "@/components/open-spot/header";
 
 export default async function Home({
   params,
+  searchParams,
 }: {
-  params: { guid: string; latitude: string; longitude: string };
+  params: { guid: string };
+  searchParams?: { lat: string; lon: string; lan: string };
 }) {
   const guid = params?.["guid"] || "";
-  const latitude = params?.["latitude"] || "";
-  const longitude = params?.["longitude"] || "";
-  const language = params?.["longitude"] || "";
+  const latitude = searchParams.lat || "";
+  const longitude = searchParams.lon || "";
+  const language = searchParams.lan || "";
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ["spot-forecast", latitude, longitude],
+    queryKey: ["spot-forecast", latitude, longitude, language],
     queryFn: async () =>
       await getSpotForecastByLocation({ latitude, longitude, language }),
   });
@@ -37,10 +37,7 @@ export default async function Home({
         <div className="relative h-screen">
           <div className="h-full w-full">
             <HydrationBoundary state={dehydrate(queryClient)}>
-              <MapViewTW
-                latitude={latitude.toString()}
-                longitude={longitude.toString()}
-              />
+              <MapViewTW latitude={latitude} longitude={longitude} />
               <LocationDetail guid={guid} />
               <ForecastDetail guid={guid} />
             </HydrationBoundary>

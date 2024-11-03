@@ -13,8 +13,10 @@ import { Loader2, MapPin } from "lucide-react";
 
 import SpotCard from "./spot-card";
 import { useSpots, Spot } from "@/lib/hooks/useSpotsRepository";
+import { useLanguage } from "@/app/languageContext";
 
 export default function List() {
+  const { language } = useLanguage();
   const { data: spots, isLoading, isError } = useSpots();
 
   if (isLoading)
@@ -52,7 +54,7 @@ export default function List() {
   return (
     <div className="space-y-2">
       {ordered?.map((spot: Spot) => (
-        <SpotCard key={spot.guid} {...spot} />
+        <SpotCard key={spot.guid} {...spot} language={language} />
       ))}
     </div>
   );

@@ -55,7 +55,7 @@ const InfoItem = ({ icon: Icon, label, value }) => (
 
 export const ForecastDetail = ({ guid }: { guid: string }) => {
   const router = useRouter();
-  const { texts } = useLanguage();
+  const { texts, language } = useLanguage();
   const {
     data: spot,
     isLoading: isLoadingSpot,
@@ -74,6 +74,7 @@ export const ForecastDetail = ({ guid }: { guid: string }) => {
       return await getSpotForecastByLocation({
         latitude: spot.latitude?.toString(),
         longitude: spot.longitude?.toString(),
+        language,
       });
     },
     enabled: !!spot?.latitude && !!spot?.longitude,
