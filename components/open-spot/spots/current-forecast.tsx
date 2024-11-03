@@ -1,37 +1,17 @@
-//@ts-nocheck
 "use client";
+
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
+
 import { Separator } from "@/components/ui/separator";
-import {
-  Globe,
-  Building2,
-  MapPin,
-  Thermometer,
-  Wind,
-  Droplets,
-  Trash2,
-  Navigation,
-  Map,
-  Sun,
-  Cloud,
-  CloudRain,
-  Loader2,
-} from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { useLanguage } from "@/app/languageContext";
 
 const WeatherIcon = ({ icon, description }) => {
   return (
@@ -47,6 +27,7 @@ const WeatherIcon = ({ icon, description }) => {
 
 export const CurrentForecast = ({ guid }: { guid: string }) => {
   const router = useRouter();
+  const { language } = useLanguage();
   const {
     data: spot,
     isLoading: isLoadingSpot,
@@ -59,15 +40,16 @@ export const CurrentForecast = ({ guid }: { guid: string }) => {
     isLoading: isLoadingForecast,
     error: forecastError,
   } = useQuery({
-    queryKey: ["spot-forecast", spot?.latitude, spot?.longitude],
+    queryKey: ["spot-forecast", spot?.latitude, spot?.longitude, language],
     queryFn: async () => {
       if (!spot) return null;
       return await getSpotForecastByLocation({
         latitude: spot.latitude?.toString(),
         longitude: spot.longitude?.toString(),
+        language,
       });
     },
-    enabled: !!spot?.latitude && !!spot?.longitude,
+    enabled: (!!spot?.latitude && !!spot?.longitude) || !!language,
   });
 
   if (isLoadingSpot || isLoadingForecast) {

@@ -31,7 +31,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <Header />
       <main className="flex-1 md:mx-auto p-4">
-        {/* <h1 className="text-3xl font-bold mb-6 text-center">{texts.home}</h1> */}
+        <h1 className="text-md font-bold mb-6 text-center text-slate-800">
+          {texts.spots.title}
+        </h1>
         <div className="max-w-2xl mx-auto">
           <LocationAutocomplete />
           <SpotsList />

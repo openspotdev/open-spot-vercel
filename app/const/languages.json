@@ -1,100 +1,31 @@
 {
-  "en": {
-    "title": "Open Spot",
-
-    "landing": {
-      "title": "Open Spot is a strategy to promote the practice of sport, providing useful information to achieve constant workout."
-    },
-    "menu": "menu",
-    "home": "Spots",
-    "shop": "Shop",
-    "schooltitle": "School",
-    "trainingTips": "Pro Tips",
-    "about": "Who We Are",
-    "heroTitle": "Weather for Extreme Performance",
-    "heroSubtitle": "Precision forecasts to elevate your training and competition.",
-    "ctaButton": "Forecast your spots",
-    "featuresTitle": "Athlete-Driven Features",
-    "runConditions": {
-      "title": "Run Vibes",
-      "description": "Optimal times to hit the ground, with the perfect temp and wind checks."
-    },
-    "cyclingForecast": {
-      "title": "Ride Conditions",
-      "description": "Wind speed and direction insights for your shredding sessions."
-    },
-    "swimWeather": {
-      "title": "Swim Vibes",
-      "description": "Water temp and conditions for your open water adventures."
-    },
-    "footer": "Fueling your edge.",
-    "privacyPolicy": "Privacy Policy",
-    "termsOfService": "Terms of Service",
-    "language": "Language",
-    "backToTop": "Back to top",
-    "school": {
-      "title": "¡Skate with us!",
-      "description": "We offer classes for all levels and ages, we focus on confidence and support in the learning process.",
-      "contactUs": "Contact Us",
-      "whyChooseUs": "Why Choose Us?",
-      "schools": "Our Training Schools",
-      "skating": "Skating Lessons",
-      "running": "Running Programs",
-      "plans": "Training Plans",
-      "groupClasses": "Group Classes",
-      "groupClassesPrice": "$25 per session",
-      "groupClassesDescription": "Join our energetic group classes for a fun and motivating workout experience.",
-      "personalTraining": "Personal Training",
-      "personalTrainingPrice": "$60 per hour",
-      "personalTrainingDescription": "Get one-on-one attention from our expert trainers to achieve your fitness goals faster.",
-      "specializedCourses": "Specialized Courses",
-      "specializedCoursesPrice": "$150 for 6 weeks",
-      "specializedCoursesDescription": "Dive deep into specific skills with our intensive specialized courses.",
-      "whatOurStudentsSay": "What Our Students Say",
-      "testimonial1Name": "Sarah Johnson",
-      "testimonial1Text": "The group classes here are amazing! I've never felt so motivated to work out.",
-      "testimonial2Name": "Mike Thompson",
-      "testimonial2Text": "Personal training sessions have completely transformed my fitness level. Highly recommended!",
-      "testimonial3Name": "Emily Chen",
-      "testimonial3Text": "The specialized skating course helped me improve my technique significantly. Great instructors!",
-      "readyToStartTraining": "Ready to Start Your Training?",
-      "joinAcademyDescription": "Join our academy today and embark on your journey to better fitness and skills!"
-    },
-
-    "footerRights": "© 2024 Opon Spot. All rights reserved."
-  },
   "es": {
     "title": "Open Spot",
+    "menu": {
+      "menu": "menu",
+      "home": "Spots",
+      "shop": "Tienda",
+      "schooltitle": "Escuela"
+    },
     "landing": {
       "title": "Open Spot se es una estrategia para promover la practica del deporte, facilitando información utíl para conseguir la practica constante"
     },
-    "menu": "menu",
-    "home": "Spots",
-    "shop": "Tienda",
-    "schooltitle": "Escuela",
-    "trainingTips": "Consejos de Pro",
-    "about": "Quiénes Somos",
-    "heroTitle": "Clima para un Rendimiento Extremo",
-    "heroSubtitle": "Pronósticos precisos para elevar tu entrenamiento y competencia.",
-    "ctaButton": "Pronóstico de tus spots",
-    "featuresTitle": "Características Impulsadas por Atletas",
-    "runConditions": {
-      "title": "Vibras para Correr",
-      "description": "Mejores momentos para salir a correr, con condiciones perfectas de temperatura y viento."
+    "spots": {
+      "title": "Información util para poder practicar tu rutina",
+      "autocomplete": {
+        "errorNoSelected": "Error buscando tu spot",
+        "placeholder": "Buscar spots...",
+        "noOptionsMessage": "Por ejemplo ser un skatepark",
+        "loadingMessage": "Buscando...",
+        "buttonText": "Agregar"
+      }
     },
-    "cyclingForecast": {
-      "title": "Condiciones para Montar",
-      "description": "Datos sobre velocidad y dirección del viento para tus sesiones en bici."
+    "spot": {
+      "forecastDetail": {
+        "wind": "viento",
+        "humidity": "humedad"
+      }
     },
-    "swimWeather": {
-      "title": "Vibras para Nadar",
-      "description": "Temperatura del agua y condiciones para tus aventuras en aguas abiertas."
-    },
-    "footer": "Impulsando tu ventaja.",
-    "privacyPolicy": "Política de Privacidad",
-    "termsOfService": "Términos de Servicio",
-    "language": "Idioma",
-    "backToTop": "Volver arriba",
     "school": {
       "title": "¡Patina con nosotros!",
       "description": "Ofrecemos clases para todos los niveles y edades, nos enfocamos en la confianza y acompañamieto en el proceso de aprendizaje",
@@ -123,68 +54,34 @@
       "readyToStartTraining": "¿Listo para comenzar tu entrenamiento?",
       "joinAcademyDescription": "¡Únete a nuestra academia hoy y embárcate en tu viaje hacia una mejor condición física y habilidades!"
     },
-    "footerRights": "© 2024 Opon Spot. All rights reserved."
-  },
-  "fr": {
-    "landing": {
-      "title": "Open Spot est une stratégie visant à promouvoir la pratique du sport, en fournissant des informations utiles pour réaliser un entraînement constant."
+    "footer": {
+      "footer": "Impulsando tu ventaja.",
+      "privacyPolicy": "Política de Privacidad",
+      "termsOfService": "Términos de Servicio",
+      "language": "Idioma",
+      "backToTop": "Volver arriba",
+
+      "footerRights": "© 2024 Opon Spot. All rights reserved."
     },
-    "title": "Open Spot",
-    "menu": "menu",
-    "home": "Spots",
-    "shop": "Boutique",
-    "schooltitle": "École",
-    "trainingTips": "Conseils Pro",
-    "about": "Qui Sommes-Nous",
-    "heroTitle": "Météo pour Performance Extrême",
-    "heroSubtitle": "Prévisions précises pour élever votre entraînement et compétition.",
-    "ctaButton": "Prévisions pour vos spots",
-    "featuresTitle": "Fonctionnalités Inspirées par les Athlètes",
-    "runConditions": {
-      "title": "Ambiance Course",
-      "description": "Moments optimaux pour courir, avec vérifications parfaites de température et de vent."
-    },
-    "cyclingForecast": {
-      "title": "Conditions de Cyclisme",
-      "description": "Informations sur la vitesse et la direction du vent pour vos sessions."
-    },
-    "swimWeather": {
-      "title": "Ambiance Natation",
-      "description": "Température de l'eau et conditions pour vos aventures en eau libre."
-    },
-    "footer": "Alimenter votre avantage.",
-    "privacyPolicy": "Politique de Confidentialité",
-    "termsOfService": "Conditions d'Utilisation",
-    "language": "Langue",
-    "backToTop": "Retour en haut",
-    "school": {
-      "title": "¡Patinez avec nous!",
-      "description": "Nous proposons des cours pour tous les niveaux et tous les âges, nous nous concentrons sur la confiance et le soutien dans le processus d'apprentissage.",
-      "contactUs": "Contactez-nous",
-      "whyChooseUs": "Pourquoi Nous Choisir ?",
-      "schools": "Nos Écoles de Formation",
-      "skating": "Cours de Patinage",
-      "running": "Programmes de Course",
-      "plans": "Plans d'Entraînement",
-      "groupClasses": "Cours en Groupe",
-      "groupClassesPrice": "25 $ par séance",
-      "groupClassesDescription": "Rejoignez nos cours en groupe dynamiques pour une expérience d'entraînement amusante et motivante.",
-      "personalTraining": "Entraînement Personnel",
-      "personalTrainingPrice": "60 $ de l'heure",
-      "personalTrainingDescription": "Bénéficiez d'une attention individuelle de la part de nos entraîneurs experts pour atteindre vos objectifs de fitness plus rapidement.",
-      "specializedCourses": "Cours Spécialisés",
-      "specializedCoursesPrice": "150 $ pour 6 semaines",
-      "specializedCoursesDescription": "Plongez au cœur de compétences spécifiques avec nos cours spécialisés intensifs.",
-      "whatOurStudentsSay": "Ce Que Disent Nos Étudiants",
-      "testimonial1Name": "Sarah Johnson",
-      "testimonial1Text": "Les cours en groupe ici sont incroyables ! Je ne me suis jamais senti aussi motivé à m'entraîner.",
-      "testimonial2Name": "Mike Thompson",
-      "testimonial2Text": "Les séances d'entraînement personnel ont complètement transformé mon niveau de fitness. Très recommandé !",
-      "testimonial3Name": "Emily Chen",
-      "testimonial3Text": "Le cours de patinage spécialisé m'a aidé à améliorer ma technique de manière significative. Excellents instructeurs !",
-      "readyToStartTraining": "Prêt à Commencer Votre Entraînement ?",
-      "joinAcademyDescription": "Rejoignez notre académie aujourd'hui et commencez votre parcours vers une meilleure forme physique et des compétences !"
-    },
-    "footerRights": "© 2024 Opon Spot. Tous droits réservés."
+    "pending": {
+      "trainingTips": "Consejos de Pro",
+      "about": "Quiénes Somos",
+      "heroTitle": "Clima para un Rendimiento Extremo",
+      "heroSubtitle": "Pronósticos precisos para elevar tu entrenamiento y competencia.",
+      "ctaButton": "Pronóstico de tus spots",
+      "featuresTitle": "Características Impulsadas por Atletas",
+      "runConditions": {
+        "title": "Vibras para Correr",
+        "description": "Mejores momentos para salir a correr, con condiciones perfectas de temperatura y viento."
+      },
+      "cyclingForecast": {
+        "title": "Condiciones para Montar",
+        "description": "Datos sobre velocidad y dirección del viento para tus sesiones en bici."
+      },
+      "swimWeather": {
+        "title": "Vibras para Nadar",
+        "description": "Temperatura del agua y condiciones para tus aventuras en aguas abiertas."
+      }
+    }
   }
 }

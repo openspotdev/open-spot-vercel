@@ -22,15 +22,15 @@ export default function Header() {
   };
 
   const navItems = [
-    { href: "/spots", label: texts.home },
-    { href: "/shools", label: texts.schooltitle },
+    { href: "/spots", label: texts.menu.home },
+    { href: "/shools", label: texts.menu.schooltitle },
     // { href: "/shop", label: texts.shop },
   ];
 
   const languageOptions = [
-    { value: "en", label: "English", flag: "🇬🇧" },
+    // { value: "en", label: "English", flag: "🇬🇧" },
     { value: "es", label: "Español", flag: "🇪🇸" },
-    { value: "fr", label: "Français", flag: "🇫🇷" },
+    // { value: "fr", label: "Français", flag: "🇫🇷" },
   ];
 
   return (
@@ -55,7 +55,8 @@ export default function Header() {
             <Select
               value={language}
               onValueChange={(value) =>
-                setLanguage(value as "en" | "es" | "fr")
+                // setLanguage(value as "en" | "es" | "fr")
+                setLanguage(value as "es")
               }
             >
               <SelectTrigger className="text-sm font-medium bg-transparent border-none cursor-pointer">
@@ -84,7 +85,7 @@ export default function Header() {
         <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm md:hidden">
           <div className="fixed inset-y-0 right-0 w-full max-w-xs bg-background shadow-lg">
             <div className="flex h-14 items-center px-4">
-              <h2 className="text-lg font-semibold">{texts.menu}</h2>
+              <h2 className="text-lg font-semibold">{texts.menu.menu}</h2>
               <Button
                 variant="ghost"
                 className="ml-auto"
@@ -108,7 +109,8 @@ export default function Header() {
               <select
                 value={language}
                 onChange={(e) =>
-                  setLanguage(e.target.value as "en" | "es" | "fr")
+                  // setLanguage(e.target.value as "en" | "es" | "fr")
+                  setLanguage(e.target.value as "es")
                 }
                 className="text-sm font-medium bg-transparent border-none cursor-pointer"
               >

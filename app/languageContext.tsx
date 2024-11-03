@@ -2,12 +2,12 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
 import languageData from "./const/languages.json";
 
-type Language = "en" | "es" | "fr";
+type Language = "es"; ///"en" | "es" | "fr";
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  texts: typeof languageData.en;
+  texts: typeof languageData.es;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -29,12 +29,12 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
 }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguage] = useState<Language>("es");
 
   const value = {
     language,
     setLanguage,
-    texts: languageData[language] as typeof languageData.en,
+    texts: languageData[language] as typeof languageData.es,
   };
 
   return (

@@ -31,6 +31,7 @@ import {
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { useLanguage } from "@/app/languageContext";
 
 const WeatherIcon = ({ icon, description }) => {
   return (
@@ -54,6 +55,7 @@ const InfoItem = ({ icon: Icon, label, value }) => (
 
 export const ForecastDetail = ({ guid }: { guid: string }) => {
   const router = useRouter();
+  const { texts } = useLanguage();
   const {
     data: spot,
     isLoading: isLoadingSpot,

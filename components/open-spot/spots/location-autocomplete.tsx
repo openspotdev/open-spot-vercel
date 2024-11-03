@@ -10,6 +10,7 @@ const DynamicGooglePlacesAutocomplete = dynamic(
 );
 
 import { useAddSpot, Spot } from "@/lib/hooks/useSpotsRepository";
+import { useLanguage } from "@/app/languageContext";
 
 interface NewSpot {
   label: string;
@@ -24,6 +25,7 @@ interface NewSpot {
 export default function LocationAutocomplete() {
   const [newSpot, setNewSpot] = useState<NewSpot | null>(null);
   const addSpotMutation = useAddSpot();
+  const { texts, language } = useLanguage();
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ export default function LocationAutocomplete() {
   };
 
   const handleAddSpot = async (): Promise<Spot> => {
-    if (!newSpot) throw new Error("No spot selected");
+    if (!newSpot) throw new Error(texts.spots.autocomplete.errorNoSelected);
 
     const results = await geocodeByAddress(newSpot.label);
     const { lat, lng } = await getLatLng(results[0]);
@@ -69,9 +71,9 @@ export default function LocationAutocomplete() {
         minLengthAutocomplete={3}
         apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
         selectProps={{
-          placeholder: "Buscar spots...",
-          noOptionsMessage: () => "Por ejemplo ser un skatepark",
-          loadingMessage: () => "Buscando...",
+          placeholder: texts.spots.autocomplete.placeholder,
+          noOptionsMessage: () => texts.spots.autocomplete.noOptionsMessage,
+          loadingMessage: () => texts.spots.autocomplete.loadingMessage,
           isDisabled: false,
           isClearable: true,
           escapeClearsValue: true,
@@ -91,7 +93,7 @@ export default function LocationAutocomplete() {
       />
       <form id="spot-form" onSubmit={handleSave} className="mb-6 gap-2">
         <Button type="submit" disabled={!newSpot}>
-          Agregar
+          {texts.spots.autocomplete.buttonText}
         </Button>
       </form>
     </div>
