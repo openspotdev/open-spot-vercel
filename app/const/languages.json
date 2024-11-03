@@ -1,6 +1,10 @@
 {
   "en": {
     "title": "Open Spot",
+
+    "landing": {
+      "title": "Open Spot is a strategy to promote the practice of sport, providing useful information to achieve constant workout."
+    },
     "menu": "menu",
     "home": "Spots",
     "shop": "Shop",
@@ -56,10 +60,14 @@
       "readyToStartTraining": "Ready to Start Your Training?",
       "joinAcademyDescription": "Join our academy today and embark on your journey to better fitness and skills!"
     },
+
     "footerRights": "© 2024 Opon Spot. All rights reserved."
   },
   "es": {
     "title": "Open Spot",
+    "landing": {
+      "title": "Open Spot se es una estrategia para promover la practica del deporte, facilitando información utíl para conseguir la practica constante"
+    },
     "menu": "menu",
     "home": "Spots",
     "shop": "Tienda",
@@ -118,6 +126,9 @@
     "footerRights": "© 2024 Opon Spot. All rights reserved."
   },
   "fr": {
+    "landing": {
+      "title": "Open Spot est une stratégie visant à promouvoir la pratique du sport, en fournissant des informations utiles pour réaliser un entraînement constant."
+    },
     "title": "Open Spot",
     "menu": "menu",
     "home": "Spots",
