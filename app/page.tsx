@@ -4,19 +4,20 @@ import Header from "@/components/open-spot/header";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/app/languageContext";
 import Footer from "@/components/open-spot/footer";
+import Container from "@/components/open-spot/container";
 
 export default function LandingPage() {
   const { texts } = useLanguage();
 
   return (
-    <div className="flex flex-col w-full min-h-screen">
+    <Container>
       <Header />
       <main className="flex-grow bg-sky-200 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <motion.img
             src={`/shop/olympic.svg`}
             alt={"olympic"}
-            className="w-full h-auto max-h-[60vh] object-contain my-8"
+            className="w-full h-auto max-h-[40vh] object-contain my-8"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5 }}
@@ -34,6 +35,6 @@ export default function LandingPage() {
         </div>
       </main>
       <Footer />
-    </div>
+    </Container>
   );
 }

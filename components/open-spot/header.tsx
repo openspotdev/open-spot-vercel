@@ -35,7 +35,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky flex justify-center items-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <nav className="container flex h-14 items-center">
           <Link className="flex items-center justify-center space-x-2" href="/">
             <span className="icon-[circle-flags--olympics] w-12 h-12"></span>

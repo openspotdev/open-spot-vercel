@@ -32,7 +32,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-sky-200">
+    <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-sky-200">
       <Header />
       <main className="flex-1">
         <section className="flex justify-center h-screen w-full py-12 md:py-24 lg:py-32 xl:py-48  text-slate-800">

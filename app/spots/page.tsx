@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
+    <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <Header />
       <main className="flex-1 md:mx-auto p-4">
         <h1 className="text-md font-bold mb-6 text-center text-slate-800">
