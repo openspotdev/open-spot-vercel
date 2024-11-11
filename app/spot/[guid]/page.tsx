@@ -31,20 +31,19 @@ export default async function Home({
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
+    <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <Header />
-      <main className="container mx-auto p-2">
-        <div className="relative h-screen">
-          <div className="h-full w-full">
-            <HydrationBoundary state={dehydrate(queryClient)}>
-              <MapViewTW latitude={latitude} longitude={longitude} />
+      <main className="container mx-auto p-2 md:p-8">
+        <div className="relative h-[88vh] md:h-[80vh]">
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <MapViewTW latitude={latitude} longitude={longitude} />
+            <div className="flex-1">
               <LocationDetail guid={guid} />
               <ForecastDetail guid={guid} />
-            </HydrationBoundary>
-          </div>
+            </div>
+          </HydrationBoundary>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

@@ -1,40 +1,54 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+import LocationAutocomplete from "@/components/open-spot/spots/location-autocomplete";
+import SpotsList from "@/components/open-spot/spots/list";
 import Header from "@/components/open-spot/header";
-import { motion } from "framer-motion";
 import { useLanguage } from "@/app/languageContext";
 import Footer from "@/components/open-spot/footer";
-import Container from "@/components/open-spot/container";
 
-export default function LandingPage() {
+export default function Home() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const { texts } = useLanguage();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <Container>
+    <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
       <Header />
-      <main className="flex-grow bg-sky-200 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.img
-            src={`/shop/olympic.svg`}
-            alt={"olympic"}
-            className="w-full h-auto max-h-[40vh] object-contain my-8"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5 }}
-          />
-          <div className="flex flex-col items-center justify-center mt-8 mb-12">
-            <motion.h1
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-orange-900 text-center"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
-              {texts.landing.title}
-            </motion.h1>
-          </div>
+      <main className="flex-1 md:mx-auto p-4">
+        {/* <h1 className="text-md font-bold mb-6 text-center text-slate-800">
+          {texts.spots.title}
+        </h1> */}
+        <div className="max-w-2xl mx-auto flex flex-col justify-between h-full">
+          <SpotsList />
+          <LocationAutocomplete />
         </div>
       </main>
       <Footer />
-    </Container>
+      {showBackToTop && (
+        <Button
+          className="fixed bottom-4 right-4 p-2 rounded-full shadow-lg bg-red-500"
+          onClick={scrollToTop}
+          aria-label={texts.backToTop}
+        >
+          <ChevronUp className="h-6 w-6" />
+        </Button>
+      )}
+    </div>
   );
 }

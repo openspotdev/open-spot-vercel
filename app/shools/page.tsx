@@ -34,8 +34,8 @@ export default function LandingPage() {
   return (
     <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-sky-200">
       <Header />
-      <main className="flex-1">
-        <section className="flex justify-center h-screen w-full py-12 md:py-24 lg:py-32 xl:py-48  text-slate-800">
+      <main>
+        <section className="h-[90vh] text-slate-800 content-center">
           <div className="flex flex-col items-center justify-center space-y-4 text-center mx-4">
             <div className="space-y-2">
               <h1 className="text-3xl text-orange-600 font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
@@ -63,32 +63,12 @@ export default function LandingPage() {
         >
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center">
-              {texts.school.whyChooseUs}
+              {texts.school.featuresTitle}
             </h2>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              {[
-                {
-                  title: "Instructores expertos",
-                  icon: "icon-[game-icons--american-football-player]",
-                  description:
-                    "Aprende de los mejores en el campo, con años de experiencia.",
-                },
-                {
-                  title: "Skateparks",
-                  icon: "icon-[icon-park--skate]",
-                  description:
-                    "Entrena en espacios modernos y bien equipados, diseñados para un aprendizaje óptimo.",
-                },
-                {
-                  title: "Comunidad solidaria",
-                  icon: "icon-[healthicons--community-meeting-negative]",
-                  description:
-                    "Únete a una vibrante comunidad de personas afines apasionadas por el movimiento.",
-                },
-              ].map((feature, index) => (
+              {texts.school.features.map((feature, index) => (
                 <Card key={index}>
                   <CardContent className="flex flex-col items-center space-y-2 p-6 text-center">
-                    {/* <feature.icon className="h-12 w-12 mb-4 text-primary" /> */}
                     <span
                       className={`${feature.icon} w-32 h-32 mx-auto`}
                     ></span>
@@ -102,61 +82,41 @@ export default function LandingPage() {
             </div>
           </div>
         </section>
-        <section
-          id="sports"
-          className="flex justify-center w-full py-12 md:py-24 lg:py-32"
-        >
+        <section className="flex justify-center w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-12">
-              {texts.school.schools}
+              {texts.school.schoolsTitle}
             </h2>
             <Tabs
-              defaultValue="rollerblading"
+              defaultValue="rollerblade"
               className="w-full max-w-3xl mx-auto"
             >
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="rollerblading">
-                  {texts.school.skating}
-                </TabsTrigger>
-                <TabsTrigger value="running">
-                  {texts.school.running}
-                </TabsTrigger>
+              <TabsList className="grid w-full grid-cols-4">
+                {texts.school.schools.map((school, index) => (
+                  <TabsTrigger
+                    key={school.tab}
+                    value={school.tab}
+                    className="capitalize"
+                  >
+                    {school.tab}
+                  </TabsTrigger>
+                ))}
               </TabsList>
-              <TabsContent value="rollerblading">
-                <Card>
-                  <CardContent className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-6">
-                    {/* <Bike className="h-12 w-12 text-primary" /> */}
-                    <span className="icon-[icon-park--rollerskates] w-16 h-16"></span>
-                    <div>
-                      <h3 className="text-xl font-bold">
-                        Escuela de Rollerblading, Downhill, Rollerskate y
-                        Urbano.
-                      </h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Desde principiantes hasta patinadores avanzados,
-                        nuestras clases de patinaje en línea se adaptan a todos
-                        los niveles de habilidad. Aprende técnicas adecuadas,
-                        seguridad y trucos emocionantes.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              <TabsContent value="running">
-                <Card>
-                  <CardContent className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-6">
-                    <span className="icon-[noto-v1--running-shoe] w-12 h-12"></span>
-                    <div>
-                      <h3 className="text-xl font-bold">Escuela de Running</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Cursos intensivos centrados en técnicas avanzadas,
-                        preparación para competiciones o habilidades
-                        específicas. Lleva tus habilidades al siguiente nivel.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+              {texts.school.schools.map((school, index) => (
+                <TabsContent key={index} value={school.tab}>
+                  <Card>
+                    <CardContent className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 p-6">
+                      <span className={`${school.icon} w-16 h-16`}></span>
+                      <div>
+                        <h3 className="text-xl font-bold">{school.title}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          {school.description}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              ))}
             </Tabs>
           </div>
         </section>

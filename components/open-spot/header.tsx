@@ -22,27 +22,46 @@ export default function Header() {
   };
 
   const navItems = [
-    { href: "/spots", label: texts.menu.home },
-    { href: "/shools", label: texts.menu.schooltitle },
+    // { href: "/spots", label: texts.menu.home },
+    // { href: "/shools", label: texts.menu.schooltitle },
     // { href: "/shop", label: texts.shop },
   ];
 
   const languageOptions = [
-    // { value: "en", label: "English", flag: "🇬🇧" },
+    { value: "en", label: "English", flag: "🇬🇧" },
     { value: "es", label: "Español", flag: "🇪🇸" },
-    // { value: "fr", label: "Français", flag: "🇫🇷" },
+    { value: "fr", label: "Français", flag: "🇫🇷" },
   ];
 
   return (
     <>
       <header className="sticky flex justify-center items-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <nav className="container flex h-14 items-center">
+        <nav className="container flex h-14 items-center justify-between">
           <Link className="flex items-center justify-center space-x-2" href="/">
             <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
             <span className="font-bold">{texts.title}</span>
           </Link>
-
-          <nav className="ml-auto hidden md:flex gap-4 sm:gap-6 md:items-center">
+          <section className="max-w-[30vw]">
+            <Select
+              value={language}
+              onValueChange={(value) =>
+                // setLanguage(value as "en" | "es" | "fr")
+                setLanguage(value as "es")
+              }
+            >
+              <SelectTrigger className="text-sm font-medium bg-transparent border-none cursor-pointer">
+                <SelectValue placeholder="Select language" />
+              </SelectTrigger>
+              <SelectContent>
+                {languageOptions.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {`${option.flag} ${option.label}`}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </section>
+          {/* <nav className="ml-auto hidden md:flex gap-4 sm:gap-6 md:items-center">
             {navItems.map((item, index) => (
               <Link
                 key={index}
@@ -70,15 +89,15 @@ export default function Header() {
                 ))}
               </SelectContent>
             </Select>
-          </nav>
-          <Button
+          </nav> */}
+          {/* <Button
             variant="ghost"
             className="ml-auto md:hidden"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
             <Menu className="h-6 w-6" />
-          </Button>
+          </Button> */}
         </nav>
       </header>
       {mobileMenuOpen && (

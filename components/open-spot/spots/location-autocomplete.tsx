@@ -68,6 +68,7 @@ export default function LocationAutocomplete() {
   return (
     <div className="flex w-full space-x-1 justify-between">
       <DynamicGooglePlacesAutocomplete
+        debounce={500}
         minLengthAutocomplete={3}
         apiKey={process.env.NEXT_PUBLIC_MAPS_API_KEY}
         selectProps={{
@@ -79,19 +80,35 @@ export default function LocationAutocomplete() {
           escapeClearsValue: true,
           value: newSpot,
           onChange: (spot: NewSpot | null) => setNewSpot(spot),
+          menuPlacement: "top",
           styles: {
             input: (provided) => ({
               ...provided,
               width: "200px",
             }),
+            option: (provided) => ({
+              ...provided,
+              width: "90vw",
+              fontSize: "12px",
+              height: "auto",
+              textAlign: "left",
+            }),
+            menu: (provided) => ({
+              ...provided,
+              width: "90vw",
+              marginBottom: "4px",
+              textAlign: "left",
+            }),
           },
         }}
         apiOptions={{
-          language: "en",
-          region: "en",
+          // language: "en",
+          // region: "en",
+          language,
+          region: language,
         }}
       />
-      <form id="spot-form" onSubmit={handleSave} className="mb-6 gap-2">
+      <form id="spot-form" onSubmit={handleSave} className="gap-2">
         <Button type="submit" disabled={!newSpot}>
           {texts.spots.autocomplete.buttonText}
         </Button>

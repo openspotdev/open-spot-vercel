@@ -1,4 +1,77 @@
 {
+  "en": {
+    "title": "Open Spot",
+    "menu": {
+      "menu": "menu",
+      "home": "Spots",
+      "shop": "Shop",
+      "schooltitle": "School"
+    },
+    "home": {
+      "title": "Open Spot connects athletes with practical information and sponsorship opportunities. A platform for those who already practice sports and seek resources to stay active."
+    },
+    "spots": {
+      "title": "Useful information to practice your routine",
+      "autocomplete": {
+        "errorNoSelected": "Error finding your spot",
+        "placeholder": "Search spots...",
+        "noOptionsMessage": "The spot you're looking for...",
+        "loadingMessage": "Searching...",
+        "buttonText": "Add"
+      }
+    },
+    "spot": {
+      "forecastDetail": {
+        "wind": "wind",
+        "humidity": "humidity"
+      }
+    },
+    "footer": {
+      "footer": "Powering your edge.",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "language": "Language",
+      "footerRights": "© 2024 Open Spot. All rights reserved."
+    },
+    "backToTop": "Back to top"
+  },
+
+  "fr": {
+    "title": "Open Spot",
+    "menu": {
+      "menu": "menu",
+      "home": "Spots",
+      "shop": "Boutique",
+      "schooltitle": "École"
+    },
+    "home": {
+      "title": "Open Spot connecte les athlètes avec des informations pratiques et des opportunités de parrainage. Une plateforme pour ceux qui pratiquent déjà un sport et recherchent des ressources pour rester actifs."
+    },
+    "spots": {
+      "title": "Informations utiles pour pratiquer votre routine",
+      "autocomplete": {
+        "errorNoSelected": "Erreur lors de la recherche de votre spot",
+        "placeholder": "Rechercher des spots...",
+        "noOptionsMessage": "Le spot que vous recherchez...",
+        "loadingMessage": "Recherche en cours...",
+        "buttonText": "Ajouter"
+      }
+    },
+    "spot": {
+      "forecastDetail": {
+        "wind": "vent",
+        "humidity": "humidité"
+      }
+    },
+    "footer": {
+      "footer": "Stimuler votre avantage.",
+      "privacyPolicy": "Politique de Confidentialité",
+      "termsOfService": "Conditions d'Utilisation",
+      "language": "Langue",
+      "footerRights": "© 2024 Open Spot. Tous droits réservés."
+    },
+    "backToTop": "Retour en haut"
+  },
   "es": {
     "title": "Open Spot",
     "menu": {
@@ -7,15 +80,15 @@
       "shop": "Tienda",
       "schooltitle": "Escuela"
     },
-    "landing": {
-      "title": "Open Spot se es una estrategia para promover la practica del deporte, facilitando información utíl para conseguir la practica constante"
+    "home": {
+      "title": "Open Spot conecta deportistas con información práctica y oportunidades de patrocinio. Una plataforma para quienes ya practican deporte y buscan recursos para mantenerse activos."
     },
     "spots": {
       "title": "Información util para poder practicar tu rutina",
       "autocomplete": {
         "errorNoSelected": "Error buscando tu spot",
         "placeholder": "Buscar spots...",
-        "noOptionsMessage": "Por ejemplo ser un skatepark",
+        "noOptionsMessage": "El spot que buscas...",
         "loadingMessage": "Buscando...",
         "buttonText": "Agregar"
       }
@@ -26,60 +99,12 @@
         "humidity": "humedad"
       }
     },
-    "school": {
-      "title": "¡Patina con nosotros!",
-      "description": "Ofrecemos clases para todos los niveles y edades, nos enfocamos en la confianza y acompañamieto en el proceso de aprendizaje",
-      "contactUs": "Escribenos",
-      "whyChooseUs": "¿Por qué elegirnos?",
-      "schools": "Nuestras Escuelas de Entrenamiento",
-      "skating": "Clases de Patinaje",
-      "running": "Programas de Carrera",
-      "plans": "Planes de Entrenamiento",
-      "groupClasses": "Clases Grupales",
-      "groupClassesPrice": "25€ por sesión",
-      "groupClassesDescription": "Únete a nuestras enérgicas clases grupales para una experiencia de entrenamiento divertida y motivadora.",
-      "personalTraining": "Entrenamiento Personal",
-      "personalTrainingPrice": "60€ por hora",
-      "personalTrainingDescription": "Recibe atención individualizada de nuestros entrenadores expertos para alcanzar tus objetivos de fitness más rápido.",
-      "specializedCourses": "Cursos Especializados",
-      "specializedCoursesPrice": "150€ por 6 semanas",
-      "specializedCoursesDescription": "Profundiza en habilidades específicas con nuestros intensivos cursos especializados.",
-      "whatOurStudentsSay": "Lo que dicen nuestros estudiantes",
-      "testimonial1Name": "Sara Jiménez",
-      "testimonial1Text": "¡Las clases grupales aquí son increíbles! Nunca me había sentido tan motivada para entrenar.",
-      "testimonial2Name": "Miguel Torres",
-      "testimonial2Text": "Las sesiones de entrenamiento personal han transformado completamente mi nivel de fitness. ¡Altamente recomendado!",
-      "testimonial3Name": "Elena Chen",
-      "testimonial3Text": "El curso especializado de patinaje me ayudó a mejorar significativamente mi técnica. ¡Excelentes instructores!",
-      "readyToStartTraining": "¿Listo para comenzar tu entrenamiento?",
-      "joinAcademyDescription": "¡Únete a nuestra academia hoy y embárcate en tu viaje hacia una mejor condición física y habilidades!"
-    },
     "footer": {
       "footer": "Impulsando tu ventaja.",
       "privacyPolicy": "Política de Privacidad",
       "termsOfService": "Términos de Servicio",
       "language": "Idioma",
       "footerRights": "© 2024 Opon Spot. All rights reserved."
-    },
-    "pending": {
-      "trainingTips": "Consejos de Pro",
-      "about": "Quiénes Somos",
-      "heroTitle": "Clima para un Rendimiento Extremo",
-      "heroSubtitle": "Pronósticos precisos para elevar tu entrenamiento y competencia.",
-      "ctaButton": "Pronóstico de tus spots",
-      "featuresTitle": "Características Impulsadas por Atletas",
-      "runConditions": {
-        "title": "Vibras para Correr",
-        "description": "Mejores momentos para salir a correr, con condiciones perfectas de temperatura y viento."
-      },
-      "cyclingForecast": {
-        "title": "Condiciones para Montar",
-        "description": "Datos sobre velocidad y dirección del viento para tus sesiones en bici."
-      },
-      "swimWeather": {
-        "title": "Vibras para Nadar",
-        "description": "Temperatura del agua y condiciones para tus aventuras en aguas abiertas."
-      }
     },
     "backToTop": "Volver arriba"
   }
