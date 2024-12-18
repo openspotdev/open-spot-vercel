@@ -30,14 +30,14 @@ export default function Home() {
   return (
     <main className="max-h-[100vh] grid grid-rows-[10vh_80vh]">
       <Header />
-      <div className="flex flex-col mx-auto gap-4">
+      <div className="flex flex-col md:mx-auto mx-2 gap-4">
         <SpotsList className="mt-8" />
         <LocationAutocomplete />
       </div>
       {/* <Footer /> */}
       {showBackToTop && (
         <Button
-          className="fixed bottom-4 right-4 p-2 rounded-full shadow-lg bg-red-500"
+          className="fixed bottom-20 right-8 p-2 rounded-4 shadow-lg bg-red-500"
           onClick={scrollToTop}
           aria-label={texts.backToTop}
         >
