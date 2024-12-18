@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { cn } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -15,7 +16,11 @@ import SpotCard from "./spot-card";
 import { useSpots, Spot } from "@/lib/hooks/useSpotsRepository";
 import { useLanguage } from "@/app/languageContext";
 
-export default function List() {
+interface Props {
+  className?;
+}
+
+export default function List({ className }: Props) {
   const { language } = useLanguage();
   const { data: spots, isLoading, isError } = useSpots();
 
@@ -52,7 +57,7 @@ export default function List() {
     );
   const ordered = spots.reduce((acc, item) => [item].concat(acc), []);
   return (
-    <div className="space-y-2">
+    <div className={cn("space-y-2", className)}>
       {ordered?.map((spot: Spot) => (
         <SpotCard key={spot.guid} {...spot} language={language} />
       ))}

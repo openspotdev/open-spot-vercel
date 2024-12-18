@@ -66,7 +66,7 @@ export default function LocationAutocomplete() {
   };
 
   return (
-    <div className="flex w-full space-x-1 justify-between">
+    <div className="fixed bottom-0 left-0 p-8 flex justify-between bg-white gap-2">
       <DynamicGooglePlacesAutocomplete
         debounce={500}
         minLengthAutocomplete={3}
@@ -88,14 +88,14 @@ export default function LocationAutocomplete() {
             }),
             option: (provided) => ({
               ...provided,
-              width: "90vw",
+              width: "200px",
               fontSize: "12px",
               height: "auto",
               textAlign: "left",
             }),
             menu: (provided) => ({
               ...provided,
-              width: "90vw",
+              width: "200px",
               marginBottom: "4px",
               textAlign: "left",
             }),
@@ -108,7 +108,7 @@ export default function LocationAutocomplete() {
           region: language,
         }}
       />
-      <form id="spot-form" onSubmit={handleSave} className="gap-2">
+      <form id="spot-form" onSubmit={handleSave} className="">
         <Button type="submit" disabled={!newSpot}>
           {texts.spots.autocomplete.buttonText}
         </Button>

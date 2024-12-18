@@ -28,18 +28,13 @@ export default function Home() {
   };
 
   return (
-    <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
+    <main className="max-h-[100vh] grid grid-rows-[10vh_90vh]">
       <Header />
-      <main className="flex-1 md:mx-auto p-4">
-        {/* <h1 className="text-md font-bold mb-6 text-center text-slate-800">
-          {texts.spots.title}
-        </h1> */}
-        <div className="max-w-2xl mx-auto flex flex-col justify-between h-full">
-          <SpotsList />
-          <LocationAutocomplete />
-        </div>
-      </main>
-      <Footer />
+      <div className="flex flex-col mx-auto gap-4">
+        <SpotsList className="mt-8" />
+        <LocationAutocomplete />
+      </div>
+      {/* <Footer /> */}
       {showBackToTop && (
         <Button
           className="fixed bottom-4 right-4 p-2 rounded-full shadow-lg bg-red-500"
@@ -49,6 +44,6 @@ export default function Home() {
           <ChevronUp className="h-6 w-6" />
         </Button>
       )}
-    </div>
+    </main>
   );
 }
