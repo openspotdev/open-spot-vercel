@@ -4,7 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-import MapViewTW from "@/components/open-spot/spot/map-view";
+import MapView from "@/components/open-spot/spot/map-view";
 import { LocationDetail } from "@/components/open-spot/spot/location-detail";
 import { ForecastDetail } from "@/components/open-spot/spot/forecast-detail";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
@@ -36,7 +36,7 @@ export default async function Home({
       <main className="container mx-auto p-2 md:p-8">
         <div className="relative h-[88vh] md:h-[80vh]">
           <HydrationBoundary state={dehydrate(queryClient)}>
-            <MapViewTW latitude={latitude} longitude={longitude} />
+            <MapView latitude={latitude} longitude={longitude} />
             <div className="flex-1">
               <LocationDetail guid={guid} />
               <ForecastDetail guid={guid} />

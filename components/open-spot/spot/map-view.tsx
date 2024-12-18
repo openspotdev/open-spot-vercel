@@ -18,7 +18,7 @@ const PopupButton = () => (
   </Button>
 );
 
-const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
+const MapView: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
   console.log({ latitude, longitude });
 
   const tileLayer = useMemo(
@@ -51,7 +51,7 @@ const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
   );
 
   return (
-    <div className="h-[88vh] md:h-[80vh] rounded-lg overflow-hidden shadow-lg">
+    <div className="h-[80vh] md:h-[80vh] rounded-lg overflow-hidden shadow-lg">
       <Suspense key={crypto.randomUUID()} fallback={<>Loading....</>}>
         <MapContainer
           center={[Number(latitude), Number(longitude)] as LatLngExpression}
@@ -69,4 +69,4 @@ const MapViewTW: React.FC<MapViewTWProps> = ({ latitude, longitude }) => {
   );
 };
 
-export default MapViewTW;
+export default MapView;
