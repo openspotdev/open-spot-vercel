@@ -57,7 +57,7 @@ export default function List({ className }: Props) {
     );
   const ordered = spots.reduce((acc, item) => [item].concat(acc), []);
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn("space-y-2 pb-32", className)}>
       {ordered?.map((spot: Spot) => (
         <SpotCard key={spot.guid} {...spot} language={language} />
       ))}

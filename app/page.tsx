@@ -28,7 +28,7 @@ export default function Home() {
   };
 
   return (
-    <main className="max-h-[100vh] grid grid-rows-[10vh_90vh]">
+    <main className="max-h-[100vh] grid grid-rows-[10vh_80vh]">
       <Header />
       <div className="flex flex-col mx-auto gap-4">
         <SpotsList className="mt-8" />
