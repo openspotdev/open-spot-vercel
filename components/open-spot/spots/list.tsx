@@ -9,12 +9,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Loader2, MapPin } from "lucide-react";
 
 import SpotCard from "./spot-card";
 import { useSpots, Spot } from "@/lib/hooks/useSpotsRepository";
 import { useLanguage } from "@/app/languageContext";
+import SkeletonCard from "./skeleton";
 
 interface Props {
   className?;
@@ -24,21 +24,7 @@ export default function List({ className }: Props) {
   const { language } = useLanguage();
   const { data: spots, isLoading, isError } = useSpots();
 
-  if (isLoading)
-    return (
-      <Card className="w-full bg-white/40 backdrop-blur-sm shadow-lg">
-        <CardHeader className="space-y-2">
-          <Skeleton className="h-4 w-3/4" />
-          <Skeleton className="h-8 w-1/2" />
-        </CardHeader>
-        <CardContent className="grid grid-cols-4 gap-2">
-          <Skeleton className="h-9 w-full" />
-          <Skeleton className="h-9 w-full" />
-          <Skeleton className="h-9 w-full" />
-          <Skeleton className="h-9 w-full" />
-        </CardContent>
-      </Card>
-    );
+  if (isLoading) return <SkeletonCard />;
 
   if (isError) return <div>Error loading spots</div>;
   if (spots.length < 1)

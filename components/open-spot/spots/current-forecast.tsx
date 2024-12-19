@@ -53,7 +53,7 @@ export const CurrentForecast = ({ guid }: { guid: string }) => {
   });
 
   if (isLoadingSpot || isLoadingForecast) {
-    return <Loader2 className="mr-2 w-4 animate-spin h-20" />;
+    return <Loader2 className="mr-2 w-4 animate-spin" />;
   }
 
   if (spotError || forecastError) {
@@ -95,9 +95,7 @@ const SpotDetails = ({ spot, forecast, isDeleting }) => {
 
   return (
     <Badge className="whitespace-nowrap bg-slate-300 text-slate-800 hover:bg-slate-200">
-      <span className="icon-[icon-park--info] w-5 h-5 mr-2"></span>
       <p className="text-slate-80 text-lg font-bold">{`${tempCelsius}°C`}</p>
-
       <WeatherIcon
         icon={forecast?.data.weather?.[0]?.icon}
         description={forecast?.data.weather?.[0]?.description}

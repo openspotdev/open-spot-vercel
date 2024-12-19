@@ -18,8 +18,8 @@ export default function SpotCard({
   language,
 }: Spot) {
   return (
-    <Card className="flex flex-col md:flex-row justify-between w-full hover:shadow-lg transition-shadow duration-300 bg-white p-2 px-4">
-      <div className="flex md:flex-row flex-col justify-between md:w-1/2">
+    <Card className="flex flex-col justify-between w-full min-w-[400px] hover:shadow-lg transition-shadow duration-300 bg-white p-4">
+      <div className="flex flex-col justify-between md:w-1/2">
         <div className="w-full">
           <div className="text-[10px] text-gray-500 flex items-center">
             <span className="icon-[duo-icons--location] w-5 h-5 mr-1"></span>
@@ -27,10 +27,12 @@ export default function SpotCard({
               {city}, {state}, {country}
             </span>
           </div>
-          <h3 className="font-semibold text-base mb-1 capitalize">{name}</h3>
+          <h3 className="font-semibold text-base mb-1 capitalize truncate md:max-w-[28ch] overflow-hidden whitespace-nowrap">
+            {name}
+          </h3>
         </div>
       </div>
-      <div className="flex md:w-1/2 justify-between md:justify-end items-center gap-1 text-xs">
+      <div className="flex justify-between items-center text-xs">
         <article className="">
           <Link
             href={{

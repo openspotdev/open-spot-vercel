@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <main className="max-h-[100vh] grid grid-rows-[10vh_80vh]">
       <Header />
-      <div className="flex flex-col md:mx-auto mx-2 gap-4">
+      <div className="flex flex-col md:mx-auto min-w-2/3 mx-2 gap-4">
         <SpotsList className="mt-8" />
         <LocationAutocomplete />
       </div>
