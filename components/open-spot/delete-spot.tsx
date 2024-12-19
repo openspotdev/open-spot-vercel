@@ -8,7 +8,7 @@ export default function DeleteSpot({ guid }: { guid: string }) {
   const { mutate: deleteSpot, isPending: isDeleting } = useDeleteSpot();
 
   const handleDelete = async () => {
-    if (!confirm("Estas seguro de borrar esste spot?")) {
+    if (!confirm("Estas seguro de borrar este spot?")) {
       return;
     }
 

@@ -32,6 +32,7 @@ import {
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 import { useLanguage } from "@/app/languageContext";
+import { useState } from "react";
 
 const WeatherIcon = ({ icon, description }) => {
   return (
@@ -62,6 +63,7 @@ export const ForecastDetail = ({ guid }: { guid: string }) => {
     error: spotError,
   } = useSpotById(guid);
   const { mutate: deleteSpot, isPending: isDeleting } = useDeleteSpot();
+  const [showForecast, setShowForecast] = useState(guid);
 
   const {
     data: forecast,
@@ -88,6 +90,7 @@ export const ForecastDetail = ({ guid }: { guid: string }) => {
       console.error("Error deleting spot:", error);
     }
   };
+
   if (isLoadingSpot || isLoadingForecast) {
     return <LoadingSkeleton />;
   }
@@ -99,6 +102,8 @@ export const ForecastDetail = ({ guid }: { guid: string }) => {
   if (!spot || !forecast) {
     return <NotFoundAlert />;
   }
+
+  const handleShowForecast = async () => setShowForecast(!showForecast);
 
   return (
     <SpotDetails
@@ -148,7 +153,10 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
     : "N/A";
 
   return (
-    <Card className="p-2 absolute z-10 bottom-24 left-1/2 w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0">
+    <Card
+      onClick={() => setShowForecast(!showForecast)}
+      className="p-2 absolute z-10 bottom-24 left-1/2 h-[60vh] md:h-[50vh] w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0"
+    >
       <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${forecast?.data.weather?.[0]?.description}`}</p>
       <div className="flex gap-4">
         <div className="w-fit flex items-center justify-center bg-slate-400 rounded-lg p-2 px-4">
@@ -169,6 +177,7 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
             label="Humedad"
             value={`${forecast?.data.main?.humidity ?? "N/A"}%`}
           />
+          <InfoItem icon={Droplets} label="Pronostico del tiempo" value={`^`} />
         </div>
       </div>
     </Card>
