@@ -41,7 +41,7 @@ export default function Header() {
             <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
             <span className="font-bold">{texts.title}</span>
           </Link>
-          <section className="max-w-[30vw]">
+          {/* <section className="max-w-[30vw]">
             <Select
               value={language}
               onValueChange={(value) =>
@@ -60,7 +60,7 @@ export default function Header() {
                 ))}
               </SelectContent>
             </Select>
-          </section>
+          </section> */}
           {/* <nav className="ml-auto hidden md:flex gap-4 sm:gap-6 md:items-center">
             {navItems.map((item, index) => (
               <Link
@@ -125,7 +125,7 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
-              <select
+              {/* <select
                 value={language}
                 onChange={(e) =>
                   // setLanguage(e.target.value as "en" | "es" | "fr")
@@ -138,7 +138,7 @@ export default function Header() {
                     {option.label}
                   </option>
                 ))}
-              </select>
+              </select> */}
             </nav>
           </div>
         </div>

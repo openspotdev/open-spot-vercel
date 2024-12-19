@@ -25,11 +25,12 @@ export default function SpotCard({
         <div className="w-full">
           <div className="text-[10px] text-gray-500 flex items-center">
             <span className="icon-[duo-icons--location] w-5 h-5 mr-1"></span>
-            <span className="truncate max-w-[32ch] overflow-hidden whitespace-nowrap">
+            {/* <span className="truncate max-w-[64ch] overflow-hidden whitespace-nowrap"> */}
+            <span className="whitespace-nowrap">
               {city}, {state}, {country}
             </span>
           </div>
-          <h3 className="font-semibold text-base mb-1 capitalize truncate md:max-w-[28ch] overflow-hidden whitespace-nowrap">
+          <h3 className="font-semibold text-base mb-1 capitalize whitespace-nowrap">
             {name}
           </h3>
         </div>

@@ -8,9 +8,13 @@ export default function DeleteSpot({ guid }: { guid: string }) {
   const { mutate: deleteSpot, isPending: isDeleting } = useDeleteSpot();
 
   const handleDelete = async () => {
+    if (!confirm("Estas seguro de borrar esste spot?")) {
+      return;
+    }
+
     try {
       await deleteSpot(guid);
-      router.push("/spots");
+      router.push("/");
     } catch (error) {
       console.error("Error deleting spot:", error);
     }

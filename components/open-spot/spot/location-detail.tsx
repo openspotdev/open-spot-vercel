@@ -4,19 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { useSpotById } from "@/lib/hooks/useSpotsRepository";
-import { ShareButton } from "@/components/open-spot/share-button";
 import { getSpotForecastByLocation } from "@/lib/data/spots";
 import { useLanguage } from "@/app/languageContext";
+import DeleteSpot from "@/components/open-spot/delete-spot";
+import { ShareButton } from "@/components/open-spot/share-button";
+import { WazeButton } from "@/components/open-spot/waze-button";
+import { GMapsButton } from "@/components/open-spot/gmaps-button";
 
 export const LocationDetail = ({ guid }: { guid: string }) => {
   const router = useRouter();
@@ -105,33 +101,10 @@ const SpotDetails = ({ spot }) => {
         </CardTitle>
 
         <div className="flex flex-row items-start">
+          <GMapsButton guid={spot.guid} />
+          <WazeButton guid={spot.guid} />
           <ShareButton guid={spot.guid} />
-          <Button
-            className="w-fit px-2"
-            variant="link"
-            onClick={() =>
-              window.open(
-                `https://www.google.com/maps/search/?api=1&query=${spot?.latitude},${spot?.longitude}`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <span className="icon-[logos--google-maps] w-5 h-5"></span>
-          </Button>
-          <Button
-            className="w-fit px-2"
-            variant="link"
-            onClick={() =>
-              window.open(
-                `https://www.waze.com/ul?ll=${spot?.latitude},${spot?.longitude}&navigate=yes`,
-                "_blank"
-              )
-            }
-            disabled={!spot?.latitude || !spot?.longitude}
-          >
-            <span className="icon-[hugeicons--waze] w-5 h-5 text-blue-500"></span>
-          </Button>
+          <DeleteSpot guid={spot.guid} />
         </div>
       </CardHeader>
     </Card>
