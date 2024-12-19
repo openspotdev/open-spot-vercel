@@ -155,7 +155,7 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
   return (
     <Card
       onClick={() => setShowForecast(!showForecast)}
-      className="p-2 absolute z-10 bottom-24 left-1/2 h-[30vh] md:h-[14vh] w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0"
+      className="p-2 absolute z-10 bottom-24 left-1/2 h-[20vh] md:h-[14vh] w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0"
     >
       <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${forecast?.data.weather?.[0]?.description}`}</p>
       <div className="flex gap-4">
