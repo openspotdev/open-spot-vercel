@@ -66,7 +66,7 @@ export const WeatherDetail = ({ guid }: { guid: string }) => {
   const [showWeather, setShowWeather] = useState(guid);
 
   const {
-    data: Weather,
+    data: weather,
     isLoading: isLoadingWeather,
     error: weatherError,
   } = useQuery({
