@@ -10,7 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Loader2 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
-import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { getSpotWeatherByLocation } from "@/lib/data/spots";
 import { useLanguage } from "@/app/languageContext";
 
 const WeatherIcon = ({ icon, description }) => {
@@ -40,10 +40,10 @@ export const CurrentForecast = ({ guid }: { guid: string }) => {
     isLoading: isLoadingForecast,
     error: forecastError,
   } = useQuery({
-    queryKey: ["spot-forecast", spot?.latitude, spot?.longitude, language],
+    queryKey: ["spot-weather", spot?.latitude, spot?.longitude, language],
     queryFn: async () => {
       if (!spot) return null;
-      return await getSpotForecastByLocation({
+      return await getSpotWeatherByLocation({
         latitude: spot.latitude?.toString(),
         longitude: spot.longitude?.toString(),
         language,

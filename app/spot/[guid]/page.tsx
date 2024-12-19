@@ -6,8 +6,8 @@ import {
 
 import MapView from "@/components/open-spot/spot/map-view";
 import { LocationDetail } from "@/components/open-spot/spot/location-detail";
-import { ForecastDetail } from "@/components/open-spot/spot/forecast-detail";
-import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { WeatherDetail } from "@/components/open-spot/spot/weather-detail";
+import { getSpotWeatherByLocation } from "@/lib/data/spots";
 import Footer from "@/components/open-spot/footer";
 import Header from "@/components/open-spot/header";
 
@@ -26,9 +26,15 @@ export default async function Home({
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
+    queryKey: ["spot-weather", latitude, longitude, language],
+    queryFn: async () =>
+      await getSpotWeatherByLocation({ latitude, longitude, language }),
+  });
+
+  await queryClient.prefetchQuery({
     queryKey: ["spot-forecast", latitude, longitude, language],
     queryFn: async () =>
-      await getSpotForecastByLocation({ latitude, longitude, language }),
+      await getSpotWeatherByLocation({ latitude, longitude, language }),
   });
 
   return (
@@ -44,7 +50,7 @@ export default async function Home({
             <MapView latitude={latitude} longitude={longitude} />
             <div className="flex-1">
               <LocationDetail guid={guid} />
-              <ForecastDetail guid={guid} />
+              <WeatherDetail guid={guid} />
             </div>
           </HydrationBoundary>
         </div>

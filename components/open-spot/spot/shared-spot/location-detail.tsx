@@ -15,7 +15,7 @@ import {
 
 import { Spot, useSpotById } from "@/lib/hooks/useSpotsRepository";
 import { ShareButton } from "@/components/open-spot/share-button";
-import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { getSpotWeatherByLocation } from "@/lib/data/spots";
 import AddSpot from "@/components/open-spot/add-spot";
 import { useLanguage } from "@/app/languageContext";
 
@@ -43,10 +43,10 @@ export const LocationDetail = ({
     isLoading: isLoadingForecast,
     error: forecastError,
   } = useQuery({
-    queryKey: ["spot-forecast", latitude, longitude],
+    queryKey: ["spot-weather", latitude, longitude],
     queryFn: async () => {
       // if (!spot) return null;
-      return await getSpotForecastByLocation({
+      return await getSpotWeatherByLocation({
         latitude,
         longitude,
         language,

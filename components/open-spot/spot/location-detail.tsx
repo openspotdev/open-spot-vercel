@@ -7,7 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { useSpotById } from "@/lib/hooks/useSpotsRepository";
-import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { getSpotWeatherByLocation } from "@/lib/data/spots";
 import { useLanguage } from "@/app/languageContext";
 import DeleteSpot from "@/components/open-spot/delete-spot";
 import { ShareButton } from "@/components/open-spot/share-button";
@@ -28,10 +28,10 @@ export const LocationDetail = ({ guid }: { guid: string }) => {
     isLoading: isLoadingForecast,
     error: forecastError,
   } = useQuery({
-    queryKey: ["spot-forecast", spot?.latitude, spot?.longitude],
+    queryKey: ["spot-weather", spot?.latitude, spot?.longitude],
     queryFn: async () => {
       if (!spot) return null;
-      return await getSpotForecastByLocation({
+      return await getSpotWeatherByLocation({
         latitude: spot.latitude?.toString(),
         longitude: spot.longitude?.toString(),
         language,

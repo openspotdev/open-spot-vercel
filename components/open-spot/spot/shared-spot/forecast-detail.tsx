@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Wind, Droplets } from "lucide-react";
 
-import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { getSpotWeatherByLocation } from "@/lib/data/spots";
 import { useLanguage } from "@/app/languageContext";
 
 const WeatherIcon = ({ icon, description }) => {
@@ -50,9 +50,9 @@ export const ForecastDetail = ({
     isLoading: isLoadingForecast,
     error: forecastError,
   } = useQuery({
-    queryKey: ["spot-forecast", latitude, longitude],
+    queryKey: ["spot-weather", latitude, longitude],
     queryFn: async () => {
-      return await getSpotForecastByLocation({
+      return await getSpotWeatherByLocation({
         latitude,
         longitude,
         language,

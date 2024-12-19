@@ -30,7 +30,7 @@ import {
 } from "lucide-react";
 
 import { useSpotById, useDeleteSpot } from "@/lib/hooks/useSpotsRepository";
-import { getSpotForecastByLocation } from "@/lib/data/spots";
+import { getSpotWeatherByLocation } from "@/lib/data/spots";
 import { useLanguage } from "@/app/languageContext";
 import { useState } from "react";
 
@@ -54,7 +54,7 @@ const InfoItem = ({ icon: Icon, label, value }) => (
   </div>
 );
 
-export const ForecastDetail = ({ guid }: { guid: string }) => {
+export const WeatherDetail = ({ guid }: { guid: string }) => {
   const router = useRouter();
   const { texts, language } = useLanguage();
   const {
@@ -63,17 +63,17 @@ export const ForecastDetail = ({ guid }: { guid: string }) => {
     error: spotError,
   } = useSpotById(guid);
   const { mutate: deleteSpot, isPending: isDeleting } = useDeleteSpot();
-  const [showForecast, setShowForecast] = useState(guid);
+  const [showWeather, setShowWeather] = useState(guid);
 
   const {
-    data: forecast,
-    isLoading: isLoadingForecast,
-    error: forecastError,
+    data: Weather,
+    isLoading: isLoadingWeather,
+    error: weatherError,
   } = useQuery({
-    queryKey: ["spot-forecast", spot?.latitude, spot?.longitude],
+    queryKey: ["spot-weather", spot?.latitude, spot?.longitude],
     queryFn: async () => {
       if (!spot) return null;
-      return await getSpotForecastByLocation({
+      return await getSpotWeatherByLocation({
         latitude: spot.latitude?.toString(),
         longitude: spot.longitude?.toString(),
         language,
@@ -91,24 +91,24 @@ export const ForecastDetail = ({ guid }: { guid: string }) => {
     }
   };
 
-  if (isLoadingSpot || isLoadingForecast) {
+  if (isLoadingSpot || isLoadingWeather) {
     return <LoadingSkeleton />;
   }
 
-  if (spotError || forecastError) {
-    return <ErrorAlert error={spotError || forecastError} />;
+  if (spotError || weatherError) {
+    return <ErrorAlert error={spotError || weatherError} />;
   }
 
-  if (!spot || !forecast) {
+  if (!spot || !weather) {
     return <NotFoundAlert />;
   }
 
-  const handleShowForecast = async () => setShowForecast(!showForecast);
+  const handleShowWeather = async () => setShowWeather(!showWeather);
 
   return (
     <SpotDetails
       spot={spot}
-      forecast={forecast}
+      weather={weather}
       onDelete={handleDelete}
       isDeleting={isDeleting}
     />
@@ -143,26 +143,26 @@ const ErrorAlert = ({ error }) => (
 const NotFoundAlert = () => (
   <Alert className="absolute z-10 w-[90vw] md:w-[25vw] left-1/2 -translate-x-1/2 top-2 md:top-10 md:left-auto md:right-10 md:translate-x-0">
     <AlertTitle>Not Found</AlertTitle>
-    <AlertDescription>Spot or forecast data not found</AlertDescription>
+    <AlertDescription>Spot or Weather data not found</AlertDescription>
   </Alert>
 );
 
-const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
-  const tempCelsius = forecast?.data?.main?.temp
-    ? (forecast.data.main.temp - 273.15).toFixed(1)
+const SpotDetails = ({ spot, weather, onDelete, isDeleting }) => {
+  const tempCelsius = weather?.data?.main?.temp
+    ? (weather.data.main.temp - 273.15).toFixed(1)
     : "N/A";
 
   return (
     <Card
-      onClick={() => setShowForecast(!showForecast)}
+      onClick={() => setShowWeather(!showWeather)}
       className="p-2 absolute z-10 bottom-24 left-1/2 h-[20vh] md:h-[14vh] w-[90vw] md:w-[350px] md:rigth-auto md:left-10 bg-white/50 backdrop-blur-md shadow-lg -translate-x-1/2 md:translate-x-0"
     >
-      <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${forecast?.data.weather?.[0]?.description}`}</p>
+      <p className="text-slate-80 text-xl font-bold capitalize ml-2">{`${weather?.data.weather?.[0]?.description}`}</p>
       <div className="flex gap-4">
         <div className="w-fit flex items-center justify-center bg-slate-400 rounded-lg p-2 px-4">
           <WeatherIcon
-            icon={forecast?.data.weather?.[0]?.icon}
-            description={forecast?.data.weather?.[0]?.description}
+            icon={weather?.data.weather?.[0]?.icon}
+            description={weather?.data.weather?.[0]?.description}
           />
           <p className="text-slate-80 text-3xl font-bold">{`${tempCelsius}°C`}</p>
         </div>
@@ -170,12 +170,12 @@ const SpotDetails = ({ spot, forecast, onDelete, isDeleting }) => {
           <InfoItem
             icon={Wind}
             label="Viento"
-            value={`${forecast?.data.wind.speed ?? "N/A"} m/s`}
+            value={`${weather?.data.wind.speed ?? "N/A"} m/s`}
           />
           <InfoItem
             icon={Droplets}
             label="Humedad"
-            value={`${forecast?.data.main?.humidity ?? "N/A"}%`}
+            value={`${weather?.data.main?.humidity ?? "N/A"}%`}
           />
           {/* <InfoItem icon={Droplets} label="Pronostico del tiempo" value={`^`} /> */}
         </div>
