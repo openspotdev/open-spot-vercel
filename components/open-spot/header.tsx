@@ -15,7 +15,7 @@ import {
 
 interface Props {
   className?;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export default function Header({ className, children }: Props) {
