@@ -32,11 +32,21 @@ export function ShareButton({ guid }: ShareButtonProps) {
         throw new Error("Failed to shorten URL");
       }
       const shortUrl = await response.text();
-      await navigator.clipboard.writeText(shortUrl);
+      if (navigator.clipboard && navigator.clipboard.write) {
+        await navigator.clipboard.writeText(shortUrl);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = shortUrl;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
+      }
       toast({
         title: "Listo para compartir!",
         description:
-          "El link corto del spot fue copiado, puedes compartirlo en cualquier red social.",
+          "El link del spot fue copiado, puedes compartirlo en cualquier red social.",
       });
     } catch (error) {
       console.error("Error shortening or copying link:", error);

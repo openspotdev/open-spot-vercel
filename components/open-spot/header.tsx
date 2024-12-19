@@ -13,7 +13,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export default function Header() {
+interface Props {
+  className?;
+  children: React.ReactNode;
+}
+
+export default function Header({ className, children }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, texts } = useLanguage();
 
@@ -41,6 +46,7 @@ export default function Header() {
             <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
             <span className="font-bold">{texts.title}</span>
           </Link>
+          {children}
           {/* <section className="max-w-[30vw]">
             <Select
               value={language}

@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-import MapViewTW from "@/components/open-spot/spot/map-view";
+import MapView from "@/components/open-spot/spot/map-view";
 import { LocationDetail } from "@/components/open-spot/spot/shared-spot/location-detail";
 import { ForecastDetail } from "@/components/open-spot/spot/shared-spot/forecast-detail";
+import Header from "@/components/open-spot/header";
 
 export default async function Home({
   searchParams,
@@ -36,26 +37,17 @@ export default async function Home({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
-      <header className="sticky flex justify-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <nav className="container flex h-14 items-center">
-          <Link className="flex items-center justify-center space-x-2" href="/">
-            <button className="flex items-center justify-center space-x-2">
-              <span className="icon-[circle-flags--olympics] w-12 h-12"></span>
-              <span className="font-bold">Volver</span>
-            </button>
-          </Link>
-
-          <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
-            <h1 className="font-bold">{name}</h1>
-          </nav>
+    <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
+      <Header>
+        <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
+          <h1 className="font-bold">{name}</h1>
         </nav>
-      </header>
+      </Header>
 
-      <main className="container mx-auto p-2">
-        <div className="relative h-screen">
-          <div className="h-full w-full">
-            <MapViewTW latitude={latitude} longitude={longitude} />
+      <main className="container mx-auto p-2 md:p-8">
+        <div className="relative h-[88vh] md:h-[80vh]">
+          <div className="">
+            <MapView latitude={latitude} longitude={longitude} />
             <LocationDetail {...spot} />
             <ForecastDetail {...spot} />
           </div>

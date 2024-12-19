@@ -7,25 +7,33 @@ export const metadata: Metadata = {
   description:
     "Welcome to OS Action Sport, your premier destination for all things rollerblading and running! As a vibrant community organization and school, we promote active lifestyles through engaging programs, expert coaching, and thrilling events.",
   openGraph: {
-    title: "OS Action Sports",
+    title: "Open Spot",
     description: "Discover and join exciting action sports events with OS",
-    siteName: "OS Action Sports",
+    siteName: "Open Spot",
     type: "website",
-    url: "https://www.osactionsports.com",
+    url: "https://www.openspot.com",
     images: [
       {
-        url: "https://www.osactionsports.com/We.Are.Diffrent.jpg",
+        url: "https://www.openspot.com/We.Are.Diffrent.jpg",
         width: 600,
         height: 310,
-        alt: "We Are Different - OS Action Sports",
+        alt: "We Are Different - Open Spot",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "OS Action Sports",
-    description: "Discover and join exciting action sports events with OS",
-    images: ["https://www.osactionsports.com/We.Are.Diffrent.jpg"],
+    title: "Open Spot",
+    description:
+      "Discover and join exciting action sports events with Open Spot",
+    images: [
+      {
+        url: "/favicon_io/android-chrome-512x512.png",
+        width: 1200, // Replace with the actual width of your image
+        height: 630, // Replace with the actual height of your image
+        alt: "We Are Different - Open Spot",
+      },
+    ],
   },
   icons: {
     icon: [

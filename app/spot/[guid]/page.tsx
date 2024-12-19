@@ -16,9 +16,10 @@ export default async function Home({
   searchParams,
 }: {
   params: { guid: string };
-  searchParams?: { lat: string; lon: string; lan: string };
+  searchParams?: { name: string; lat: string; lon: string; lan: string };
 }) {
   const guid = params?.["guid"] || "";
+  const name = searchParams.name || "";
   const latitude = searchParams.lat || "";
   const longitude = searchParams.lon || "";
   const language = searchParams.lan || "";
@@ -32,7 +33,11 @@ export default async function Home({
 
   return (
     <div className="h-[100vh] grid grid-rows-[10vh_1fr_10vh] bg-gradient-to-br from-blue-200 via-rose-200 to-slate-200">
-      <Header />
+      <Header>
+        <nav className="ml-auto hidden md:flex gap-4 sm:gap-6">
+          <h1 className="font-bold">{name}</h1>
+        </nav>
+      </Header>
       <main className="container mx-auto p-2 md:p-8">
         <div className="relative h-[88vh] md:h-[80vh]">
           <HydrationBoundary state={dehydrate(queryClient)}>

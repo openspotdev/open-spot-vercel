@@ -40,7 +40,12 @@ export default function SpotCard({
           <Link
             href={{
               pathname: `/spot/${guid}`,
-              query: { lat: latitude, lon: longitude, lan: language },
+              query: {
+                name: name,
+                lat: latitude,
+                lon: longitude,
+                lan: language,
+              },
             }}
           >
             <CurrentForecast guid={guid} />
