@@ -49,8 +49,8 @@ export default async function Home({
           <HydrationBoundary state={dehydrate(queryClient)}>
             <MapView latitude={latitude} longitude={longitude} />
             <div className="flex-1">
-              <LocationDetail guid={guid} />
-              <WeatherDetail guid={guid} />
+              {/* <LocationDetail guid={guid} /> */}
+              {/* <WeatherDetail guid={guid} /> */}
             </div>
           </HydrationBoundary>
         </div>

@@ -82,6 +82,23 @@ export const WeatherDetail = ({ guid }: { guid: string }) => {
     enabled: !!spot?.latitude && !!spot?.longitude,
   });
 
+  const {
+    data: forecast,
+    isLoading: isLoadingForecast,
+    error: forecastError,
+  } = useQuery({
+    queryKey: ["spot-forecast", spot?.latitude, spot?.longitude],
+    queryFn: async () => {
+      if (!spot) return null;
+      return await getSpotForecastByLocation({
+        latitude: spot.latitude?.toString(),
+        longitude: spot.longitude?.toString(),
+        language,
+      });
+    },
+    enabled: !!spot?.latitude && !!spot?.longitude,
+  });
+
   const handleDelete = async () => {
     try {
       await deleteSpot(guid);
@@ -109,6 +126,7 @@ export const WeatherDetail = ({ guid }: { guid: string }) => {
     <SpotDetails
       spot={spot}
       weather={weather}
+      forecast={forecast}
       onDelete={handleDelete}
       isDeleting={isDeleting}
     />
@@ -147,10 +165,11 @@ const NotFoundAlert = () => (
   </Alert>
 );
 
-const SpotDetails = ({ spot, weather, onDelete, isDeleting }) => {
+const SpotDetails = ({ spot, weather, forecast, onDelete, isDeleting }) => {
   const tempCelsius = weather?.data?.main?.temp
     ? (weather.data.main.temp - 273.15).toFixed(1)
     : "N/A";
+  console.log("forecast :::", forecast);
 
   return (
     <Card

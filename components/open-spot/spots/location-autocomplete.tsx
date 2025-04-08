@@ -11,6 +11,7 @@ const DynamicGooglePlacesAutocomplete = dynamic(
 
 import { useAddSpot, Spot } from "@/lib/hooks/useSpotsRepository";
 import { useLanguage } from "@/app/languageContext";
+import { useLocationStore } from "@/lib/stores/location-store";
 
 interface NewSpot {
   label: string;
@@ -26,6 +27,7 @@ export default function LocationAutocomplete() {
   const [newSpot, setNewSpot] = useState<NewSpot | null>(null);
   const addSpotMutation = useAddSpot();
   const { texts, language } = useLanguage();
+  const { setLocation } = useLocationStore();
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,6 +36,11 @@ export default function LocationAutocomplete() {
     const spotData = await handleAddSpot();
     if (spotData) {
       addSpotMutation.mutate(spotData);
+      // Update location in store
+      setLocation({
+        lat: parseFloat(spotData.latitude),
+        lng: parseFloat(spotData.longitude),
+      });
     }
   };
 

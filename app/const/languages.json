@@ -90,7 +90,7 @@
         "placeholder": "Buscar spots...",
         "noOptionsMessage": "El spot que buscas...",
         "loadingMessage": "Buscando...",
-        "buttonText": "Agregar"
+        "buttonText": "Cerca de"
       }
     },
     "spot": {

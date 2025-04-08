@@ -5,6 +5,10 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useLanguage } from "@/app/languageContext";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useDebouncedCallback } from "use-debounce";
+import { Slider } from "@/components/ui/slider";
+import { useRadiusStore } from "@/lib/stores/radius-store";
 import {
   Select,
   SelectContent,
@@ -21,6 +25,7 @@ interface Props {
 export default function Header({ className, children }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage, texts } = useLanguage();
+  const { radius, setRadius } = useRadiusStore();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -38,6 +43,10 @@ export default function Header({ className, children }: Props) {
     { value: "fr", label: "Français", flag: "🇫🇷" },
   ];
 
+  const debouncedSetRadius = useDebouncedCallback((value: number) => {
+    setRadius(value);
+  }, 500);
+
   return (
     <>
       <header className="sticky flex justify-center items-center px-2 top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -47,6 +56,23 @@ export default function Header({ className, children }: Props) {
             <span className="font-bold">{texts.title}</span>
           </Link>
           {children}
+
+          {/* <Card className="w-1/4">
+            <CardHeader>
+              <CardTitle className="text-md">
+                Search radius: {radius} km
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Slider
+                value={[radius]}
+                onValueChange={([value]) => debouncedSetRadius(value)}
+                min={10}
+                max={24}
+                step={1}
+              />
+            </CardContent>
+          </Card> */}
           {/* <section className="max-w-[30vw]">
             <Select
               value={language}
