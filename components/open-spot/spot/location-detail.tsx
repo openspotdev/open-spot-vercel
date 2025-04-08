@@ -101,8 +101,16 @@ const SpotDetails = ({ spot }) => {
         </CardTitle>
 
         <div className="flex flex-row items-start">
-          <GMapsButton guid={spot.guid} />
-          <WazeButton guid={spot.guid} />
+          <GMapsButton
+            guid={spot.guid}
+            latitude={spot.latitude}
+            longitude={spot.longitude}
+          />
+          <WazeButton
+            guid={spot.guid}
+            latitude={spot.latitude}
+            longitude={spot.longitude}
+          />
           <ShareButton guid={spot.guid} />
           <DeleteSpot guid={spot.guid} />
         </div>

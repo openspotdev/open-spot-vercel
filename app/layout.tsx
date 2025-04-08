@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Open Spot",
   description:
     "Welcome to Open Spot, your premier destination for all things rollerblading and running! As a vibrant community organization and school, we promote active lifestyles through engaging programs, expert coaching, and thrilling events. Join us to elevate your skills, connect with fellow enthusiasts, and embrace the excitement of action sports!",
+  metadataBase: new URL("https://open-spot.vercel.app"),
   openGraph: {
     title: "Open Spot",
     description:

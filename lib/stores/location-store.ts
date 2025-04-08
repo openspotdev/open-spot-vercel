@@ -14,49 +14,57 @@ interface LocationState {
   setLocation: (location: Location) => void;
   setError: (error: string | null) => void;
   setLoading: (isLoading: boolean) => void;
+  initializeGeolocation: () => void;
 }
 
 // Create the store
-export const useLocationStore = create<LocationState>((set) => ({
+export const useLocationStore = create<LocationState>()((set) => ({
   location: null,
   error: null,
-  isLoading: true,
+  isLoading: false,
   setLocation: (location: Location) => set({ location, error: null }),
   setError: (error: string | null) => set({ error }),
   setLoading: (isLoading: boolean) => set({ isLoading }),
-}));
+  initializeGeolocation: () => {
+    // This function should only be called on the client side
+    if (typeof window === "undefined") return;
 
-// Initialize geolocation when imported on the client side
-if (typeof window !== "undefined") {
-  // Set loading state
-  useLocationStore.getState().setLoading(true);
+    set({ isLoading: true });
 
-  // Get user's geolocation
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      useLocationStore.getState().setLocation({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
+    try {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          set({
+            location: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            },
+            error: null,
+            isLoading: false,
+          });
+        },
+        (error) => {
+          let errorMessage = "Unable to retrieve your location";
+
+          if (error.code === 1) {
+            // PERMISSION_DENIED
+            errorMessage = "Location access denied";
+          } else if (error.code === 2) {
+            // POSITION_UNAVAILABLE
+            errorMessage = "Location information unavailable";
+          } else if (error.code === 3) {
+            // TIMEOUT
+            errorMessage = "Location request timed out";
+          }
+
+          set({ error: errorMessage, isLoading: false });
+        }
+      );
+    } catch (error) {
+      set({
+        error: "Geolocation is not supported by this browser.",
+        isLoading: false,
       });
-      useLocationStore.getState().setLoading(false);
-    },
-    (error) => {
-      let errorMessage = "Unable to retrieve your location";
-
-      switch (error.code) {
-        case error.PERMISSION_DENIED:
-          errorMessage = "Location access denied";
-          break;
-        case error.POSITION_UNAVAILABLE:
-          errorMessage = "Location information unavailable";
-          break;
-        case error.TIMEOUT:
-          errorMessage = "Location request timed out";
-          break;
-      }
-
-      useLocationStore.getState().setError(errorMessage);
-      useLocationStore.getState().setLoading(false);
     }
-  );
-}
+  },
+}));

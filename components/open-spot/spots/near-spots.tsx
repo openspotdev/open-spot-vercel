@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getNearestSpotByLocation } from "@/lib/data/spots";
 import LocationAutocomplete from "@/components/open-spot/spots/location-autocomplete";
@@ -26,6 +26,7 @@ interface Spot {
 type SpotsResponse =
   | { spots: Spot[] }
   | { data: Spot[]; error: string }
+  | { data: Spot[] }
   | Spot[];
 
 const MapWithSpots = ({
@@ -34,10 +35,11 @@ const MapWithSpots = ({
   location: { lat: number; lng: number };
   radius: number;
 }) => {
-  const { radius, setRadius } = useRadiusStore();
+  const { radius } = useRadiusStore();
   const { data: spotsData, isLoading } = useQuery<SpotsResponse>({
     queryKey: ["spot-nearest-map", location, radius],
     queryFn: async () => {
+      if (!location) return { data: [] };
       const response = await getNearestSpotByLocation({
         latitude: location.lat,
         longitude: location.lng,
@@ -45,6 +47,7 @@ const MapWithSpots = ({
       });
       return response;
     },
+    enabled: !!location?.lat && !!location?.lng,
   });
 
   if (isLoading) {
@@ -59,7 +62,9 @@ const MapWithSpots = ({
     ? spotsData
     : "spots" in spotsData
     ? spotsData.spots
-    : spotsData.data;
+    : "data" in spotsData
+    ? spotsData.data
+    : [];
 
   return (
     <MapView
@@ -76,7 +81,15 @@ export default function NearSpots() {
     location,
     error: locationError,
     isLoading: isLoadingLocation,
+    initializeGeolocation,
   } = useLocationStore();
+
+  // Initialize geolocation on component mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      initializeGeolocation();
+    }
+  }, [initializeGeolocation]);
 
   if (isLoadingLocation) {
     return (
