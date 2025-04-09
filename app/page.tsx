@@ -1,5 +1,6 @@
 import Header from "@/components/open-spot/header";
 import dynamic from "next/dynamic";
+import { Visits } from "@/components/open-spot/visits";
 
 // Dynamically import client components with no SSR
 const NearSpotsComponent = dynamic(
@@ -10,7 +11,9 @@ const NearSpotsComponent = dynamic(
 export default function Home() {
   return (
     <main className="max-h-[100vh] grid grid-rows-[10vh_80vh]">
-      <Header />
+      <Header>
+        <Visits />
+      </Header>
       <div className="flex flex-col min-w-2/3 mx-2 gap-4">
         <NearSpotsComponent />
       </div>

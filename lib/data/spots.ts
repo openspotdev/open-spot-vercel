@@ -96,3 +96,23 @@ export async function getSpotDistanceByLocation({
     return { data: [], error: error.message }; // Return empty data with error
   }
 }
+
+export async function getVisits({
+  latitude,
+  longitude,
+}: {
+  latitude: string;
+  longitude: string;
+}): Promise<string> {
+  if (!latitude || !longitude) return "0";
+  const fullPathRequest = `/api/visits`;
+
+  try {
+    const response = await fetch(fullPathRequest);
+    const visits = await response.json();
+    return visits.data.toString();
+  } catch (error) {
+    console.error(`Failed getting nearest visits: ${error}`);
+    return "0"; // Return empty data with error
+  }
+}

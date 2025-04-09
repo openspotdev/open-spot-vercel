@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { PostVisits } from "../actions/visits";
 
 // Define location types
 export interface Location {

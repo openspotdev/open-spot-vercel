@@ -10,6 +10,7 @@ import { useRadiusStore } from "@/lib/stores/radius-store";
 import { useLocationStore } from "@/lib/stores/location-store";
 import MapView from "@/components/open-spot/spots/map-view";
 import DistanceSlider from "./distance-slider";
+import { PostVisits } from "@/lib/actions/visits";
 
 interface Spot {
   place_id: string;
@@ -91,6 +92,25 @@ export default function NearSpots() {
     }
   }, [initializeGeolocation]);
 
+  // Post location data to visits API when location is available
+  useEffect(() => {
+    if (location) {
+      const postLocationData = async () => {
+        try {
+          const body = JSON.stringify({
+            latitude: location.lat,
+            longitude: location.lng,
+          });
+          await PostVisits({ body });
+        } catch (error) {
+          console.error("Failed to post visit data:", error);
+        }
+      };
+
+      postLocationData();
+    }
+  }, [location]);
+
   if (isLoadingLocation) {
     return (
       <div className="flex items-center justify-center p-8 h-[70vh]">
@@ -128,7 +148,7 @@ export default function NearSpots() {
   return (
     <div className="space-y-4 p-4">
       <MapWithSpots location={location} radius={radius} />
-      <div className="p-4">
+      <div className="p-2">
         <DistanceSlider />
         <LocationAutocomplete />
       </div>
